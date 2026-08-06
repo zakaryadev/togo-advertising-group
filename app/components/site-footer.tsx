@@ -1,0 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
+import { Camera, MessageCircle, Send } from "lucide-react";
+import { services } from "../content/site-content";
+export function SiteFooter() { return <footer className="footer"><div className="container footer-grid"><div><div className="logo"><Image src="/togo_logo.svg" alt="TOGO Group Pro" width={150} height={52} /></div><p>Tashqi reklama va brending bo‘yicha professional yechimlar.</p><div className="socials"><a href="#aloqa" aria-label="Instagram"><Camera size={15} /></a><a href="#aloqa" aria-label="Telegram"><Send size={15} /></a><a href="#aloqa" aria-label="WhatsApp"><MessageCircle size={15} /></a></div></div><div><h3>Xizmatlar</h3>{services.slice(0, 6).map(item => <Link key={item.id} href="/xizmatlar">{item.title}</Link>)}</div><div><h3>Kompaniya</h3><Link href="/portfolio">Portfolio</Link><Link href="/#jarayon">Jarayon</Link><Link href="/aloqa">Aloqa</Link></div><div><h3>Aloqa</h3><p>+998 90 123 45 67</p><p>info@togogrouppro.uz</p><p>Toshkent, Chilonzor tumani</p></div></div></footer>; }
