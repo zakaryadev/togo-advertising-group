@@ -1,5 +1,5 @@
 "use client";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { useLang } from "../../content/i18n-context";
 import { contact } from "../../content/site-content";
 
@@ -20,6 +20,25 @@ export default function ContactSection() {
   const { t } = useLang();
   const [status, setStatus] = useState<"idle" | "pending" | "sent" | "error">("idle");
   const [phone, setPhone] = useState("+998 ");
+  const [siteContact, setSiteContact] = useState(contact);
+
+  useEffect(() => {
+    fetch("/api/settings")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.phone) {
+          setSiteContact({
+            ...contact,
+            phone: data.phone || contact.phone,
+            phoneHref: data.phoneHref || contact.phoneHref,
+            email: data.email || contact.email,
+            address: data.address || contact.address,
+            telegram: data.telegram || contact.telegram,
+          });
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -50,21 +69,21 @@ export default function ContactSection() {
             {t("ct.p")}
           </p>
           <div className="clist">
-            <a className="ci" href={contact.phoneHref}>
+            <a className="ci" href={siteContact.phoneHref}>
               <span className="mono">{t("ct.phone")}</span>
-              <b>{contact.phone}</b>
+              <b>{siteContact.phone}</b>
             </a>
-            <a className="ci" href={`mailto:${contact.email}`}>
+            <a className="ci" href={`mailto:${siteContact.email}`}>
               <span className="mono">Email</span>
-              <b>{contact.email}</b>
+              <b>{siteContact.email}</b>
             </a>
-            <a className="ci" href={contact.telegram} target="_blank" rel="noopener noreferrer">
+            <a className="ci" href={siteContact.telegram} target="_blank" rel="noopener noreferrer">
               <span className="mono">Telegram</span>
               <b>@togogrouppro</b>
             </a>
             <a className="ci" href="#">
               <span className="mono">{t("ct.addr")}</span>
-              <b>{t("ct.city")}</b>
+              <b>{siteContact.address || t("ct.city")}</b>
             </a>
           </div>
         </div>

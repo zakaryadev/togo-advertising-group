@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { useLang } from "../content/i18n-context";
 
+import Link from "next/link";
+
 export function SiteFooter() {
   const { t } = useLang();
   const [year, setYear] = useState("");
@@ -25,6 +27,7 @@ export function SiteFooter() {
         <div className="fbot mono">
           <span>© {year} TOGO GROUP PRO · {t("ct.city")}</span>
           <span>{t("ft.tags")}</span>
+          <Link href="/admin" style={{ opacity: 0.5 }}>Admin</Link>
           <span>togogrouppro.uz</span>
         </div>
       </div>

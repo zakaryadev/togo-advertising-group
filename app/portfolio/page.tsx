@@ -1,18 +1,48 @@
 "use client";
 import Image from "next/image";
 import { ArrowUpRight, BriefcaseBusiness } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { SiteHeader } from "../components/site-header";
 import { SiteFooter } from "../components/site-footer";
-import { portfolio } from "../content/site-content";
+import { portfolio as staticPortfolio } from "../content/site-content";
+
+interface PortfolioDisplayItem {
+  id: string;
+  client: string;
+  service: string;
+  image: string;
+}
 
 const filters = ["Barchasi", "LED Logo", "LED Harf", "Lightbox", "Stend", "Avto reklama", "Tashqi reklama"];
 
 export default function PortfolioPage() {
   const [filter, setFilter] = useState("Barchasi");
+  const [items, setItems] = useState<PortfolioDisplayItem[]>([]);
+
+  useEffect(() => {
+    fetch("/api/portfolio")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.items && data.items.length > 0) {
+          const mapped = data.items.map((item: any) => ({
+            id: item.id || item.slug,
+            client: item.title || item.client,
+            service: item.service_type || item.service,
+            image: item.image_url || item.image,
+          }));
+          setItems(mapped);
+        } else {
+          setItems(staticPortfolio);
+        }
+      })
+      .catch(() => setItems(staticPortfolio));
+  }, []);
+
+  const displayList = items.length > 0 ? items : staticPortfolio;
+
   const visible = useMemo(
-    () => filter === "Barchasi" ? portfolio : portfolio.filter(item => item.service === filter),
-    [filter]
+    () => (filter === "Barchasi" ? displayList : displayList.filter((item) => item.service === filter)),
+    [filter, displayList]
   );
 
   return (
@@ -30,7 +60,7 @@ export default function PortfolioPage() {
         <section className="sec">
           <div className="wrap">
             <div className="filter-bar" role="group" aria-label="Portfolio kategoriyalari">
-              {filters.map(item => (
+              {filters.map((item) => (
                 <button
                   key={item}
                   className={filter === item ? "filter active" : "filter"}
@@ -42,13 +72,14 @@ export default function PortfolioPage() {
             </div>
 
             <div className="portfolio-page-grid">
-              {visible.map(item => (
+              {visible.map((item) => (
                 <article className="portfolio-page-card" key={item.id}>
                   <div className="portfolio-page-media">
                     <Image
                       src={item.image}
                       alt={`${item.client} loyihasi`}
                       fill
+                      unoptimized
                       sizes="(max-width:640px) 100vw,(max-width:1000px) 50vw,33vw"
                     />
                   </div>

@@ -125,9 +125,29 @@ export default function ContactPage() {
             </form>
           </div>
         </section>
-        <section className="container map-placeholder">
-          <MapPin size={28} />
-          <div><strong>Toshkent shahrida ishlaymiz</strong><span>Manzil xaritasi keyingi bosqichda ulanadi</span></div>
+        <section className="container contact-map-section" style={{ marginTop: "40px", marginBottom: "60px" }}>
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              height: "400px",
+              borderRadius: "16px",
+              overflow: "hidden",
+              border: "1px solid rgba(243, 239, 226, 0.15)",
+              background: "#0d0c08",
+            }}
+          >
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47963.66632483861!2d69.1764353!3d41.2828698!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8a307a0c8cb7%3A0xe54d8a5f828a2a5!2sChilanzar%20District%2C%20Tashkent%2C%20Uzbekistan!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"
+              width="100%"
+              height="100%"
+              style={{ border: 0, filter: "invert(90%) hue-rotate(180deg) contrast(1.2)" }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="TOGO GROUP PRO Manzili"
+            />
+          </div>
         </section>
       </main>
       <SiteFooter />

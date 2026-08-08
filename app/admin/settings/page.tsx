@@ -1,0 +1,210 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+export default function AdminSettingsPage() {
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+
+  const [phone, setPhone] = useState("+998 77 300 45 00");
+  const [phoneHref, setPhoneHref] = useState("tel:+998773004500");
+  const [email, setEmail] = useState("info@togogrouppro.uz");
+  const [address, setAddress] = useState("Toshkent, Chilonzor tumani");
+  const [hours, setHours] = useState("Dushanba — Shanba, 09:00 — 18:00");
+  const [instagram, setInstagram] = useState("https://www.instagram.com/reklama_togo_group/");
+  const [telegram, setTelegram] = useState("https://t.me/togo_group_pro");
+  const [youtube, setYoutube] = useState("https://www.youtube.com/@togogrouppro");
+
+  const fetchSettings = async () => {
+    try {
+      const res = await fetch("/api/admin/settings");
+      const data = await res.json();
+      if (data.settings) {
+        const s = data.settings;
+        if (s.contact_phone) setPhone(s.contact_phone);
+        if (s.contact_phone_href) setPhoneHref(s.contact_phone_href);
+        if (s.contact_email) setEmail(s.contact_email);
+        if (s.contact_address) setAddress(s.contact_address);
+        if (s.contact_hours) setHours(s.contact_hours);
+        if (s.social_instagram) setInstagram(s.social_instagram);
+        if (s.social_telegram) setTelegram(s.social_telegram);
+        if (s.social_youtube) setYoutube(s.social_youtube);
+      }
+    } catch (err) {
+      console.error("Fetch settings error:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchSettings();
+  }, []);
+
+  const handleSaveSettings = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSaving(true);
+
+    const payload = {
+      settings: {
+        contact_phone: phone,
+        contact_phone_href: phoneHref || `tel:${phone.replace(/\s+/g, "")}`,
+        contact_email: email,
+        contact_address: address,
+        contact_hours: hours,
+        social_instagram: instagram,
+        social_telegram: telegram,
+        social_youtube: youtube,
+      },
+    };
+
+    try {
+      const res = await fetch("/api/admin/settings", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+      if (data.ok) {
+        alert("Aloqa va ijtimoiy tarmoq sozlamalari saqlandi!");
+      } else {
+        alert(data.error || "Saqlashda xatolik yuz berdi");
+      }
+    } catch (err) {
+      console.error("Save settings error:", err);
+      alert("Saqlashda xatolik yuz berdi");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div>
+      <div className="admin-page-head">
+        <div>
+          <h1>Aloqa va Sozlamalar</h1>
+          <p>Saytdagi telefon raqami, manzil, email va ijtimoiy tarmoq havolalarini tahrirlash</p>
+        </div>
+        <button onClick={fetchSettings} className="admin-pill">
+          🔄 Yangilash
+        </button>
+      </div>
+
+      <div
+        className="admin-table-wrap"
+        style={{ padding: "28px", maxWidth: "800px", background: "#141108" }}
+      >
+        {loading ? (
+          <div style={{ textAlign: "center", color: "#948b74", padding: "20px" }}>
+            Sozlamalar yuklanmoqda...
+          </div>
+        ) : (
+          <form onSubmit={handleSaveSettings} style={{ display: "grid", gap: "24px" }}>
+            <h3 style={{ fontSize: "16px", color: "#ffd24a", textTransform: "uppercase" }}>
+              📞 Aloqa Ma'lumotlari
+            </h3>
+
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
+              <div className="admin-form-group" style={{ marginBottom: 0 }}>
+                <label>Telefon Raqami *</label>
+                <input
+                  type="text"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  required
+                />
+              </div>
+
+              <div className="admin-form-group" style={{ marginBottom: 0 }}>
+                <label>Telefon Linki (href)</label>
+                <input
+                  type="text"
+                  value={phoneHref}
+                  onChange={(e) => setPhoneHref(e.target.value)}
+                  placeholder="tel:+998773004500"
+                />
+              </div>
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
+              <div className="admin-form-group" style={{ marginBottom: 0 }}>
+                <label>Email Manzili *</label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+
+              <div className="admin-form-group" style={{ marginBottom: 0 }}>
+                <label>Ish Vaqtlari</label>
+                <input
+                  type="text"
+                  value={hours}
+                  onChange={(e) => setHours(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="admin-form-group" style={{ marginBottom: 0 }}>
+              <label>Manzil *</label>
+              <input
+                type="text"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                required
+              />
+            </div>
+
+            <hr style={{ borderColor: "rgba(243, 239, 226, 0.1)", margin: "8px 0" }} />
+
+            <h3 style={{ fontSize: "16px", color: "#ffd24a", textTransform: "uppercase" }}>
+              🌐 Ijtimoiy Tarmoqlar
+            </h3>
+
+            <div className="admin-form-group" style={{ marginBottom: 0 }}>
+              <label>Telegram Havolasi</label>
+              <input
+                type="url"
+                value={telegram}
+                onChange={(e) => setTelegram(e.target.value)}
+                placeholder="https://t.me/togo_group_pro"
+              />
+            </div>
+
+            <div className="admin-form-group" style={{ marginBottom: 0 }}>
+              <label>Instagram Havolasi</label>
+              <input
+                type="url"
+                value={instagram}
+                onChange={(e) => setInstagram(e.target.value)}
+                placeholder="https://www.instagram.com/reklama_togo_group/"
+              />
+            </div>
+
+            <div className="admin-form-group" style={{ marginBottom: 0 }}>
+              <label>YouTube Havolasi</label>
+              <input
+                type="url"
+                value={youtube}
+                onChange={(e) => setYoutube(e.target.value)}
+                placeholder="https://www.youtube.com/@togogrouppro"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="admin-login-btn"
+              style={{ marginTop: "12px" }}
+              disabled={saving}
+            >
+              {saving ? "Saqlanmoqda..." : "SOZLAMALARNI SAQLASH →"}
+            </button>
+          </form>
+        )}
+      </div>
+    </div>
+  );
+}
