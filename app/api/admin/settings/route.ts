@@ -1,6 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
-import { contact as fallbackContact } from "@/app/content/site-content";
+import { getLocalSettings, updateLocalSettings } from "@/lib/settings-store";
 
 export async function GET() {
   if (isSupabaseConfigured()) {
@@ -9,7 +9,7 @@ export async function GET() {
       if (supabase) {
         const { data, error } = await supabase.from("site_settings").select("*");
         if (!error && data && data.length > 0) {
-          const settingsObj: Record<string, string> = {};
+          const settingsObj: Record<string, string> = { ...getLocalSettings() };
           data.forEach((row: { key: string; value: string }) => {
             settingsObj[row.key] = row.value;
           });
@@ -21,18 +21,7 @@ export async function GET() {
     }
   }
 
-  const defaultSettings = {
-    contact_phone: fallbackContact.phone,
-    contact_phone_href: fallbackContact.phoneHref,
-    contact_email: fallbackContact.email,
-    contact_address: fallbackContact.address,
-    contact_hours: fallbackContact.hours,
-    social_instagram: fallbackContact.instagram,
-    social_telegram: fallbackContact.telegram,
-    social_youtube: fallbackContact.youtube,
-  };
-
-  return Response.json({ settings: defaultSettings });
+  return Response.json({ settings: getLocalSettings() });
 }
 
 export async function PATCH(request: Request) {
@@ -43,6 +32,9 @@ export async function PATCH(request: Request) {
   } catch {
     return Response.json({ error: "Noto'g'ri so'rov" }, { status: 400 });
   }
+
+  // Update in-memory settings store immediately
+  updateLocalSettings(settings);
 
   if (isSupabaseConfigured()) {
     try {
@@ -65,5 +57,5 @@ export async function PATCH(request: Request) {
     }
   }
 
-  return Response.json({ ok: true, settings });
+  return Response.json({ ok: true, settings: getLocalSettings() });
 }
