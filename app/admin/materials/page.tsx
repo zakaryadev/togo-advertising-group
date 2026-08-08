@@ -19,7 +19,7 @@ export default function AdminMaterialsPage() {
 
   const fetchMaterials = async () => {
     try {
-      const res = await fetch("/api/materials");
+      const res = await fetch("/api/admin/materials");
       const data = await res.json();
       if (data.materials) {
         setMaterials(data.materials);

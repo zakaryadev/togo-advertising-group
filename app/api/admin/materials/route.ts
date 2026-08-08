@@ -1,5 +1,28 @@
 import { createClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
+import { getLocalMaterials, updateLocalMaterialPrice } from "@/lib/materials-store";
+
+export async function GET() {
+  if (isSupabaseConfigured()) {
+    try {
+      const supabase = await createClient();
+      if (supabase) {
+        const { data, error } = await supabase
+          .from("materials")
+          .select("*")
+          .order("created_at", { ascending: true });
+
+        if (!error && data && data.length > 0) {
+          return Response.json({ materials: data });
+        }
+      }
+    } catch (err) {
+      console.error("Admin GET materials error:", err);
+    }
+  }
+
+  return Response.json({ materials: getLocalMaterials() });
+}
 
 export async function PATCH(request: Request) {
   let body: { key?: string; price_per_sqm?: number; is_active?: boolean };
@@ -13,6 +36,9 @@ export async function PATCH(request: Request) {
   if (!key) {
     return Response.json({ error: "key majburiy" }, { status: 400 });
   }
+
+  // Update in-memory materials store immediately
+  updateLocalMaterialPrice(key, { price_per_sqm, is_active });
 
   if (isSupabaseConfigured()) {
     try {
@@ -37,5 +63,5 @@ export async function PATCH(request: Request) {
     }
   }
 
-  return Response.json({ ok: true, key, price_per_sqm, is_active });
+  return Response.json({ ok: true, key, price_per_sqm, is_active, materials: getLocalMaterials() });
 }
