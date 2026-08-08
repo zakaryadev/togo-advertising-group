@@ -1,5 +1,17 @@
 export type ServiceItem = { id: string; slug: string; title: string; excerpt: string; image: string; category: string };
 export type PortfolioItem = { id: string; slug: string; client: string; service: string; image: string; category: string };
+export type Contact = { phone: string; phoneHref: string; email: string; address: string; hours: string; instagram: string; telegram: string; youtube: string };
+
+export const contact: Contact = {
+  phone: "+998 77 300 45 00",
+  phoneHref: "tel:+998773004500",
+  email: "info@togogrouppro.uz",
+  address: "Toshkent, Chilonzor tumani",
+  hours: "Dushanba — Shanba, 09:00 — 18:00",
+  instagram: "https://www.instagram.com/reklama_togo_group/",
+  telegram: "https://t.me/togo_group_pro",
+  youtube: "https://www.youtube.com/@togogrouppro",
+};
 
 export const services: ServiceItem[] = [
   { id: "led", slug: "led-harflar", title: "LED Harflar", excerpt: "Har qanday turdagi yoritiladigan harflar", image: "/img/services/led-harflar.webp", category: "LED" },
@@ -13,5 +25,5 @@ export const services: ServiceItem[] = [
 ];
 
 export const portfolio: PortfolioItem[] = [
-  ["litto", "Litto Hotel", "LED Logo", "litto-hotel"], ["artel", "Artel Showroom", "LED Harf", "artel-showroom"], ["lightme", "Lightme Office", "Lightbox", "lightme-office"], ["movenpick", "Mövenpick Hotel", "LED Logo", "movenpick"], ["ideal", "Ideal Furniture", "Stend", "ideal-furniture"], ["nest", "Nest One", "Tashqi reklama", "nest-one"], ["uzauto", "UzAuto Motors", "Stend", "uzauto-motors"], ["korzinka", "Korzinka", "Avto reklama", "korzinka"], ["nclinic", "N-Clinic", "Tashqi reklama", "n-clinic"], ["wine", "Wine Time", "LED Harf", "wine-time"],
+  ["litto", "Litto Hotel", "LED Logo", "litto-hotel"], ["artel", "Artel Showroom", "LED Harf", "artel-showroom"], ["lightme", "Lightme Office", "Lightbox", "lightme-office"], ["movenpick", "Mövenpick Hotel", "LED Logo", "movenpick"], ["ideal", "Ideal Furniture", "Stend", "ideal-furniture"], ["nest", "Nest One", "Tashqi reklama", "nest-one"], ["uzauto", "UzAuto Motors", "Stend", "uzauto-motors"], ["korzinka", "Korzinka", "Avto reklama", "korzinka"], ["nclinic", "N-Clinic", "Tashqi reklama", "n-clinic"],
 ].map(([id, client, service, slug]) => ({ id, client, service, slug, category: service, image: `/img/portfolio/${slug}.webp` }));

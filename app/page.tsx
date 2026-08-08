@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { AnimatePresence, motion } from "motion/react";
 import {
   ArrowUpRight,
   Award,
@@ -11,7 +12,6 @@ import {
   HardHat,
   LayoutPanelTop,
   Menu,
-  MessageCircle,
   PackageCheck,
   PanelsTopLeft,
   PenLine,
@@ -27,6 +27,7 @@ import {
   X,
   Zap,
 } from "lucide-react";
+import { contact } from "./content/site-content";
 const Instagram = Camera;
 
 const nav = [
@@ -37,7 +38,9 @@ const nav = [
   ["Biz haqimizda", "afzalliklar"],
   ["Aloqa", "aloqa"],
 ];
-const navHref = (id: string) => ({ xizmatlar: "/xizmatlar", portfolio: "/portfolio", aloqa: "/aloqa" }[id] ?? `#${id}`);
+const navHref = (id: string) =>
+  ({ xizmatlar: "/xizmatlar", portfolio: "/portfolio", aloqa: "/aloqa" })[id] ??
+  `#${id}`;
 const services = [
   [
     "LED Harflar",
@@ -98,7 +101,6 @@ const portfolio = [
   ["UzAuto Motors", "Stend", "/img/portfolio/uzauto-motors.webp"],
   ["Korzinka", "Avto reklama", "/img/portfolio/korzinka.webp"],
   ["N-Clinic", "Tashqi Reklama", "/img/portfolio/n-clinic.webp"],
-  ["Wine Time", "LED Harf", "/img/portfolio/wine-time.webp"],
 ];
 const metrics = [
   ["500+", "Loyihalar", Trophy],
@@ -158,7 +160,13 @@ export default function Home() {
       <header className="site-header">
         <div className="container header-inner">
           <a className="logo" href="#top">
-            <Image src="/togo_logo.svg" alt="TOGO Group Pro" width={150} height={52} priority />
+            <Image
+              src="/togo_logo.svg"
+              alt="TOGO Group Pro"
+              width={150}
+              height={52}
+              priority
+            />
           </a>
           <nav className="nav">
             {nav.map(([l, id]) => (
@@ -171,9 +179,9 @@ export default function Home() {
               </a>
             ))}
           </nav>
-          <div className="phone">
-            <Zap size={15} color="var(--lime)" /> +998 90 123 45 67
-          </div>
+          <a className="phone" href={contact.phoneHref}>
+            <Zap size={15} color="var(--lime)" /> {contact.phone}
+          </a>
           <button
             className="menu-btn"
             aria-label="Menyuni ochish"
@@ -184,8 +192,9 @@ export default function Home() {
           </button>
         </div>
       </header>
+      <AnimatePresence>
       {drawer && (
-        <aside className="drawer">
+        <><motion.div className="drawer-backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setDrawer(false)} /><motion.aside className="drawer" initial={{ x: "100%", opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: "100%", opacity: 0 }} transition={{ duration: 0.28, ease: "easeOut" }}>
           <button
             className="menu-btn"
             aria-label="Menyuni yopish"
@@ -198,10 +207,11 @@ export default function Home() {
               {l}
             </a>
           ))}
-        </aside>
+        </motion.aside></>
       )}
+      </AnimatePresence>
       <section className="hero">
-        <div className="container hero-content">
+        <motion.div className="container hero-content" initial={{ opacity: 0, x: -28 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, ease: "easeOut" }}>
           <div className="eyebrow">
             <Zap size={13} color="var(--lime)" />
             Nafaqat reklama, balki obro‘ ham o‘rnatamiz!
@@ -222,18 +232,18 @@ export default function Home() {
             </a>
           </div>
           <div className="socials">
-            <a href="#aloqa" aria-label="Instagram">
+            <a href={contact.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <Instagram size={14} />
             </a>
-            <a href="#aloqa" aria-label="Telegram">
+            <a href={contact.telegram} target="_blank" rel="noopener noreferrer" aria-label="Telegram">
               <Send size={14} />
             </a>
-            <a href="#aloqa" aria-label="WhatsApp">
-              <MessageCircle size={14} />
+            <a href={contact.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <Play size={14} />
             </a>
           </div>
-        </div>
-        <div className="hero-sign">
+        </motion.div>
+        <motion.div className="hero-sign" initial={{ opacity: 0, scale: 1.04 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1, delay: 0.15, ease: "easeOut" }}>
           <div className="sign-box">
             <Image
               src="/togo_logo.svg"
@@ -244,15 +254,15 @@ export default function Home() {
               className="hero-logo-3d"
             />
           </div>
-          <button className="btn" onClick={() => setModal(true)}>
+          {/* <button className="btn" onClick={() => setModal(true)}>
             <Play size={14} fill="currentColor" /> Ish jarayonimizni tomosha
             qiling
-          </button>
-        </div>
+          </button> */}
+        </motion.div>
       </section>
       <div className="container metrics">
         {metrics.map(([n, l, Icon]) => (
-          <div className="metric" key={l}>
+          <motion.div className="metric" key={l} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.45 }}>
             <div className="metric-icon">
               <Icon size={28} />
             </div>
@@ -260,7 +270,7 @@ export default function Home() {
               <strong>{n}</strong>
               <small>{l}</small>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
       <section className="section" id="xizmatlar">
@@ -273,7 +283,7 @@ export default function Home() {
           </div>
           <div className="grid services">
             {services.map(([t, p, Icon, img]) => (
-              <article className="card" key={t}>
+              <motion.article className="card" key={t} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.45 }}>
                 <div className="service-media">
                   <Image
                     src={img}
@@ -289,7 +299,7 @@ export default function Home() {
                   <h3>{t}</h3>
                   <p>{p}</p>
                 </div>
-              </article>
+              </motion.article>
             ))}
           </div>
         </div>
@@ -364,8 +374,7 @@ export default function Home() {
             ))}
           </div>
           <div className="logos" aria-label="Mijozlar logolari">
-            Hilton　 artel　 payme　 MÖVENPICK　 UzAuto　 korzinka　 IDEAL　
-            N-clinic
+            <Image className="logos-image" src="/logos.png" alt="TOGO Group Pro mijozlari: Artel, Payme, UzAuto, Korzinka va N'Medical" width={4095} height={200} />
           </div>
         </div>
       </section>
@@ -376,24 +385,31 @@ export default function Home() {
           </h2>
           <p>Bepul konsultatsiya oling va maxsus taklifga ega bo‘ling!</p>
         </div>
-        <a className="btn primary" href="mailto:info@togogrouppro.uz">
+        <a className="btn primary" href={`mailto:${contact.email}`}>
           BUYURTMA BERISH <Arrow />
         </a>
       </section>
       <footer className="footer">
         <div className="container footer-grid">
           <div>
-            <div className="logo"><Image src="/togo_logo.svg" alt="TOGO Group Pro" width={150} height={52} /></div>
+            <div className="logo">
+              <Image
+                src="/togo_logo.svg"
+                alt="TOGO Group Pro"
+                width={150}
+                height={52}
+              />
+            </div>
             <p>Tashqi reklama va brending bo‘yicha professional yechimlar.</p>
             <div className="socials">
-              <a href="#aloqa">
+              <a href={contact.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <Instagram size={14} />
               </a>
-              <a href="#aloqa">
+              <a href={contact.telegram} target="_blank" rel="noopener noreferrer" aria-label="Telegram">
                 <Send size={14} />
               </a>
-              <a href="#aloqa">
-                <MessageCircle size={14} />
+              <a href={contact.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                <Play size={14} />
               </a>
             </div>
           </div>
@@ -414,9 +430,9 @@ export default function Home() {
           </div>
           <div>
             <h3>Aloqa</h3>
-            <p>+998 90 123 45 67</p>
-            <p>info@togogrouppro.uz</p>
-            <p>Toshkent, Chilonzor tumani</p>
+            <a href={contact.phoneHref}>{contact.phone}</a>
+            <a href={`mailto:${contact.email}`}>{contact.email}</a>
+            <p>{contact.address}</p>
           </div>
         </div>
       </footer>
