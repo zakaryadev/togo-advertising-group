@@ -1,116 +1,80 @@
 "use client";
+import { useEffect, useRef, useState } from "react";
+import { useLang } from "../content/i18n-context";
+import type { LangKey } from "../content/translations";
 
-import Image from "next/image";
-import Link from "next/link";
-import { Menu, X, Zap } from "lucide-react";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
-import { contact } from "../content/site-content";
-
-const links = [
-  ["Bosh sahifa", "/"],
-  ["Xizmatlar", "/xizmatlar"],
-  ["Portfolio", "/portfolio"],
-  ["Jarayon", "/#jarayon"],
-  ["Biz haqimizda", "/#afzalliklar"],
-  ["Aloqa", "/aloqa"],
-] as const;
-
-const isActive = (href: string, path: string) => {
-  const pathname = href.split("#")[0] || "/";
-  return href.includes("#")
-    ? path === "/"
-    : pathname === "/"
-      ? path === "/"
-      : path === pathname;
-};
+const navItems = [
+  { key: "nav.svc", href: "#xizmat" },
+  { key: "nav.calc", href: "#hisob" },
+  { key: "nav.mat", href: "#material" },
+  { key: "nav.work", href: "#ishlar" },
+  { key: "nav.proc", href: "#jarayon" },
+  { key: "nav.contact", href: "#aloqa" },
+];
 
 export function SiteHeader() {
-  const [open, setOpen] = useState(false);
-  const path = usePathname();
+  const { lang, setLang, t } = useLang();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const onScroll = () => {
+      headerRef.current?.classList.toggle("stuck", scrollY > 40);
+    };
+    addEventListener("scroll", onScroll, { passive: true });
+    return () => removeEventListener("scroll", onScroll);
+  }, []);
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
-    <>
-      <header className="site-header">
-        <div className="container header-inner">
-          <Link className="logo" href="/">
-            <Image
-              src="/togo_logo.svg"
-              alt="TOGO Group Pro"
-              width={150}
-              height={52}
-              priority
-            />
-          </Link>
-
-          <nav className="nav" aria-label="Asosiy navigatsiya">
-            {links.map(([label, href]) => (
-              <Link
-                key={href}
-                className={isActive(href, path) ? "active" : ""}
-                href={href}
+    <header id="hd" ref={headerRef}>
+      <div className="wrap nav">
+        <a href="#top" className="logo" aria-label="TOGO GROUP PRO">
+          <img
+            src="/togo_logo.svg"
+            alt="TOGO GROUP PRO"
+            width={140}
+            height={48}
+            className="logo-img"
+          />
+        </a>
+        <nav className={`nav-links${menuOpen ? " open" : ""}`} id="menu">
+          {navItems.map((item) => (
+            <a key={item.key} href={item.href} onClick={closeMenu}>
+              <i>{t(item.key)}</i>
+              <i>{t(item.key)}</i>
+            </a>
+          ))}
+        </nav>
+        <div className="nav-right">
+          <div className="lang" id="lang">
+            {(["uz", "ru", "en"] as LangKey[]).map((l) => (
+              <button
+                key={l}
+                className={lang === l ? "on" : ""}
+                onClick={() => setLang(l)}
               >
-                {label}
-              </Link>
+                {l.toUpperCase()}
+              </button>
             ))}
-          </nav>
-
-          <a className="phone" href={contact.phoneHref}>
-            <Zap size={15} color="var(--lime)" /> {contact.phone}
+          </div>
+          <a href="#aloqa" className="btn mag">
+            <s />
+            <span>{t("nav.quote")}</span>
           </a>
-
           <button
-            className="menu-btn"
-            aria-label="Menyuni ochish"
-            aria-expanded={open}
-            onClick={() => setOpen(true)}
+            className={`burger${menuOpen ? " on" : ""}`}
+            id="bg"
+            aria-label="Menu"
+            onClick={() => setMenuOpen(!menuOpen)}
           >
-            <Menu size={21} />
+            <i /><i /><i />
           </button>
         </div>
-      </header>
-
-      <AnimatePresence>
-        {open && (
-          <>
-            <motion.div
-              className="drawer-backdrop"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setOpen(false)}
-            />
-            <motion.aside
-              className="drawer"
-              initial={{ x: "100%", opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: "100%", opacity: 0 }}
-              transition={{ duration: 0.28, ease: "easeOut" }}
-              aria-label="Navigatsiya menyusi"
-            >
-              <button
-                className="menu-btn"
-                aria-label="Menyuni yopish"
-                onClick={() => setOpen(false)}
-              >
-                <X size={21} />
-              </button>
-
-              {links.map(([label, href]) => (
-                <Link
-                  className={isActive(href, path) ? "active" : ""}
-                  key={href}
-                  href={href}
-                  onClick={() => setOpen(false)}
-                >
-                  {label}
-                </Link>
-              ))}
-            </motion.aside>
-          </>
-        )}
-      </AnimatePresence>
-    </>
+      </div>
+    </header>
   );
 }
+
+export default SiteHeader;

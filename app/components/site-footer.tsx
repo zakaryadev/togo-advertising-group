@@ -1,5 +1,35 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Camera, Play, Send } from "lucide-react";
-import { services, contact } from "../content/site-content";
-export function SiteFooter() { return <footer className="footer"><div className="container footer-grid"><div><div className="logo"><Image src="/togo_logo.svg" alt="TOGO Group Pro" width={150} height={52} /></div><p>Tashqi reklama va brending bo‘yicha professional yechimlar.</p><div className="socials"><a href={contact.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Camera size={15} /></a><a href={contact.telegram} target="_blank" rel="noopener noreferrer" aria-label="Telegram"><Send size={15} /></a><a href={contact.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube"><Play size={15} /></a></div></div><div><h3>Xizmatlar</h3>{services.slice(0, 6).map(item => <Link key={item.id} href="/xizmatlar">{item.title}</Link>)}</div><div><h3>Kompaniya</h3><Link href="/portfolio">Portfolio</Link><Link href="/#jarayon">Jarayon</Link><Link href="/aloqa">Aloqa</Link></div><div><h3>Aloqa</h3><a href={contact.phoneHref}>{contact.phone}</a><a href={`mailto:${contact.email}`}>{contact.email}</a><p>{contact.address}</p></div></div></footer>; }
+"use client";
+import { useEffect, useState } from "react";
+import { useLang } from "../content/i18n-context";
+
+export function SiteFooter() {
+  const { t } = useLang();
+  const [year, setYear] = useState("");
+
+  useEffect(() => {
+    setYear(String(new Date().getFullYear()));
+  }, []);
+
+  return (
+    <footer>
+      <div className="wrap">
+        <a href="#top" className="footer-logo-wrap" aria-label="TOGO GROUP PRO">
+          <img
+            src="/togo_logo.svg"
+            alt="TOGO GROUP PRO"
+            width={600}
+            height={200}
+            className="footer-logo-img"
+          />
+        </a>
+        <div className="fbot mono">
+          <span>© {year} TOGO GROUP PRO · {t("ct.city")}</span>
+          <span>{t("ft.tags")}</span>
+          <span>togogrouppro.uz</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+export default SiteFooter;
