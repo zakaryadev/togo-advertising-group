@@ -17,8 +17,9 @@ export async function POST(request: Request) {
 
     const ext = file.name.split(".").pop() || "png";
     const filename = `portfolio-${Date.now()}-${Math.random().toString(36).slice(2, 7)}.${ext}`;
+    const contentType = file.type || `image/${ext}`;
 
-    // 1. Upload to Supabase Storage if configured
+    // 1. Try Supabase Storage upload if configured
     if (isSupabaseConfigured()) {
       try {
         const supabase = await createClient();
@@ -26,7 +27,7 @@ export async function POST(request: Request) {
           const { data, error } = await supabase.storage
             .from("portfolio-images")
             .upload(filename, buffer, {
-              contentType: file.type || "image/png",
+              contentType,
               upsert: true,
             });
 
@@ -35,26 +36,37 @@ export async function POST(request: Request) {
               .from("portfolio-images")
               .getPublicUrl(filename);
 
-            return Response.json({ ok: true, url: publicUrlData.publicUrl });
+            if (publicUrlData?.publicUrl) {
+              return Response.json({ ok: true, url: publicUrlData.publicUrl });
+            }
           } else if (error) {
             console.error("Supabase Storage upload error:", error);
           }
         }
       } catch (err) {
-        console.error("Supabase storage error:", err);
+        console.error("Supabase storage exception:", err);
       }
     }
 
-    // 2. Local fallback upload to public/uploads/
-    const uploadsDir = join(process.cwd(), "public", "uploads");
-    await mkdir(uploadsDir, { recursive: true });
-    const filePath = join(uploadsDir, filename);
-    await writeFile(filePath, buffer);
+    // 2. Try Local filesystem upload (works in local Node dev mode)
+    try {
+      const uploadsDir = join(process.cwd(), "public", "uploads");
+      await mkdir(uploadsDir, { recursive: true });
+      const filePath = join(uploadsDir, filename);
+      await writeFile(filePath, buffer);
 
-    const localUrl = `/uploads/${filename}`;
-    return Response.json({ ok: true, url: localUrl });
+      return Response.json({ ok: true, url: `/uploads/${filename}` });
+    } catch (fsErr) {
+      console.warn("Local filesystem write failed (read-only system), using Data URL fallback:", fsErr);
+    }
+
+    // 3. Serverless Base64 Data URL Fallback (guaranteed 100% success on Vercel / serverless)
+    const base64Str = buffer.toString("base64");
+    const dataUrl = `data:${contentType};base64,${base64Str}`;
+
+    return Response.json({ ok: true, url: dataUrl });
   } catch (err: unknown) {
-    console.error("Upload handler error:", err);
+    console.error("Upload handler fatal error:", err);
     return Response.json({ error: "Rasm yuklashda xatolik" }, { status: 500 });
   }
 }
