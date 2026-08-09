@@ -13,6 +13,17 @@ interface DynamicWorkItem {
   icon?: string;
 }
 
+interface RawPortfolioItem {
+  id: string;
+  dimensions?: string;
+  service_type?: string;
+  service?: string;
+  title?: string;
+  client?: string;
+  image_url?: string;
+  image?: string;
+}
+
 const staticWorks = [
   { icon: "i-facade", grad: "g1", sKey: "w1", idx: "01" },
   { icon: "i-letters", grad: "g2", sKey: "w2", idx: "02" },
@@ -26,21 +37,21 @@ const staticWorks = [
 const grads = ["g1", "g2", "g3", "g4", "g5", "g6", "g7"];
 
 export default function WorksSection() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const stripRef = useRef<HTMLDivElement>(null);
   const barRef = useRef<HTMLElement>(null);
   const [dynamicWorks, setDynamicWorks] = useState<DynamicWorkItem[]>([]);
 
   useEffect(() => {
-    fetch("/api/portfolio?featured=true")
+    fetch(`/api/portfolio?featured=true&lang=${lang}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.items && data.items.length > 0) {
-          const mapped: DynamicWorkItem[] = data.items.map((item: any, i: number) => ({
+          const mapped: DynamicWorkItem[] = data.items.map((item: RawPortfolioItem, i: number) => ({
             id: item.id,
             idx: String(i + 1).padStart(2, "0"),
-            subTitle: item.dimensions || item.service_type || item.service,
-            title: item.title || item.client,
+            subTitle: item.dimensions || item.service_type || item.service || "",
+            title: item.title || item.client || "",
             imageUrl: item.image_url || item.image,
             grad: grads[i % grads.length],
           }));
@@ -48,7 +59,7 @@ export default function WorksSection() {
         }
       })
       .catch(() => {});
-  }, []);
+  }, [lang]);
 
   useEffect(() => {
     const s = stripRef.current;

@@ -10,7 +10,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const pathname = usePathname();
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const isLoginPage = pathname === "/admin/login";
+  const isLoginPage = pathname.endsWith("/admin/login");
 
   useEffect(() => {
     if (isLoginPage) {
@@ -103,6 +103,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 <polyline points="21 15 16 10 5 21" />
               </svg>
               <span>Ishlarimiz (Portfolio)</span>
+            </Link>
+
+            <Link
+              href="/admin/services"
+              className={`admin-nav-item ${pathname === "/admin/services" ? "active" : ""}`}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+              </svg>
+              <span>Xizmatlar (Services)</span>
             </Link>
 
             <Link

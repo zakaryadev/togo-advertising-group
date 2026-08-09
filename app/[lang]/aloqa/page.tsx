@@ -1,11 +1,14 @@
 "use client";
 import { useState } from "react";
 import { ArrowUpRight, Camera, ChevronDown, Clock3, Mail, MapPin, Phone, Play, Send } from "lucide-react";
-import { SiteHeader } from "../components/site-header";
-import { SiteFooter } from "../components/site-footer";
-import { contact } from "../content/site-content";
+import { SiteHeader } from "../../components/site-header";
+import { SiteFooter } from "../../components/site-footer";
+import { contact } from "../../content/site-content";
+import { useLang } from "../../content/i18n-context";
 
 type Status = "idle" | "pending" | "sent" | "error";
+
+const serviceOptions = ["o1", "o2", "o3", "o4", "o5", "o6"];
 
 function formatUzPhone(value: string) {
   let digits = value.replace(/\D/g, "");
@@ -19,28 +22,29 @@ function formatUzPhone(value: string) {
 }
 
 export default function ContactPage() {
+  const { t } = useLang();
   const [status, setStatus] = useState<Status>("idle");
 
   return (
     <>
       <SiteHeader />
       <main>
-        <section className="inner-hero contact-hero">
-          <div className="container">
-            <span className="eyebrow"><Send size={13} /> TOGO GROUP PRO / ALOQA</span>
-            <h1>Loyihangizni <span className="lime">birga</span><br /> boshlaymiz.</h1>
-            <p>G‘oyangizni ayting — biz uni ko‘rinadigan va ishlaydigan yechimga aylantiramiz.</p>
+        <section className="inner-hero">
+          <div className="wrap">
+            <span className="eyebrow mono"><Send size={13} /> TOGO GROUP PRO / {t("pg.ct.eyebrow")}</span>
+            <h1>{t("pg.ct.h1a")} <span className="neon">{t("pg.ct.h1b")}</span></h1>
+            <p>{t("pg.ct.sub")}</p>
           </div>
         </section>
-        <section className="section page-section">
-          <div className="container contact-layout">
+        <section className="sec">
+          <div className="wrap contact-layout">
             <div className="contact-info">
-              <h2>Bog‘lanish</h2>
-              <p className="contact-lead">Savollaringiz yoki yangi loyiha uchun biz bilan bog‘laning.</p>
-              <a className="contact-item" href={contact.phoneHref}><Phone /><span><small>Telefon</small><strong>{contact.phone}</strong></span></a>
-              <a className="contact-item" href={`mailto:${contact.email}`}><Mail /><span><small>Email</small><strong>{contact.email}</strong></span></a>
-              <div className="contact-item"><MapPin /><span><small>Manzil</small><strong>{contact.address}</strong></span></div>
-              <div className="contact-item"><Clock3 /><span><small>Ish vaqti</small><strong>{contact.hours}</strong></span></div>
+              <h2>{t("pg.ct.infoH")}</h2>
+              <p className="contact-lead">{t("pg.ct.infoLead")}</p>
+              <a className="contact-item" href={contact.phoneHref}><Phone /><span><small>{t("pg.ct.phone")}</small><strong>{contact.phone}</strong></span></a>
+              <a className="contact-item" href={`mailto:${contact.email}`}><Mail /><span><small>{t("pg.ct.email")}</small><strong>{contact.email}</strong></span></a>
+              <div className="contact-item"><MapPin /><span><small>{t("pg.ct.addr")}</small><strong>{contact.address}</strong></span></div>
+              <div className="contact-item"><Clock3 /><span><small>{t("pg.ct.hours")}</small><strong>{contact.hours}</strong></span></div>
               <div className="contact-socials">
                 <a href={contact.instagram} target="_blank" rel="noopener noreferrer"><Camera size={18} /> Instagram</a>
                 <a href={contact.telegram} target="_blank" rel="noopener noreferrer"><Send size={18} /> Telegram</a>
@@ -68,12 +72,12 @@ export default function ContactPage() {
               }}
             >
               <div className="form-heading">
-                <span>01 / SO‘ROV</span>
-                <h2>Bepul konsultatsiya oling.</h2>
+                <span>{t("pg.ct.formTag")}</span>
+                <h2>{t("pg.ct.formH")}</h2>
               </div>
-              <label>Ismingiz<input name="ism" required placeholder="Ismingizni kiriting" /></label>
+              <label>{t("f.name")}<input name="ism" required placeholder={t("pg.ct.namep")} /></label>
               <label>
-                Telefon raqamingiz
+                {t("f.phone")}
                 <input
                   name="telefon"
                   required
@@ -100,32 +104,30 @@ export default function ContactPage() {
                 />
               </label>
               <label>
-                Xizmat turi
+                {t("pg.ct.svc")}
                 <span className="select-wrap">
                   <select name="xizmat" defaultValue="">
-                    <option value="" disabled>Tanlang</option>
-                    <option>LED Harflar</option>
-                    <option>Lightbox</option>
-                    <option>Tashqi reklama</option>
-                    <option>Stend</option>
-                    <option>Avto reklama</option>
+                    <option value="" disabled>{t("pg.ct.svcChoose")}</option>
+                    {serviceOptions.map(key => (
+                      <option key={key}>{t(key)}</option>
+                    ))}
                   </select>
                   <ChevronDown className="select-chevron" size={18} aria-hidden="true" />
                 </span>
               </label>
-              <label>Loyiha haqida<textarea name="xabar" rows={4} placeholder="Qisqacha yozib qoldiring" /></label>
+              <label>{t("f.msg")}<textarea name="xabar" rows={4} placeholder={t("pg.ct.msgp")} /></label>
               <button className="btn primary" type="submit" disabled={status === "pending"}>
-                {status === "sent" ? "SO‘ROV QABUL QILINDI" : status === "pending" ? "YUBORILMOQDA…" : "SO‘ROV YUBORISH"} <ArrowUpRight size={16} />
+                {status === "sent" ? t("pg.ct.sent") : status === "pending" ? t("pg.ct.sending") : t("pg.ct.submit")} <ArrowUpRight size={16} />
               </button>
               {status === "error" && (
                 <p className="form-error">
-                  Xatolik yuz berdi. Iltimos, qo‘ng‘iroq qiling: <a href={contact.phoneHref}>{contact.phone}</a>
+                  {t("pg.ct.error")} <a href={contact.phoneHref}>{contact.phone}</a>
                 </p>
               )}
             </form>
           </div>
         </section>
-        <section className="container contact-map-section" style={{ marginTop: "40px", marginBottom: "60px" }}>
+        <section className="wrap contact-map-section" style={{ marginTop: "40px", marginBottom: "60px" }}>
           <div
             style={{
               position: "relative",
@@ -138,14 +140,13 @@ export default function ContactPage() {
             }}
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47963.66632483861!2d69.1764353!3d41.2828698!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8a307a0c8cb7%3A0xe54d8a5f828a2a5!2sChilanzar%20District%2C%20Tashkent%2C%20Uzbekistan!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"
+              src="https://yandex.uz/map-widget/v1/?ll=69.344699%2C41.296398&z=18&l=map&pt=69.344699,41.296398,pm2rdl"
               width="100%"
               height="100%"
-              style={{ border: 0, filter: "invert(90%) hue-rotate(180deg) contrast(1.2)" }}
+              style={{ border: 0, filter: "contrast(1.1) brightness(0.9)" }}
               allowFullScreen
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="TOGO GROUP PRO Manzili"
+              title={t("pg.ct.mapTitle")}
             />
           </div>
         </section>

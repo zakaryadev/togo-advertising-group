@@ -69,10 +69,10 @@ header.stuck{background:rgba(10,9,5,.86);backdrop-filter:blur(16px);border-color
 .nav-links a:hover i{transform:translateY(-14px)}
 .nav-right{display:flex;align-items:center;gap:12px}
 .lang{display:flex;gap:2px}
-.lang button{font-family:var(--mono);font-size:10px;letter-spacing:.1em;background:none;border:1px solid transparent;
-  color:var(--mut);padding:7px 8px;cursor:pointer;transition:.3s;text-transform:uppercase}
-.lang button.on{color:#fff;background:var(--or);border-color:var(--or)}
-.lang button:hover{color:var(--bone)}
+.lang a{font-family:var(--mono);font-size:10px;letter-spacing:.1em;background:none;border:1px solid transparent;
+  color:var(--mut);padding:7px 8px;cursor:pointer;transition:.3s;text-transform:uppercase;text-decoration:none;line-height:1}
+.lang a.on{color:#fff;background:var(--or);border-color:var(--or)}
+.lang a:hover{color:var(--bone)}
 .btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
   text-transform:uppercase;padding:14px 24px;background:var(--or);color:#14110A;border:0;cursor:pointer;
   position:relative;overflow:hidden;will-change:transform}
@@ -338,7 +338,18 @@ footer{border-top:1px solid var(--line);padding:40px 0 30px;position:relative;z-
 .contact-socials{display:flex;flex-wrap:wrap;gap:8px;margin-top:clamp(20px,3vw,32px)}
 .contact-socials a{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);border:1px solid var(--line);padding:10px 14px;transition:.3s}
 .contact-socials a:hover{border-color:var(--or-lt);color:var(--bone)}
-.contact-form{background:var(--bg2);border:1px solid var(--line);padding:clamp(22px,3vw,38px)}
+.contact-form{background:var(--bg2);border:1px solid var(--line);padding:clamp(22px,3vw,38px);display:flex;flex-direction:column;gap:18px}
+.contact-form label{display:flex;flex-direction:column;gap:8px;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}
+.contact-form input,.contact-form select,.contact-form textarea{background:var(--bg);border:1px solid var(--line);padding:12px 14px;color:var(--bone);
+  font-family:var(--body);font-size:15px;font-weight:300;text-transform:none;letter-spacing:normal;transition:border-color .3s;width:100%}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{outline:none;border-color:var(--or)}
+.contact-form textarea{resize:vertical;min-height:100px}
+.contact-form select{appearance:none;cursor:pointer}
+.contact-form select option{background:var(--bg2);color:var(--bone)}
+.contact-form .select-wrap{position:relative;display:flex}
+.contact-form .select-wrap select{padding-right:38px}
+.contact-form .select-chevron{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--mut);pointer-events:none}
+.contact-form button{margin-top:4px}
 .form-heading span{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--or-lt)}
 .form-heading h2{font-family:var(--display);font-weight:700;font-size:clamp(21px,2.6vw,32px);letter-spacing:-.035em;text-transform:uppercase;margin:6px 0 clamp(20px,3vw,32px)}
 .form-error{color:#ff8a8a;font-size:13px;margin-top:8px}

@@ -1,10 +1,12 @@
 import { createClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { portfolio as fallbackPortfolio } from "@/app/content/site-content";
+import type { LangKey } from "@/app/content/translations";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const featuredOnly = searchParams.get("featured") === "true";
+  const lang = (searchParams.get("lang") as LangKey) || "uz";
 
   if (isSupabaseConfigured()) {
     try {
@@ -31,5 +33,13 @@ export async function GET(request: Request) {
     }
   }
 
-  return Response.json({ items: fallbackPortfolio });
+  const items = fallbackPortfolio.map((item) => ({
+    id: item.id,
+    slug: item.slug,
+    client: item.client[lang],
+    service: item.service[lang],
+    category: item.category,
+    image: item.image,
+  }));
+  return Response.json({ items });
 }

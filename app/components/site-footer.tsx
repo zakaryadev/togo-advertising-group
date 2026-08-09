@@ -5,7 +5,7 @@ import { useLang } from "../content/i18n-context";
 import Link from "next/link";
 
 export function SiteFooter() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const [year, setYear] = useState("");
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export function SiteFooter() {
   return (
     <footer>
       <div className="wrap">
-        <a href="#top" className="footer-logo-wrap" aria-label="TOGO GROUP PRO">
+        <Link href={`/${lang}`} className="footer-logo-wrap" aria-label="TOGO GROUP PRO">
           <img
             src="/togo_logo.svg"
             alt="TOGO GROUP PRO"
@@ -23,12 +23,12 @@ export function SiteFooter() {
             height={200}
             className="footer-logo-img"
           />
-        </a>
+        </Link>
         <div className="fbot mono">
           <span>© {year} TOGO GROUP PRO · {t("ct.city")}</span>
           <span>{t("ft.tags")}</span>
           <Link href="/admin" style={{ opacity: 0.5 }}>Admin</Link>
-          <span>togogrouppro.uz</span>
+          <span>togogroup.uz</span>
         </div>
       </div>
     </footer>
