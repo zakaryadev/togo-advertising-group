@@ -50,6 +50,7 @@ export default function AdminServicesPage() {
     setUploading(true);
     const formData = new FormData();
     formData.append("file", file);
+    formData.append("bucket", "service-images");
 
     try {
       const res = await fetch("/api/admin/upload", {
