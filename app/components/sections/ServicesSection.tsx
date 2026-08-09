@@ -58,7 +58,7 @@ export default function ServicesSection() {
         <div className="rows">
           {dynamicServices.length > 0
             ? dynamicServices.map((svc) => (
-                <a className="row rv" key={svc.id} href="#aloqa">
+                <a className="row rv in" key={svc.id} href="#aloqa">
                   <span className="fill" />
                   <div className="row-in">
                     <span className="n">{svc.n}</span>
@@ -80,7 +80,7 @@ export default function ServicesSection() {
                 </a>
               ))
             : staticServices.map((svc) => (
-                <a className="row rv" key={svc.n} href="#aloqa">
+                <a className="row rv in" key={svc.n} href="#aloqa">
                   <span className="fill" />
                   <div className="row-in">
                     <span className="n">{svc.n}</span>
