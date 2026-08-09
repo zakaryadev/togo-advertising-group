@@ -10,7 +10,7 @@ export const contact: Contact = {
   phone: "+998 77 300 45 00",
   phoneHref: "tel:+998773004500",
   email: "info@togogrouppro.uz",
-  address: "Toshkent, Chilonzor tumani",
+  address: "Toshkent, Mirzo Ulug'bek tumani, Gulzor, 2-Bunyodkorlik tor ko'chasi, 9-uy",
   hours: "Dushanba — Juma, 09:00 — 19:00 | Shanba, 09:00 — 18:30",
   instagram: "https://www.instagram.com/reklama_togo_group/",
   telegram: "https://t.me/togo_group_pro",

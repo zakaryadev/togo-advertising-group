@@ -136,7 +136,7 @@ export const translations: Record<LangKey, TranslationDict> = {
       "Oʻlcham va materialni bilasizmi — bir soatda hisoblab beramiz. Bilmasangiz ham yozing, oʻzimiz tanlaymiz.",
     "ct.phone": "Telefon",
     "ct.addr": "Manzil",
-    "ct.city": "Toshkent",
+    "ct.city": "Toshkent, Mirzo Ulug'bek tumani, Gulzor, 2-Bunyodkorlik tor ko'chasi, 9-uy",
     "f.name": "Ismingiz",
     "f.namep": "Ism va kompaniya",
     "f.phone": "Telefon",
