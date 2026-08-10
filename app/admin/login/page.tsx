@@ -45,12 +45,7 @@ export default function AdminLoginPage() {
       }
     }
 
-    // Local / Dev fallback login
-    if (password === "admin123" || email === "admin@togogrouppro.uz") {
-      router.push("/admin/leads");
-    } else {
-      setError("Email yoki parol noto'g'ri (Dev parol: admin123)");
-    }
+    setError("Admin tizimi sozlanmagan. Vercel muhit o'zgaruvchilarini tekshiring.");
     setLoading(false);
   };
 

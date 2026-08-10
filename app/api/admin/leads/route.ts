@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
+import { requireAdmin } from "@/lib/admin-auth";
 import {
   getLocalLeads,
   addLocalLead,
@@ -9,6 +10,8 @@ import {
 } from "@/lib/leads-store";
 
 export async function GET() {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
   if (isSupabaseConfigured()) {
     try {
       const supabase = await createClient();
@@ -46,6 +49,8 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
   let body: { name?: string; phone?: string; service?: string; message?: string };
   try {
     body = await request.json();
@@ -87,6 +92,8 @@ export async function POST(request: Request) {
 }
 
 export async function PATCH(request: Request) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
   let body: { id?: string; status?: "new" | "contacted" | "closed" };
   try {
     body = await request.json();
@@ -123,6 +130,8 @@ export async function PATCH(request: Request) {
 }
 
 export async function DELETE(request: Request) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
   const { searchParams } = new URL(request.url);
   const id = searchParams.get("id");
 

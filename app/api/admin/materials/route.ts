@@ -1,8 +1,11 @@
 import { createClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
+import { requireAdmin } from "@/lib/admin-auth";
 import { getLocalMaterials, updateLocalMaterialPrice } from "@/lib/materials-store";
 
 export async function GET() {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
   if (isSupabaseConfigured()) {
     try {
       const supabase = await createClient();
@@ -25,6 +28,8 @@ export async function GET() {
 }
 
 export async function PATCH(request: Request) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
   let body: { key?: string; price_per_sqm?: number; is_active?: boolean };
   try {
     body = await request.json();

@@ -1,8 +1,11 @@
 import { createClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
+import { requireAdmin } from "@/lib/admin-auth";
 import { getLocalSettings, updateLocalSettings } from "@/lib/settings-store";
 
 export async function GET() {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
   if (isSupabaseConfigured()) {
     try {
       const supabase = await createClient();
@@ -25,6 +28,8 @@ export async function GET() {
 }
 
 export async function PATCH(request: Request) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
   let settings: Record<string, string>;
   try {
     const body = await request.json();

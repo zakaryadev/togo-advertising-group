@@ -26,8 +26,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       );
 
       if (!isSupabaseReady) {
-        // If Supabase credentials are not configured yet, allow local dev access
-        setLoading(false);
+        router.replace("/admin/login");
         return;
       }
       try {
@@ -36,7 +35,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           const { data: { session } } = await supabase.auth.getSession();
           if (!session) {
             // Unauthenticated -> redirect to admin login
-            router.push("/admin/login");
+            router.replace("/admin/login");
           }
         }
       } catch (err) {
