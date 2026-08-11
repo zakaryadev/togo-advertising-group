@@ -230,7 +230,7 @@ body.loaded .neon{animation:flick 3.4s .9s infinite}
 .dg .col{display:flex;flex-direction:column;transform:translateY(0);transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
 .dg .col i{font-style:normal;height:1em;line-height:1;display:block}
 .odo u{text-decoration:none;color:var(--or-lt);font-size:.36em;margin-left:6px;letter-spacing:0}
-.stat span{display:block;color:var(--mut);margin-top:14px}
+.stat>span{display:block;color:var(--mut);margin-top:14px}
 
 /* ================= CONTACT ================= */
 .cta{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,6vw,90px);align-items:start}
