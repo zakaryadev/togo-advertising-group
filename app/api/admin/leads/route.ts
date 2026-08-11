@@ -22,22 +22,7 @@ export async function GET() {
           .order("created_at", { ascending: false });
 
         if (!error && data) {
-          // Merge Supabase leads with local leads (deduplicated by id/phone)
-          const local = getLocalLeads();
-          const combinedMap = new Map<string, LeadItem>();
-
-          data.forEach((item: LeadItem) => combinedMap.set(item.id, item));
-          local.forEach((item: LeadItem) => {
-            if (!combinedMap.has(item.id)) {
-              combinedMap.set(item.id, item);
-            }
-          });
-
-          const combined = Array.from(combinedMap.values()).sort(
-            (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-          );
-
-          return Response.json({ leads: combined });
+          return Response.json({ leads: data });
         }
       }
     } catch (err) {
