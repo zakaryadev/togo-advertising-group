@@ -2,6 +2,9 @@ import { createClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { getLocalServices } from "@/lib/services-store";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function GET() {
   if (isSupabaseConfigured()) {
     try {

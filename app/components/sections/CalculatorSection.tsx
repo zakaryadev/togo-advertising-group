@@ -1,14 +1,19 @@
 "use client";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useLang } from "../../content/i18n-context";
 
-const materials = [
-  { value: "45000", key: "m1" },
-  { value: "55000", key: "m2" },
-  { value: "65000", key: "m3" },
-  { value: "70000", key: "m4" },
-  { value: "95000", key: "m5" },
-  { value: "120000", key: "m6" },
+interface MaterialItem {
+  key: string;
+  price_per_sqm: number;
+}
+
+const defaultMaterials = [
+  { value: 45000, key: "m1" },
+  { value: 55000, key: "m2" },
+  { value: 65000, key: "m3" },
+  { value: 70000, key: "m4" },
+  { value: 95000, key: "m5" },
+  { value: 120000, key: "m6" },
 ];
 
 export default function CalculatorSection() {
@@ -18,6 +23,25 @@ export default function CalculatorSection() {
   const [q, setQ] = useState(1);
   const [m, setM] = useState(55000);
   const [mont, setMont] = useState(false);
+  const [materialsList, setMaterialsList] = useState(defaultMaterials);
+
+  useEffect(() => {
+    fetch("/api/materials")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.materials && Array.isArray(data.materials)) {
+          const mapped = data.materials.map((mat: MaterialItem) => ({
+            value: Number(mat.price_per_sqm),
+            key: mat.key,
+          }));
+          if (mapped.length > 0) {
+            setMaterialsList(mapped);
+            setM(mapped[0].value);
+          }
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const calc = useCallback(() => {
     const area = w * h * q;
@@ -59,8 +83,8 @@ export default function CalculatorSection() {
               <div className="cf">
                 <label>{t("calc.m")}</label>
                 <select value={m} onChange={e => setM(parseFloat(e.target.value))}>
-                  {materials.map(mat => (
-                    <option key={mat.value} value={mat.value}>{t(mat.key)}</option>
+                  {materialsList.map(mat => (
+                    <option key={mat.key} value={mat.value}>{t(mat.key)} ({mat.value.toLocaleString("ru-RU")} {t("sum")})</option>
                   ))}
                 </select>
               </div>

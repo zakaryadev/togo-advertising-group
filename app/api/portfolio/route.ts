@@ -3,6 +3,9 @@ import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { portfolio as fallbackPortfolio } from "@/app/content/site-content";
 import type { LangKey } from "@/app/content/translations";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const featuredOnly = searchParams.get("featured") === "true";

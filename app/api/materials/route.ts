@@ -2,6 +2,9 @@ import { createClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { getLocalMaterials } from "@/lib/materials-store";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function GET() {
   if (isSupabaseConfigured()) {
     try {
@@ -10,8 +13,7 @@ export async function GET() {
         const { data, error } = await supabase
           .from("materials")
           .select("*")
-          .eq("is_active", true)
-          .order("price_per_sqm", { ascending: true });
+          .order("key", { ascending: true });
 
         if (!error && data && data.length > 0) {
           return Response.json({ materials: data });
@@ -22,6 +24,6 @@ export async function GET() {
     }
   }
 
-  const activeLocal = getLocalMaterials().filter((m) => m.is_active);
+  const activeLocal = getLocalMaterials();
   return Response.json({ materials: activeLocal });
 }
