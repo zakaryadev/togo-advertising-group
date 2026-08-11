@@ -1,10 +1,47 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { createServerClient } from "@supabase/ssr";
+import { isSupabaseConfigured } from "@/lib/supabase/config";
 
 const locales = ["uz", "ru", "en"] as const;
 const defaultLocale = "uz";
 
-export function proxy(request: NextRequest) {
+// Refreshes the Supabase auth token (if expired) and re-writes it into the
+// response cookies. Without this, admin sessions never refresh outside of an
+// /api/admin request, so the JWT silently expires mid-use and admin pages
+// start failing with 401s until the user manually logs out and back in.
+async function updateSession(request: NextRequest) {
+  let response = NextResponse.next({ request });
+
+  if (!isSupabaseConfigured()) {
+    return response;
+  }
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll();
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
+          response = NextResponse.next({ request });
+          cookiesToSet.forEach(({ name, value, options }) =>
+            response.cookies.set(name, value, options)
+          );
+        },
+      },
+    }
+  );
+
+  await supabase.auth.getUser();
+
+  return response;
+}
+
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // 1. If path starts with a locale prefix, e.g. /uz/api/settings or /uz/togo_logo.svg
@@ -28,23 +65,27 @@ export function proxy(request: NextRequest) {
     }
   }
 
-  // 2. Direct un-prefixed API routes, Admin panel, Next internals, or static files
+  // 2. Admin panel routes: refresh the Supabase session before rendering
+  if (pathname.startsWith("/admin")) {
+    return updateSession(request);
+  }
+
+  // 3. Direct un-prefixed API routes, Next internals, or static files
   if (
     pathname.startsWith("/api") ||
-    pathname.startsWith("/admin") ||
     pathname.startsWith("/_next") ||
     pathname.includes(".")
   ) {
     return;
   }
 
-  // 3. Root / -> redirect to /uz
+  // 4. Root / -> redirect to /uz
   if (pathname === "/") {
     request.nextUrl.pathname = `/${defaultLocale}`;
     return NextResponse.redirect(request.nextUrl, 308);
   }
 
-  // 4. Un-prefixed page routes (e.g. /aloqa) -> redirect to /uz/aloqa
+  // 5. Un-prefixed page routes (e.g. /aloqa) -> redirect to /uz/aloqa
   request.nextUrl.pathname = `/${defaultLocale}${pathname}`;
   return NextResponse.redirect(request.nextUrl, 308);
 }

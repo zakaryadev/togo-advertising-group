@@ -9,7 +9,10 @@ import "./admin.css";
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
+  // Start as loading=true, authorized=false — spinner always shows until auth check
+  // completes, preventing any flash of the admin shell for unauthenticated users.
   const [loading, setLoading] = useState(true);
+  const [authorized, setAuthorized] = useState(false);
   const isLoginPage = pathname.endsWith("/admin/login");
 
   useEffect(() => {
@@ -27,19 +30,25 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
       if (!isSupabaseReady) {
         router.replace("/admin/login");
+        setLoading(false);
         return;
       }
       try {
         const supabase = createClient();
         if (supabase) {
-          const { data: { session } } = await supabase.auth.getSession();
-          if (!session) {
-            // Unauthenticated -> redirect to admin login
+          // Use getUser() (server-verified) instead of getSession() (local cache,
+          // can be stale or forged). This is the correct pattern per Supabase docs.
+          const { data: { user }, error } = await supabase.auth.getUser();
+          if (error || !user) {
             router.replace("/admin/login");
+            return;
           }
+          setAuthorized(true);
         }
       } catch (err) {
         console.error("Auth error:", err);
+        router.replace("/admin/login");
+        return;
       } finally {
         setLoading(false);
       }
@@ -52,7 +61,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     return <div className="admin-body">{children}</div>;
   }
 
-  if (loading) {
+  // Show spinner while checking auth AND while redirecting (authorized stays false).
+  // This prevents the admin shell from ever flashing for unauthenticated users.
+  if (loading || !authorized) {
     return (
       <div className="admin-body admin-loading">
         <div className="admin-spinner" />

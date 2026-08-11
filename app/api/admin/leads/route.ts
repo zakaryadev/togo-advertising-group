@@ -63,30 +63,41 @@ export async function POST(request: Request) {
     return Response.json({ error: "Ism va telefon majburiy" }, { status: 400 });
   }
 
+  if (isSupabaseConfigured()) {
+    try {
+      const supabase = await createClient();
+      if (supabase) {
+        const { data, error } = await supabase
+          .from("leads")
+          .insert([
+            {
+              name,
+              phone,
+              service: service || null,
+              message: message || null,
+            },
+          ])
+          .select()
+          .single();
+
+        if (error) {
+          console.error("Admin POST lead error:", error);
+          return Response.json({ error: error.message }, { status: 500 });
+        }
+        return Response.json({ ok: true, lead: data });
+      }
+    } catch (err) {
+      console.error("Admin POST lead error:", err);
+      return Response.json({ error: "Murojaatni saqlashda xatolik yuz berdi" }, { status: 500 });
+    }
+  }
+
   const newLead = addLocalLead({
     name,
     phone,
     service: service || null,
     message: message || null,
   });
-
-  if (isSupabaseConfigured()) {
-    try {
-      const supabase = await createClient();
-      if (supabase) {
-        await supabase.from("leads").insert([
-          {
-            name,
-            phone,
-            service: service || null,
-            message: message || null,
-          },
-        ]);
-      }
-    } catch (err) {
-      console.error("Admin POST lead error:", err);
-    }
-  }
 
   return Response.json({ ok: true, lead: newLead });
 }
@@ -106,6 +117,9 @@ export async function PATCH(request: Request) {
     return Response.json({ error: "id va status majburiy" }, { status: 400 });
   }
 
+  // Leads can live only in the local store (seed/offline data), so a Supabase
+  // miss for those ids is expected, not a real failure.
+  const isLocalLead = getLocalLeads().some((lead) => lead.id === id);
   updateLocalLeadStatus(id, status);
 
   if (isSupabaseConfigured()) {
@@ -117,12 +131,16 @@ export async function PATCH(request: Request) {
           .update({ status })
           .eq("id", id);
 
-        if (error) {
+        if (error && !isLocalLead) {
           console.error("Admin PATCH lead error:", error);
+          return Response.json({ error: error.message }, { status: 500 });
         }
       }
     } catch (err) {
-      console.error("Supabase update error:", err);
+      if (!isLocalLead) {
+        console.error("Supabase update error:", err);
+        return Response.json({ error: "Holatni yangilashda xatolik yuz berdi" }, { status: 500 });
+      }
     }
   }
 
@@ -139,16 +157,24 @@ export async function DELETE(request: Request) {
     return Response.json({ error: "id majburiy" }, { status: 400 });
   }
 
+  const isLocalLead = getLocalLeads().some((lead) => lead.id === id);
   deleteLocalLead(id);
 
   if (isSupabaseConfigured()) {
     try {
       const supabase = await createClient();
       if (supabase) {
-        await supabase.from("leads").delete().eq("id", id);
+        const { error } = await supabase.from("leads").delete().eq("id", id);
+        if (error && !isLocalLead) {
+          console.error("Admin DELETE lead error:", error);
+          return Response.json({ error: error.message }, { status: 500 });
+        }
       }
     } catch (err) {
-      console.error("Supabase delete lead error:", err);
+      if (!isLocalLead) {
+        console.error("Supabase delete lead error:", err);
+        return Response.json({ error: "Murojaatni o'chirishda xatolik yuz berdi" }, { status: 500 });
+      }
     }
   }
 

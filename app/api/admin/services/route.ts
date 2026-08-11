@@ -65,6 +65,55 @@ export async function POST(request: Request) {
     .replace(/\s+/g, "-")
     .replace(/[^a-z0-9-]/g, "") || `service-${Date.now()}`;
 
+  if (isSupabaseConfigured()) {
+    try {
+      const supabase = await createClient();
+      if (supabase) {
+        const { data, error } = await supabase
+          .from("services")
+          .insert([
+            {
+              slug,
+              title_uz: title,
+              title_ru: title,
+              title_en: title,
+              description_uz: excerpt || "",
+              description_ru: excerpt || "",
+              description_en: excerpt || "",
+              image: image || "/img/services/led-harflar.webp",
+              category: category || "LED",
+              from_price: from_price || "",
+              is_active: true,
+            },
+          ])
+          .select()
+          .single();
+
+        if (error) {
+          console.error("Admin POST service error:", error);
+          return Response.json({ error: error.message }, { status: 500 });
+        }
+
+        return Response.json({
+          ok: true,
+          service: {
+            id: data.id,
+            slug: data.slug,
+            title: data.title_uz,
+            excerpt: data.description_uz,
+            image: data.image,
+            category: data.category,
+            from_price: data.from_price,
+            is_active: data.is_active,
+          },
+        });
+      }
+    } catch (err) {
+      console.error("Admin POST service error:", err);
+      return Response.json({ error: "Xizmatni saqlashda xatolik yuz berdi" }, { status: 500 });
+    }
+  }
+
   const newService = addLocalService({
     slug,
     title,
@@ -74,31 +123,6 @@ export async function POST(request: Request) {
     from_price: from_price || "",
     is_active: true,
   });
-
-  if (isSupabaseConfigured()) {
-    try {
-      const supabase = await createClient();
-      if (supabase) {
-        await supabase.from("services").insert([
-          {
-            slug,
-            title_uz: title,
-            title_ru: title,
-            title_en: title,
-            description_uz: excerpt || "",
-            description_ru: excerpt || "",
-            description_en: excerpt || "",
-            image: image || "/img/services/led-harflar.webp",
-            category: category || "LED",
-            from_price: from_price || "",
-            is_active: true,
-          },
-        ]);
-      }
-    } catch (err) {
-      console.error("Admin POST service error:", err);
-    }
-  }
 
   return Response.json({ ok: true, service: newService });
 }
@@ -117,8 +141,6 @@ export async function PATCH(request: Request) {
   if (!id) {
     return Response.json({ error: "id majburiy" }, { status: 400 });
   }
-
-  updateLocalService(id, updates);
 
   if (isSupabaseConfigured()) {
     try {
@@ -140,13 +162,20 @@ export async function PATCH(request: Request) {
         if (updates.from_price !== undefined) dbUpdates.from_price = updates.from_price;
         if (updates.is_active !== undefined) dbUpdates.is_active = updates.is_active;
 
-        await supabase.from("services").update(dbUpdates).eq("id", id);
+        const { error } = await supabase.from("services").update(dbUpdates).eq("id", id);
+        if (error) {
+          console.error("Admin PATCH service error:", error);
+          return Response.json({ error: error.message }, { status: 500 });
+        }
+        return Response.json({ ok: true, id, updates });
       }
     } catch (err) {
       console.error("Admin PATCH service error:", err);
+      return Response.json({ error: "Xizmatni yangilashda xatolik yuz berdi" }, { status: 500 });
     }
   }
 
+  updateLocalService(id, updates);
   return Response.json({ ok: true, id, updates });
 }
 
@@ -160,18 +189,23 @@ export async function DELETE(request: Request) {
     return Response.json({ error: "id majburiy" }, { status: 400 });
   }
 
-  deleteLocalService(id);
-
   if (isSupabaseConfigured()) {
     try {
       const supabase = await createClient();
       if (supabase) {
-        await supabase.from("services").delete().eq("id", id);
+        const { error } = await supabase.from("services").delete().eq("id", id);
+        if (error) {
+          console.error("Admin DELETE service error:", error);
+          return Response.json({ error: error.message }, { status: 500 });
+        }
+        return Response.json({ ok: true, id });
       }
     } catch (err) {
       console.error("Admin DELETE service error:", err);
+      return Response.json({ error: "Xizmatni o'chirishda xatolik yuz berdi" }, { status: 500 });
     }
   }
 
+  deleteLocalService(id);
   return Response.json({ ok: true, id });
 }

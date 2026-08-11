@@ -1,24 +1,8 @@
 -- Migration: 003_update_services_table.sql
--- Description: Ensures services table has image, category columns and full admin RLS policies.
+-- Description: Adds image, category, excerpt columns to services table.
+-- NOTE: The insecure anon write policies originally in this file have been
+-- removed. Correct authenticated-only policies are in 005_fix_admin_rls_policies.sql
 
-ALTER TABLE public.services ADD COLUMN IF NOT EXISTS image TEXT;
-ALTER TABLE public.services ADD COLUMN IF NOT EXISTS category TEXT;
-
--- RLS policies for services
-CREATE POLICY "Allow public insert to services"
-    ON public.services
-    FOR INSERT
-    TO anon, authenticated
-    WITH CHECK (true);
-
-CREATE POLICY "Allow public update to services"
-    ON public.services
-    FOR UPDATE
-    TO anon, authenticated
-    USING (true);
-
-CREATE POLICY "Allow public delete to services"
-    ON public.services
-    FOR DELETE
-    TO anon, authenticated
-    USING (true);
+ALTER TABLE public.services ADD COLUMN IF NOT EXISTS image TEXT NOT NULL DEFAULT '';
+ALTER TABLE public.services ADD COLUMN IF NOT EXISTS category TEXT NOT NULL DEFAULT '';
+ALTER TABLE public.services ADD COLUMN IF NOT EXISTS excerpt TEXT NOT NULL DEFAULT '';
