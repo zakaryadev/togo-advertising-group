@@ -5,15 +5,15 @@ import { buildAlternates } from "../../content/seo";
 const metaByLang: Record<LangKey, { title: string; description: string }> = {
   uz: {
     title: "Portfolio",
-    description: "TOGO Group Pro tomonidan yaratilgan LED, lightbox, stend va tashqi reklama loyihalari — Litto Hotel, Artel, UzAuto Motors, Korzinka va boshqalar.",
+    description: "TOGO Group Advertising tomonidan yaratilgan LED, lightbox, stend va tashqi reklama loyihalari — Litto Hotel, Artel, UzAuto Motors, Korzinka va boshqalar.",
   },
   ru: {
     title: "Портфолио",
-    description: "Проекты LED вывесок, лайтбоксов, стендов и наружной рекламы от TOGO Group Pro — Litto Hotel, Artel, UzAuto Motors, Korzinka и другие.",
+    description: "Проекты LED вывесок, лайтбоксов, стендов и наружной рекламы от TOGO Group Advertising — Litto Hotel, Artel, UzAuto Motors, Korzinka и другие.",
   },
   en: {
     title: "Portfolio",
-    description: "LED signage, lightbox, stand and outdoor advertising projects by TOGO Group Pro — Litto Hotel, Artel, UzAuto Motors, Korzinka and more.",
+    description: "LED signage, lightbox, stand and outdoor advertising projects by TOGO Group Advertising — Litto Hotel, Artel, UzAuto Motors, Korzinka and more.",
   },
 };
 

@@ -31,7 +31,7 @@ export default function ContactPage() {
       <main>
         <section className="inner-hero">
           <div className="wrap">
-            <span className="eyebrow mono"><Send size={13} /> TOGO GROUP PRO / {t("pg.ct.eyebrow")}</span>
+            <span className="eyebrow mono"><Send size={13} /> TOGO GROUP ADVERTISING / {t("pg.ct.eyebrow")}</span>
             <h1>{t("pg.ct.h1a")} <span className="neon">{t("pg.ct.h1b")}</span></h1>
             <p>{t("pg.ct.sub")}</p>
           </div>

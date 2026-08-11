@@ -53,7 +53,7 @@ export default function AdminLoginPage() {
     <div className="admin-login-wrap">
       <div className="admin-login-card">
         <div className="admin-login-head">
-          <img src="/togo_logo.svg" alt="TOGO GROUP PRO" />
+          <img src="/togo_logo.svg" alt="TOGO GROUP ADVERTISING" />
           <h2>ADMIN PANELGA KIRISH</h2>
         </div>
 

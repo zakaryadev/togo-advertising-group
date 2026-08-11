@@ -5,15 +5,15 @@ import { buildAlternates } from "../../content/seo";
 const metaByLang: Record<LangKey, { title: string; description: string }> = {
   uz: {
     title: "Aloqa",
-    description: "TOGO Group Pro bilan bog'laning — bepul konsultatsiya oling, loyihangizni muhokama qiling. Telefon, Telegram, Instagram va manzil.",
+    description: "TOGO Group Advertising bilan bog'laning — bepul konsultatsiya oling, loyihangizni muhokama qiling. Telefon, Telegram, Instagram va manzil.",
   },
   ru: {
     title: "Контакты",
-    description: "Свяжитесь с TOGO Group Pro — получите бесплатную консультацию, обсудите проект. Телефон, Telegram, Instagram и адрес.",
+    description: "Свяжитесь с TOGO Group Advertising — получите бесплатную консультацию, обсудите проект. Телефон, Telegram, Instagram и адрес.",
   },
   en: {
     title: "Contact",
-    description: "Get in touch with TOGO Group Pro — free consultation, discuss your project. Phone, Telegram, Instagram and address.",
+    description: "Get in touch with TOGO Group Advertising — free consultation, discuss your project. Phone, Telegram, Instagram and address.",
   },
 };
 

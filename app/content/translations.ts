@@ -6,7 +6,7 @@ export interface TranslationDict {
 
 export const translations: Record<LangKey, TranslationDict> = {
   uz: {
-    title: "TOGO GROUP PRO — Reklama va bosmaxona | Toshkent",
+    title: "TOGO GROUP ADVERTISING — Reklama va bosmaxona | Toshkent",
     "pre.txt": "Bosmaga tayyorlanmoqda",
     "logo.sub": "REKLAMA · BOSMAXONA",
     "nav.svc": "Xizmatlar",
@@ -247,10 +247,10 @@ export const translations: Record<LangKey, TranslationDict> = {
     "pg.ct.sent": "SO'ROV QABUL QILINDI",
     "pg.ct.submit": "SO'ROV YUBORISH",
     "pg.ct.error": "Xatolik yuz berdi. Iltimos, qo'ng'iroq qiling:",
-    "pg.ct.mapTitle": "TOGO GROUP PRO Manzili",
+    "pg.ct.mapTitle": "TOGO GROUP ADVERTISING Manzili",
   },
   ru: {
-    title: "TOGO GROUP PRO — Реклама и типография | Ташкент",
+    title: "TOGO GROUP ADVERTISING — Реклама и типография | Ташкент",
     "pre.txt": "Готовим к печати",
     "logo.sub": "РЕКЛАМА · ТИПОГРАФИЯ",
     "nav.svc": "Услуги",
@@ -490,10 +490,10 @@ export const translations: Record<LangKey, TranslationDict> = {
     "pg.ct.sent": "ЗАЯВКА ПРИНЯТА",
     "pg.ct.submit": "ОТПРАВИТЬ ЗАЯВКУ",
     "pg.ct.error": "Произошла ошибка. Пожалуйста, позвоните:",
-    "pg.ct.mapTitle": "Адрес TOGO GROUP PRO",
+    "pg.ct.mapTitle": "Адрес TOGO GROUP ADVERTISING",
   },
   en: {
-    title: "TOGO GROUP PRO — Advertising & printing | Tashkent",
+    title: "TOGO GROUP ADVERTISING — Advertising & printing | Tashkent",
     "pre.txt": "Preparing to print",
     "logo.sub": "ADVERTISING · PRINTING",
     "nav.svc": "Services",
@@ -732,6 +732,6 @@ export const translations: Record<LangKey, TranslationDict> = {
     "pg.ct.sent": "REQUEST RECEIVED",
     "pg.ct.submit": "SEND REQUEST",
     "pg.ct.error": "Something went wrong. Please call:",
-    "pg.ct.mapTitle": "TOGO GROUP PRO Location",
+    "pg.ct.mapTitle": "TOGO GROUP ADVERTISING Location",
   },
 };

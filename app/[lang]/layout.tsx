@@ -14,7 +14,7 @@ const keywordsByLang: Record<LangKey, string[]> = {
     "avto reklama",
     "UV print",
     "brending Toshkent",
-    "TOGO GROUP PRO",
+    "TOGO GROUP ADVERTISING",
     "bosmaxona Toshkent",
   ],
   ru: [
@@ -26,7 +26,7 @@ const keywordsByLang: Record<LangKey, string[]> = {
     "реклама на авто",
     "УФ печать",
     "брендинг Ташкент",
-    "TOGO GROUP PRO",
+    "TOGO GROUP ADVERTISING",
     "типография Ташкент",
   ],
   en: [
@@ -38,7 +38,7 @@ const keywordsByLang: Record<LangKey, string[]> = {
     "car branding",
     "UV printing",
     "branding Tashkent",
-    "TOGO GROUP PRO",
+    "TOGO GROUP ADVERTISING",
     "printing house Tashkent",
   ],
 };
@@ -60,16 +60,16 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL(siteUrl),
-    title: { default: title, template: "%s — TOGO GROUP PRO" },
+    title: { default: title, template: "%s — TOGO GROUP ADVERTISING" },
     description,
     keywords: keywordsByLang[langCode],
-    authors: [{ name: "TOGO GROUP PRO" }],
+    authors: [{ name: "TOGO GROUP ADVERTISING" }],
     alternates,
     openGraph: {
       type: "website",
       locale: ogLocales[langCode],
       url: alternates.canonical,
-      siteName: "TOGO GROUP PRO",
+      siteName: "TOGO GROUP ADVERTISING",
       title,
       description,
       images: [{ url: "/media/cta-banner.png", width: 1774, height: 952, alt: title }],
@@ -88,7 +88,7 @@ function buildJsonLd(langCode: LangKey) {
   return {
     "@context": "https://schema.org",
     "@type": "AdvertisingAgency",
-    name: "TOGO GROUP PRO",
+    name: "TOGO GROUP ADVERTISING",
     url: `${siteUrl}/${langCode}`,
     inLanguage: langCode,
     logo: `${siteUrl}/togo_logo.svg`,

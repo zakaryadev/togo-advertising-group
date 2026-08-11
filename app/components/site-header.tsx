@@ -38,10 +38,10 @@ export function SiteHeader() {
   return (
     <header id="hd" ref={headerRef}>
       <div className="wrap nav">
-        <Link href={`/${lang}`} className="logo" aria-label="TOGO GROUP PRO">
+        <Link href={`/${lang}`} className="logo" aria-label="TOGO GROUP ADVERTISING">
           <img
             src="/togo_logo.svg"
-            alt="TOGO GROUP PRO"
+            alt="TOGO GROUP ADVERTISING"
             width={140}
             height={48}
             className="logo-img"

@@ -85,7 +85,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <div className="admin-shell">
         <aside className="admin-aside">
           <div className="admin-brand">
-            <img src="/togo_logo.svg" alt="TOGO GROUP PRO" className="admin-logo" />
+            <img src="/togo_logo.svg" alt="TOGO GROUP ADVERTISING" className="admin-logo" />
             <span className="admin-badge mono">ADMIN PANEL</span>
           </div>
 

@@ -15,17 +15,17 @@ export function SiteFooter() {
   return (
     <footer>
       <div className="wrap">
-        <Link href={`/${lang}`} className="footer-logo-wrap" aria-label="TOGO GROUP PRO">
+        <Link href={`/${lang}`} className="footer-logo-wrap" aria-label="TOGO GROUP ADVERTISING">
           <img
             src="/togo_logo.svg"
-            alt="TOGO GROUP PRO"
+            alt="TOGO GROUP ADVERTISING"
             width={600}
             height={200}
             className="footer-logo-img"
           />
         </Link>
         <div className="fbot mono">
-          <span>© {year} TOGO GROUP PRO · {t("ct.city")}</span>
+          <span>© {year} TOGO GROUP ADVERTISING · {t("ct.city")}</span>
           <span>{t("ft.tags")}</span>
           <Link href="/admin" style={{ opacity: 0.5 }}>Admin</Link>
           <span>togogroup.uz</span>

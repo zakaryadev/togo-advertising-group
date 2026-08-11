@@ -60,7 +60,7 @@ export async function POST(request: Request) {
 
   if (token && chatId) {
     const lines = [
-      "🆕 Yangi so'rov — TOGO Group Pro",
+      "🆕 Yangi so'rov — TOGO Group Advertising",
       `👤 Ism: ${ism}`,
       `📞 Telefon: ${telefon}`,
       xizmat && `🛠 Xizmat: ${xizmat}`,

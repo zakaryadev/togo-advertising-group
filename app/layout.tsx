@@ -23,7 +23,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "TOGO GROUP PRO — Reklama va bosmaxona | Toshkent",
+  title: "TOGO GROUP ADVERTISING — Reklama va bosmaxona | Toshkent",
   robots: { index: true, follow: true },
 };
 

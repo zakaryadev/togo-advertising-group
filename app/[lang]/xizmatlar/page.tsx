@@ -61,7 +61,7 @@ export default function ServicesPage() {
       <main>
         <section className="inner-hero">
           <div className="wrap">
-            <span className="eyebrow mono"><Sparkles size={13} /> TOGO GROUP PRO / {t("pg.svc.eyebrow")}</span>
+            <span className="eyebrow mono"><Sparkles size={13} /> TOGO GROUP ADVERTISING / {t("pg.svc.eyebrow")}</span>
             <h1>{t("pg.svc.h1a")}<br /><span className="neon">{t("pg.svc.h1b")}</span></h1>
             <p>{t("pg.svc.sub")}</p>
           </div>

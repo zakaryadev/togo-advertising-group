@@ -33,7 +33,7 @@ export default function HeroSection() {
             <svg viewBox="0 0 200 200">
               <defs><path id="cir" d="M100,100 m-72,0 a72,72 0 1,1 144,0 a72,72 0 1,1 -144,0"/></defs>
               <text fill="#F3EFE2" fontFamily="JetBrains Mono, monospace" fontSize="13" letterSpacing="4.6">
-                <textPath href="#cir">TOGO GROUP PRO · SIGNAGE · PRINT · TASHKENT · </textPath>
+                <textPath href="#cir">TOGO GROUP ADVERTISING · SIGNAGE · PRINT · TASHKENT · </textPath>
               </text>
             </svg>
             <span className="ar">↓</span>

@@ -88,7 +88,7 @@ export default function PortfolioPage() {
       <main>
         <section className="inner-hero">
           <div className="wrap">
-            <span className="eyebrow mono"><BriefcaseBusiness size={13} /> TOGO GROUP PRO / {t("pg.pf.eyebrow")}</span>
+            <span className="eyebrow mono"><BriefcaseBusiness size={13} /> TOGO GROUP ADVERTISING / {t("pg.pf.eyebrow")}</span>
             <h1>{t("pg.pf.h1a")} <span className="neon">{t("pg.pf.h1b")}</span></h1>
             <p>{t("pg.pf.sub")}</p>
           </div>
