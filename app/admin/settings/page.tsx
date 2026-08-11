@@ -86,8 +86,9 @@ export default function AdminSettingsPage() {
           <h1>Aloqa va Sozlamalar</h1>
           <p>Saytdagi telefon raqami, manzil, email va ijtimoiy tarmoq havolalarini tahrirlash</p>
         </div>
-        <button onClick={fetchSettings} className="admin-pill">
-          🔄 Yangilash
+        <button onClick={fetchSettings} className="admin-pill" style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          <span>Yangilash</span>
         </button>
       </div>
 
@@ -101,8 +102,9 @@ export default function AdminSettingsPage() {
           </div>
         ) : (
           <form onSubmit={handleSaveSettings} style={{ display: "grid", gap: "24px" }}>
-            <h3 style={{ fontSize: "16px", color: "#ffd24a", textTransform: "uppercase" }}>
-              📞 Aloqa Ma'lumotlari
+            <h3 style={{ fontSize: "16px", color: "#ffd24a", textTransform: "uppercase", display: "flex", alignItems: "center", gap: "8px" }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span>Aloqa Ma'lumotlari</span>
             </h3>
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
@@ -160,8 +162,9 @@ export default function AdminSettingsPage() {
 
             <hr style={{ borderColor: "rgba(243, 239, 226, 0.1)", margin: "8px 0" }} />
 
-            <h3 style={{ fontSize: "16px", color: "#ffd24a", textTransform: "uppercase" }}>
-              🌐 Ijtimoiy Tarmoqlar
+            <h3 style={{ fontSize: "16px", color: "#ffd24a", textTransform: "uppercase", display: "flex", alignItems: "center", gap: "8px" }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              <span>Ijtimoiy Tarmoqlar</span>
             </h3>
 
             <div className="admin-form-group" style={{ marginBottom: 0 }}>

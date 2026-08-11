@@ -164,8 +164,9 @@ export default function AdminPortfolioPage() {
           <h1>Ishlarimiz (Portfolio)</h1>
           <p>Mijozlar uchun bajarilgan yangi loyihalarni qo'shish va rasmlarini yuklash</p>
         </div>
-        <button onClick={fetchItems} className="admin-pill">
-          🔄 Yangilash
+        <button onClick={fetchItems} className="admin-pill" style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          <span>Yangilash</span>
         </button>
       </div>
 
@@ -181,9 +182,13 @@ export default function AdminPortfolioPage() {
             marginBottom: "20px",
             textTransform: "uppercase",
             letterSpacing: "0.05em",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
           }}
         >
-          ➕ Yangi Loyiha Qo'shish
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Yangi Loyiha Qo'shish
         </h3>
 
         <form onSubmit={handleAddProject} style={{ display: "grid", gap: "20px" }}>
@@ -252,8 +257,9 @@ export default function AdminPortfolioPage() {
                   border: "1px solid #ffd24a",
                 }}
               />
-              <span style={{ fontSize: "12px", color: "#4ade80" }}>
-                ✓ Rasm tanlandi. Saqlash bosilganda yuklanadi.
+              <span style={{ fontSize: "12px", color: "#4ade80", display: "inline-flex", alignItems: "center", gap: "4px" }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Rasm tanlandi. Saqlash bosilganda yuklanadi.
               </span>
             </div>
           )}
@@ -337,7 +343,7 @@ export default function AdminPortfolioPage() {
                       onClick={() => handleToggleFeatured(item.id, item.is_featured)}
                       className={`admin-pill ${item.is_featured ? "active" : ""}`}
                     >
-                      {item.is_featured ? "★ Slayderda" : "○ Oddiy"}
+                      {item.is_featured ? "Slayderda" : "Oddiy"}
                     </button>
                   </td>
                   <td>
@@ -351,9 +357,13 @@ export default function AdminPortfolioPage() {
                         borderRadius: "6px",
                         cursor: "pointer",
                         fontSize: "12px",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "4px",
                       }}
                     >
-                      🗑 O'chirish
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                      <span>O'chirish</span>
                     </button>
                   </td>
                 </tr>

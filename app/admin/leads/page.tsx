@@ -138,11 +138,22 @@ export default function AdminLeadsPage() {
           <p>Saytdan kelgan va qo'lda kiritilgan barcha murojaatlar ro'yxati</p>
         </div>
         <div style={{ display: "flex", gap: "12px" }}>
-          <button onClick={() => setShowAddForm(!showAddForm)} className="admin-login-btn" style={{ margin: 0, padding: "8px 16px" }}>
-            {showAddForm ? "✖ Yopish" : "➕ Yangi Lid Qo'shish"}
+          <button onClick={() => setShowAddForm(!showAddForm)} className="admin-login-btn" style={{ margin: 0, padding: "8px 16px", display: "inline-flex", alignItems: "center", gap: "6px" }}>
+            {showAddForm ? (
+              <>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <span>Yopish</span>
+              </>
+            ) : (
+              <>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                <span>Yangi Lid Qo'shish</span>
+              </>
+            )}
           </button>
-          <button onClick={fetchLeads} className="admin-pill">
-            🔄 Yangilash
+          <button onClick={fetchLeads} className="admin-pill" style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            <span>Yangilash</span>
           </button>
         </div>
       </div>
@@ -150,8 +161,9 @@ export default function AdminLeadsPage() {
       {/* Manual Add Lead Form */}
       {showAddForm && (
         <div className="admin-table-wrap" style={{ padding: "24px", marginBottom: "32px", background: "#141108" }}>
-          <h3 style={{ fontSize: "16px", color: "#ffd24a", marginBottom: "16px", textTransform: "uppercase" }}>
-            ➕ Qo'lda Yangi Murojaat Qo'shish
+          <h3 style={{ fontSize: "16px", color: "#ffd24a", marginBottom: "16px", textTransform: "uppercase", display: "flex", alignItems: "center", gap: "8px" }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Qo'lda Yangi Murojaat Qo'shish
           </h3>
           <form onSubmit={handleAddLeadSubmit} style={{ display: "grid", gap: "16px" }}>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "16px" }}>
@@ -301,10 +313,10 @@ export default function AdminLeadsPage() {
                     >
                       <span className={`status-tag ${lead.status}`}>
                         {lead.status === "new"
-                          ? "● Yangi"
+                          ? "Yangi"
                           : lead.status === "contacted"
-                          ? "✓ Bog'lanildi"
-                          : "★ Yopildi"}
+                          ? "Bog'lanildi"
+                          : "Yopildi"}
                       </span>
                     </button>
                   </td>
@@ -319,9 +331,13 @@ export default function AdminLeadsPage() {
                         borderRadius: "6px",
                         cursor: "pointer",
                         fontSize: "12px",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "4px",
                       }}
                     >
-                      🗑 O'chirish
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                      <span>O'chirish</span>
                     </button>
                   </td>
                 </tr>

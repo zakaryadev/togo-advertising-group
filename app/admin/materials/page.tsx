@@ -75,8 +75,9 @@ export default function AdminMaterialsPage() {
           <h1>Material Narxlari va Kalkulyator</h1>
           <p>Kalkulyatorda hisoblanadigan materiallarning 1 kv.m narxlarini tahrirlash</p>
         </div>
-        <button onClick={fetchMaterials} className="admin-pill">
-          🔄 Yangilash
+        <button onClick={fetchMaterials} className="admin-pill" style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          <span>Yangilash</span>
         </button>
       </div>
 
@@ -119,7 +120,7 @@ export default function AdminMaterialsPage() {
                       onClick={() => handleToggleActive(item.key, item.is_active)}
                       className={`admin-pill ${item.is_active ? "active" : ""}`}
                     >
-                      {item.is_active ? "● Faol" : "○ Nofaol"}
+                      {item.is_active ? "Faol" : "Nofaol"}
                     </button>
                   </td>
                   <td>
