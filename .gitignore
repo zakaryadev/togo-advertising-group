@@ -48,5 +48,6 @@ supabase/
 lib/
 app/
 deploy/
-telegram/
+/telegram/
+!public/img/telegram/
 
