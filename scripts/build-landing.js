@@ -34,9 +34,17 @@ executableJs = executableJs.replace(
   if(window.__fxTheme) window.__fxTheme();
 }`
 );
+// Remove legacy window.open calls that open Telegram links directly in the browser
+executableJs = executableJs.replace(/window\.open\([^)]*\);?/g, '// window.open disabled');
+
+// Update modal labels in I18N
 executableJs = executableJs.replace(
-  "setTheme('dark');",
-  "var initialTheme = (function(){ try { return localStorage.getItem('togo_theme') || 'dark'; } catch(e){ return 'dark'; } })(); setTheme(initialTheme);"
+  '"ordSend": {"uz": "Telegram orqali yuborish"',
+  '"ordSend": {"uz": "Ariza yuborish"'
+);
+executableJs = executableJs.replace(
+  '"ordHint": {"uz": "Tugma bosilganda Telegram ochiladi, xabar tayyor turadi - faqat yuborishni bosasiz."',
+  '"ordHint": {"uz": "Arizangiz to\'g\'ridan-to\'g\'ri menejerlarga yuboriladi."'
 );
 
 // Append API hooks directly into executableJs (at build time, not at runtime via template)
@@ -46,37 +54,60 @@ executableJs += `
 (function(){
   var odSendBtn = document.getElementById('odSend');
   if (odSendBtn) {
-    odSendBtn.addEventListener('click', function () {
-      var name = document.getElementById('odName') ? document.getElementById('odName').value.trim() : '';
-      var phone = document.getElementById('odPhone') ? document.getElementById('odPhone').value.trim() : '';
-      var note = document.getElementById('odNote') ? document.getElementById('odNote').value.trim() : '';
-      if (name && phone) {
-        fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name: name, phone: phone, note: note, formType: 'order' })
-        }).catch(function(e){ console.error(e); });
+    odSendBtn.addEventListener('click', function (e) {
+      var nameEl = document.getElementById('odName');
+      var phoneEl = document.getElementById('odPhone');
+      var noteEl = document.getElementById('odNote');
+      var name = nameEl ? nameEl.value.trim() : '';
+      var phone = phoneEl ? phoneEl.value.trim() : '';
+      var note = noteEl ? noteEl.value.trim() : '';
+      if (!name || !phone) {
+        return; // Validation handled by original script
       }
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, phone: phone, note: note, formType: 'order' })
+      }).then(function(res){
+        if (res.ok) {
+          var od = document.getElementById('od');
+          if (od) od.hidden = true;
+          document.body.classList.remove('modal');
+          if (nameEl) nameEl.value = '';
+          if (phoneEl) phoneEl.value = '';
+          if (noteEl) noteEl.value = '';
+        }
+      }).catch(function(e){ console.error(e); });
     });
   }
   // Hook up Next.js /api/contact API for job form
   var jSendBtn = document.getElementById('jSend');
   if (jSendBtn) {
     jSendBtn.addEventListener('click', function () {
-      var name = document.getElementById('jName') ? document.getElementById('jName').value.trim() : '';
-      var phone = document.getElementById('jPhone') ? document.getElementById('jPhone').value.trim() : '';
+      var nameEl = document.getElementById('jName');
+      var phoneEl = document.getElementById('jPhone');
+      var name = nameEl ? nameEl.value.trim() : '';
+      var phone = phoneEl ? phoneEl.value.trim() : '';
       var posEl = document.getElementById('jPos');
       var expEl = document.getElementById('jExp');
       var position = posEl ? posEl.options[posEl.selectedIndex].text : '';
       var experience = expEl ? expEl.options[expEl.selectedIndex].text : '';
-      var about = document.getElementById('jAbout') ? document.getElementById('jAbout').value.trim() : '';
-      if (name && phone) {
-        fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name: name, phone: phone, position: position, experience: experience, about: about, formType: 'career' })
-        }).catch(function(e){ console.error(e); });
+      var aboutEl = document.getElementById('jAbout');
+      var about = aboutEl ? aboutEl.value.trim() : '';
+      if (!name || !phone) {
+        return;
       }
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, phone: phone, position: position, experience: experience, about: about, formType: 'career' })
+      }).then(function(res){
+        if (res.ok) {
+          if (nameEl) nameEl.value = '';
+          if (phoneEl) phoneEl.value = '';
+          if (aboutEl) aboutEl.value = '';
+        }
+      }).catch(function(e){ console.error(e); });
     });
   }
 })();
