@@ -353,7 +353,7 @@ footer .mono{font-family:var(--mono);font-size:11px;color:var(--muted);margin-to
   .sc .ln,.sc .glow{opacity:1} .sc .worker{transform:translate(0,0)}}
 
 /* ---------- ko'rinishlar ---------- */
-section[data-view]{display:block}
+section[data-view]{display:none}
 nav.menu a.on{color:var(--brand);background:var(--brand-soft)}
 .crumb{display:inline-flex;align-items:center;gap:7px;margin-bottom:20px;border:1px solid var(--line);
   background:var(--card);color:var(--sub);border-radius:9px;padding:8px 13px;font-size:12.5px;
