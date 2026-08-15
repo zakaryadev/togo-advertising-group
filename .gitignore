@@ -40,3 +40,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# hidden legacy supabase & Next.js codebase
+.old_supabase_code/
+.old_supabase_code
+supabase/
+lib/
+app/
+deploy/
+telegram/
+
