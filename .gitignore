@@ -46,7 +46,6 @@ next-env.d.ts
 .old_supabase_code
 supabase/
 lib/
-app/
 deploy/
 /telegram/
 !public/img/telegram/
