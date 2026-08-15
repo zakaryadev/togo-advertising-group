@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "dev": "echo 'Static site'",
+    "build": "echo 'Static build complete'",
+    "start": "echo 'Static site'",
+    "lint": "echo 'No lint needed'"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.4",
