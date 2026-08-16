@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TOGO GROUP PRO — bayram ikonkalari + burchak yozuvi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;600;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A0A0B;--bg2:#121214;--line:#26262B;--gold:#FBBA00;--txt:#F2F2F0;--muted:#8E8E96}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--txt);font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.logo{font-family:'Onest',system-ui,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:0 24px}
+header{border-bottom:1px solid var(--line);padding:18px 0;position:sticky;top:0;background:rgba(10,10,11,.86);backdrop-filter:blur(10px);z-index:20}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-weight:800;font-size:17px;letter-spacing:-.02em}
+.logo span{color:var(--gold)}
+.btn{background:var(--gold);color:#111;border:0;border-radius:999px;padding:10px 20px;font-weight:700;font-size:13.5px;cursor:pointer;font-family:'Manrope',sans-serif}
+.btn-ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+.hero{padding:80px 0 60px}
+.eyebrow{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-weight:700}
+.hero h1{font-size:clamp(32px,6vw,58px);line-height:1.04;margin:0 0 20px;letter-spacing:-.03em;font-weight:800;max-width:15ch}
+.hero p{color:var(--muted);font-size:16.5px;max-width:50ch;line-height:1.6;margin:0 0 30px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;padding-bottom:170px}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:20px}
+.card h3{margin:0 0 6px;font-size:15px;font-weight:600}
+.card p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.5}
+
+.panel{position:fixed;right:20px;bottom:20px;width:358px;max-width:calc(100vw - 32px);background:rgba(18,18,20,.97);border:1px solid var(--line);border-radius:18px;z-index:10000;backdrop-filter:blur(14px);box-shadow:0 24px 70px rgba(0,0,0,.65);display:flex;flex-direction:column;max-height:calc(100vh - 40px)}
+.ph{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--line);cursor:pointer;flex:none}
+.ph b{font-family:'Onest';font-size:14px}
+.ph small{color:var(--muted);font-size:11px;display:block;margin-top:2px}
+.chev{color:var(--muted);font-size:11px;transition:transform .2s}
+.panel.closed .pb,.panel.closed .pf{display:none}
+.panel.closed .chev{transform:rotate(180deg)}
+.pb{overflow-y:auto;padding:8px}
+.grp{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;padding:12px 10px 6px}
+.item{display:flex;align-items:center;gap:11px;padding:9px 10px;border-radius:11px;cursor:pointer;border:1px solid transparent}
+.item:hover{background:#1B1B1F}
+.item.on{background:#1B1B1F;border-color:var(--gold)}
+.pv{width:28px;height:28px;flex:none;display:block}
+.it{flex:1;min-width:0}
+.it b{display:block;font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.it small{color:var(--muted);font-size:11px}
+.tag{font-size:9.5px;font-weight:800;padding:3px 7px;border-radius:999px;letter-spacing:.05em;flex:none}
+.tag.now{background:var(--gold);color:#111}
+.tag.next{background:#2C2C32;color:#FFD569}
+.pf{padding:12px 16px 16px;border-top:1px solid var(--line);flex:none}
+.lbl{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:7px}
+.seg{display:flex;gap:6px;margin-bottom:13px}
+.seg button{flex:1;padding:8px 4px;border-radius:9px;cursor:pointer;background:#1B1B1F;border:1px solid var(--line);color:var(--muted);font-size:12px;font-family:'Manrope',sans-serif;font-weight:600}
+.seg button.on{background:var(--gold);border-color:var(--gold);color:#111}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 0 13px}
+.row span{font-size:13px}
+.row small{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+.switch{position:relative;width:42px;height:24px;flex:none}
+.switch input{opacity:0;width:0;height:0}
+.slider{position:absolute;inset:0;background:#2C2C32;border-radius:999px;transition:.2s;cursor:pointer}
+.slider:before{content:'';position:absolute;width:18px;height:18px;left:3px;top:3px;background:#8E8E96;border-radius:50%;transition:.2s}
+.switch input:checked + .slider{background:var(--gold)}
+.switch input:checked + .slider:before{transform:translateX(18px);background:#111}
+.copy{width:100%;background:var(--gold);color:#111;border:0;border-radius:12px;padding:13px;font-weight:700;font-size:14px;cursor:pointer;font-family:'Manrope',sans-serif}
+.copy.done{background:#2C2C32;color:#FFD569}
+.note{margin-top:9px;font-size:11.5px;color:var(--muted);line-height:1.55}
+.note code{color:#FFD569;font-size:11px}
+@media(max-width:620px){.hero{padding:50px 0 36px}.panel{right:12px;left:12px;bottom:12px;width:auto}}
+</style>
+</head>
+<body>
+
+<header><div class="wrap nav">
+  <div class="logo">TOGO GROUP <span>PRO</span></div>
+  <button class="btn">Buyurtma berish</button>
+</div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Toshkent · 2026</div>
+    <h1>Reklama va bosma ishlab chiqarish</h1>
+    <p>Demo sahifa. Ro'yxatdan bayramni bosing — ikonkalar tushadi va burchakda tabrik yozuvi chiqadi. Tilni ham shu yerdan almashtiring.</p>
+    <div class="hero-actions">
+      <button class="btn">Narx so'rash</button>
+      <button class="btn btn-ghost">Katalog</button>
+    </div>
+  </section>
+  <section class="cards">
+    <div class="card"><h3>Keng formatli bosma</h3><p>Banner, setka, plyonka, UV bosma.</p></div>
+    <div class="card"><h3>Yorug'li harflar</h3><p>Lightbox, obyomniy harf, vivеska.</p></div>
+    <div class="card"><h3>Tashqi reklama</h3><p>Bilbord, brandmauer, montaj.</p></div>
+    <div class="card"><h3>Merch</h3><p>Kiyim, sovg'a, korporativ mahsulot.</p></div>
+  </section>
+</main>
+
+<div class="panel" id="panel">
+  <div class="ph" id="phead">
+    <div><b>Bayram kalendari</b><small id="sub">yuklanmoqda…</small></div>
+    <div class="chev">▼</div>
+  </div>
+  <div class="pb" id="list"></div>
+  <div class="pf">
+    <div class="lbl">Sayt tili</div>
+    <div class="seg" id="langSeg">
+      <button data-v="uz" class="on">O'zbek</button>
+      <button data-v="ru">Русский</button>
+      <button data-v="en">English</button>
+    </div>
+    <div class="lbl">Yozuv burchagi</div>
+    <div class="seg" id="posSeg">
+      <button data-v="bl" class="on">Chap past</button>
+      <button data-v="br">O'ng past</button>
+      <button data-v="tl">Chap tepa</button>
+    </div>
+    <div class="row">
+      <span>Emoji ikonkalar<small>o'chiq bo'lsa — chizma ikonka</small></span>
+      <label class="switch"><input type="checkbox" id="emo"><span class="slider"></span></label>
+    </div>
+    <button class="copy" id="copy">Kodni nusxalash</button>
+    <div class="note">Kodni <code>&lt;/body&gt;</code> dan oldin bir marta joylang.</div>
+  </div>
+</div>
+
+<!-- ===== IKONKA KUTUBXONASI ===== -->
+<script type="text/plain" id="fx-icons">
+var PI = Math.PI, cos = Math.cos, sin = Math.sin;
+var ICON = {
+  snowflake: function(g,s){ g.strokeStyle=g.fillStyle; g.lineWidth=s*.17; g.lineCap='round';
+    for(var i=0;i<3;i++){ g.save(); g.rotate(i*PI/3);
+      g.beginPath(); g.moveTo(0,-s); g.lineTo(0,s); g.stroke();
+      g.beginPath();
+      g.moveTo(0,-s*.6); g.lineTo(-s*.32,-s*.92); g.moveTo(0,-s*.6); g.lineTo(s*.32,-s*.92);
+      g.moveTo(0,s*.6); g.lineTo(-s*.32,s*.92); g.moveTo(0,s*.6); g.lineTo(s*.32,s*.92);
+      g.stroke(); g.restore(); } },
+  spark: function(g,s){ g.beginPath();
+    for(var i=0;i<8;i++){ var a=i*PI/4, r=i%2?s*.32:s; g[i?'lineTo':'moveTo'](cos(a)*r,sin(a)*r); }
+    g.closePath(); g.fill(); },
+  star5: function(g,s){ g.beginPath();
+    for(var i=0;i<10;i++){ var a=-PI/2+i*PI/5, r=i%2?s*.45:s; g[i?'lineTo':'moveTo'](cos(a)*r,sin(a)*r); }
+    g.closePath(); g.fill(); },
+  gift: function(g,s){ g.fillRect(-s*.8,-s*.35,s*1.6,s*1.2); g.fillRect(-s*.92,-s*.62,s*1.84,s*.3);
+    g.beginPath(); g.arc(-s*.3,-s*.82,s*.26,0,6.283); g.arc(s*.3,-s*.82,s*.26,0,6.283); g.fill(); },
+  bauble: function(g,s){ g.beginPath(); g.arc(0,s*.15,s*.8,0,6.283); g.fill();
+    g.fillRect(-s*.2,-s*.88,s*.4,s*.3); },
+  tulip: function(g,s){ g.beginPath();
+    g.moveTo(-s*.72,-s*.45); g.quadraticCurveTo(-s*.88,s*.7,0,s*.92);
+    g.quadraticCurveTo(s*.88,s*.7,s*.72,-s*.45); g.quadraticCurveTo(s*.38,s*.05,s*.26,-s*.58);
+    g.quadraticCurveTo(0,s*.3,-s*.26,-s*.58); g.quadraticCurveTo(-s*.38,s*.05,-s*.72,-s*.45);
+    g.fill(); },
+  flower: function(g,s){ for(var i=0;i<5;i++){ var a=i*1.2566;
+      g.beginPath(); g.ellipse(cos(a)*s*.52,sin(a)*s*.52,s*.44,s*.3,a,0,6.283); g.fill(); }
+    g.beginPath(); g.arc(0,0,s*.26,0,6.283); g.fill(); },
+  heart: function(g,s){ g.beginPath(); g.moveTo(0,s*.88);
+    g.bezierCurveTo(-s*1.28,-s*.1,-s*.55,-s*1.02,0,-s*.34);
+    g.bezierCurveTo(s*.55,-s*1.02,s*1.28,-s*.1,0,s*.88); g.fill(); },
+  leaf: function(g,s){ g.beginPath(); g.moveTo(0,-s);
+    g.quadraticCurveTo(s*.92,-s*.12,0,s); g.quadraticCurveTo(-s*.92,-s*.12,0,-s); g.fill(); },
+  sprout: function(g,s){ g.strokeStyle=g.fillStyle; g.lineWidth=s*.15; g.lineCap='round';
+    g.beginPath(); g.moveTo(0,s); g.lineTo(0,-s*.2); g.stroke();
+    g.beginPath(); g.ellipse(-s*.46,-s*.32,s*.46,s*.24,-.6,0,6.283); g.fill();
+    g.beginPath(); g.ellipse(s*.46,-s*.55,s*.46,s*.24,.6,0,6.283); g.fill(); },
+  bell: function(g,s){ g.beginPath(); g.moveTo(-s*.74,s*.4);
+    g.quadraticCurveTo(-s*.6,-s*.72,0,-s*.82); g.quadraticCurveTo(s*.6,-s*.72,s*.74,s*.4);
+    g.closePath(); g.fill(); g.fillRect(-s*.88,s*.4,s*1.76,s*.22);
+    g.beginPath(); g.arc(0,s*.82,s*.2,0,6.283); g.fill(); },
+  crescent: function(g,s){ g.beginPath(); g.arc(0,0,s,.55,5.73);
+    g.arc(s*.44,0,s*.84,5.36,.92,true); g.closePath(); g.fill(); },
+  burst: function(g,s){ g.strokeStyle=g.fillStyle; g.lineWidth=s*.17; g.lineCap='round';
+    for(var i=0;i<8;i++){ var a=i*PI/4; g.beginPath();
+      g.moveTo(cos(a)*s*.36,sin(a)*s*.36); g.lineTo(cos(a)*s,sin(a)*s); g.stroke(); }
+    g.beginPath(); g.arc(0,0,s*.2,0,6.283); g.fill(); },
+  book: function(g,s){ g.fillRect(-s*.88,-s*.58,s*.8,s*1.16); g.fillRect(s*.08,-s*.58,s*.8,s*1.16); },
+  pencil: function(g,s){ g.save(); g.rotate(.6);
+    g.fillRect(-s*.2,-s*.92,s*.4,s*1.42);
+    g.beginPath(); g.moveTo(-s*.2,s*.5); g.lineTo(s*.2,s*.5); g.lineTo(0,s*.95); g.closePath(); g.fill();
+    g.restore(); },
+  ribbon: function(g,s){ g.strokeStyle=g.fillStyle; g.lineWidth=s*.3; g.lineCap='round'; g.lineJoin='round';
+    g.beginPath(); g.moveTo(-s*.55,s*.95); g.lineTo(0,-s*.25); g.lineTo(s*.55,s*.95); g.stroke();
+    g.beginPath(); g.arc(0,-s*.5,s*.3,0,6.283); g.fill(); },
+  strip: function(g,s){ g.fillRect(-s*.32,-s*.85,s*.64,s*1.7); },
+  balloon: function(g,s,p,tt){ p=p||{ph:0}; tt=tt||0; g.save();
+    g.strokeStyle=g.fillStyle; g.globalAlpha*=.45; g.lineWidth=Math.max(1,s*.08);
+    g.beginPath(); g.moveTo(0,s*1.15);
+    g.quadraticCurveTo(sin(tt*2+p.ph)*s*.5,s*2.1,sin(tt*2+p.ph)*s*.28,s*3);
+    g.stroke(); g.restore();
+    g.beginPath(); g.ellipse(0,0,s*.78,s,0,0,6.283); g.fill();
+    g.beginPath(); g.moveTo(-s*.16,s*.98); g.lineTo(s*.16,s*.98); g.lineTo(0,s*1.24); g.closePath(); g.fill(); }
+};
+</script>
+
+<!-- ===== EFFEKT ===== -->
+<script type="text/plain" id="fx-source">
+(function(){
+  if (window.__TOGO_FX_DESTROY) window.__TOGO_FX_DESTROY();
+  var CAL = window.TOGO_FX_CALENDAR || [], force = window.TOGO_FX_FORCE || null;
+  var EMOJI = window.TOGO_FX_EMOJI === true;
+  var POS = window.TOGO_FX_POS || 'bl';
+
+  function lang(){
+    var L = window.TOGO_FX_LANG || document.documentElement.lang || 'uz';
+    L = String(L).toLowerCase().slice(0,2);
+    return (L === 'ru' || L === 'en') ? L : 'uz';
+  }
+
+  function mk(s,y){ var p=s.split('-'); return p.length===3 ? new Date(+p[0],+p[1]-1,+p[2]) : new Date(y,+p[0]-1,+p[1]); }
+  function hit(e,now){
+    var y=now.getFullYear(),a,b;
+    if (e.from.length===10){ a=mk(e.from); b=mk(e.to); b.setHours(23,59,59); return now>=a&&now<=b; }
+    a=mk(e.from,y); b=mk(e.to,y); b.setHours(23,59,59);
+    if (b<a){
+      var a2=mk(e.from,y-1), b2=mk(e.to,y); b2.setHours(23,59,59);
+      var a3=mk(e.from,y), b3=mk(e.to,y+1); b3.setHours(23,59,59);
+      return (now>=a2&&now<=b2)||(now>=a3&&now<=b3);
+    }
+    return now>=a&&now<=b;
+  }
+  function pick(){ if(force) return force; var n=new Date();
+    for (var i=0;i<CAL.length;i++) if (hit(CAL[i],n)) return CAL[i]; return null; }
+
+  var E = pick();
+  window.__TOGO_FX_ACTIVE = E ? E.name : null;
+  if (!E) return;
+  var REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/*__ICONS__*/
+
+  var els = [], accent = E.ac || '#FBBA00';
+
+  /* ---------- burchakdagi tabrik yozuvi ---------- */
+  var badge = document.createElement('div');
+  badge.id = 'togo-fx-badge';
+  var side = (POS === 'br' || POS === 'tr') ? 'right' : 'left';
+  var vert = (POS === 'tl' || POS === 'tr') ? 'top' : 'bottom';
+  badge.style.cssText =
+    'position:fixed;' + side + ':18px;' + vert + ':18px;z-index:9999;' +
+    'display:flex;align-items:center;gap:9px;padding:9px 13px 9px 11px;border-radius:999px;' +
+    'background:rgba(14,14,16,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);' +
+    'border:1px solid ' + accent + '4D;box-shadow:0 12px 34px rgba(0,0,0,.5);' +
+    'font:600 13px/1.15 Manrope,system-ui,-apple-system,sans-serif;color:#F2F2F0;max-width:calc(100vw - 36px);' +
+    'opacity:0;transform:translateY(' + (vert === 'top' ? '-12px' : '12px') + ');' +
+    'transition:opacity .55s ease,transform .55s cubic-bezier(.2,.7,.3,1)';
+
+  var bi = document.createElement('canvas');
+  bi.width = 44; bi.height = 44;
+  bi.style.cssText = 'width:22px;height:22px;flex:none;display:block';
+  var bg = bi.getContext('2d');
+  bg.scale(2,2); bg.translate(11,11); bg.fillStyle = accent;
+  (ICON[(E.i && E.i[0]) || 'spark'] || ICON.spark)(bg, 9, {ph:0}, 0);
+
+  var bt = document.createElement('span');
+  bt.style.cssText = 'white-space:nowrap;overflow:hidden;text-overflow:ellipsis';
+  function setText(){ var t = E.t || {}; bt.textContent = t[lang()] || t.uz || E.name; }
+  setText();
+
+  var bx = document.createElement('button');
+  bx.type = 'button';
+  bx.setAttribute('aria-label','Yopish');
+  bx.textContent = '\u00D7';
+  bx.style.cssText = 'background:none;border:0;color:#8E8E96;font:400 17px/1 system-ui;cursor:pointer;' +
+    'padding:0 0 0 3px;margin:0;flex:none';
+  bx.addEventListener('click', function(){
+    badge.style.opacity = '0';
+    badge.style.transform = 'translateY(' + (vert === 'top' ? '-12px' : '12px') + ')';
+    setTimeout(function(){ badge.style.display = 'none'; }, 500);
+    try{ sessionStorage.setItem('togoFxHide', E.name); }catch(err){}
+  });
+
+  badge.appendChild(bi); badge.appendChild(bt); badge.appendChild(bx);
+
+  var hidden = false;
+  try{ hidden = sessionStorage.getItem('togoFxHide') === E.name; }catch(err){}
+  if (!hidden){
+    document.body.appendChild(badge); els.push(badge);
+    setTimeout(function(){ badge.style.opacity = '1'; badge.style.transform = 'translateY(0)'; }, 700);
+  }
+
+  window.TOGO_FX_SETLANG = function(l){ window.TOGO_FX_LANG = l; setText(); };
+  var mo = null;
+  if (window.MutationObserver){
+    mo = new MutationObserver(setText);
+    mo.observe(document.documentElement, { attributes:true, attributeFilter:['lang'] });
+  }
+
+  /* ---------- tushayotgan ikonkalar ---------- */
+  var set = EMOJI ? (E.e || ['\u2B50']) : (E.i || ['spark']);
+  var colors = E.c || ['#ffffff'], dens = E.d || 1, up = E.up === true;
+  var cv = null, ctx = null, raf = 0, paused = false, P = [], W = 0, H = 0;
+  var DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+  function resize(){}
+  function vis(){ paused = document.hidden; }
+
+  if (!REDUCED){
+    cv = document.createElement('canvas');
+    cv.setAttribute('aria-hidden','true');
+    cv.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9998';
+    document.body.appendChild(cv); els.push(cv);
+    ctx = cv.getContext('2d');
+
+    if (E.bank){
+      var bk=document.createElement('div');
+      bk.style.cssText='position:fixed;left:0;right:0;bottom:0;height:64px;pointer-events:none;z-index:9997;'+
+        'background:radial-gradient(130% 100% at 50% 100%, rgba(255,255,255,.22), rgba(255,255,255,0) 68%);filter:blur(3px)';
+      document.body.appendChild(bk); els.push(bk);
+    }
+
+    function count(){ var n=(E.n||34)*dens*Math.min(Math.max(W/900,.55),1.4); if(W<640) n*=.55; return Math.round(n); }
+    function make(seed){
+      var s=.55+Math.random()*.75;
+      return {
+        x: Math.random()*W,
+        y: up ? (seed?Math.random()*H:H+40+Math.random()*90) : (seed?Math.random()*H:-40-Math.random()*80),
+        r: (E.s||9)*s,
+        v: (E.v||.5)*(.6+Math.random())*(.7+s)*(up?-1:1),
+        vx:(Math.random()-.5)*.4, ph:Math.random()*6.28, sw:.4+Math.random()*1.2,
+        a:(Math.random()-.5)*.9, spin:(Math.random()-.5)*(E.fx==='confetti'?.11:.028),
+        o:.5+Math.random()*.5,
+        c:colors[(Math.random()*colors.length)|0],
+        k:set[(Math.random()*set.length)|0]
+      };
+    }
+    resize = function(){
+      W=window.innerWidth; H=window.innerHeight;
+      cv.width=W*DPR; cv.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
+      ctx.textAlign='center'; ctx.textBaseline='middle';
+      var n=count(); while(P.length<n) P.push(make(true)); if(P.length>n) P.length=n;
+    };
+    resize(); window.addEventListener('resize',resize);
+
+    var t=0;
+    (function frame(){
+      raf=requestAnimationFrame(frame);
+      if(paused) return;
+      t+=.01;
+      ctx.clearRect(0,0,W,H);
+      var wind=sin(t*.35)*.6;
+      for(var i=0;i<P.length;i++){
+        var p=P[i];
+        p.y+=p.v; p.x+=p.vx+sin(p.ph+t*1.6)*p.sw*.35+wind*(p.r/9); p.a+=p.spin;
+        if((up&&p.y<-70)||(!up&&p.y>H+50)||p.x<-80||p.x>W+80){ P[i]=make(false); continue; }
+        ctx.globalAlpha = E.fx==='sparkle' ? p.o*(.45+.55*Math.abs(sin(p.ph+t*2.4))) : p.o;
+        ctx.fillStyle=p.c;
+        ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.a);
+        if(EMOJI){
+          ctx.font=(p.r*2.3|0)+'px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';
+          ctx.fillText(p.k,0,0);
+        } else {
+          (ICON[p.k]||ICON.spark)(ctx,p.r,p,t);
+        }
+        ctx.restore();
+      }
+      ctx.globalAlpha=1;
+    })();
+    document.addEventListener('visibilitychange',vis);
+  }
+
+  window.__TOGO_FX_DESTROY=function(){
+    if(raf) cancelAnimationFrame(raf);
+    window.removeEventListener('resize',resize);
+    document.removeEventListener('visibilitychange',vis);
+    if(mo) mo.disconnect();
+    els.forEach(function(n){ n.parentNode&&n.parentNode.removeChild(n); });
+    window.TOGO_FX_SETLANG=null; window.__TOGO_FX_DESTROY=null;
+  };
+})();
+</script>
+
+<script>
+var ICONS = document.getElementById('fx-icons').textContent.trim();
+var SRC = document.getElementById('fx-source').textContent.trim().replace('/*__ICONS__*/', ICONS);
+var ICONLIB = (new Function(ICONS + '\nreturn ICON;'))();
+
+var CAL = [
+ {name:"Ramazon boshlanishi",from:"2026-02-18",to:"2026-02-24",fx:"sparkle",d:1,n:26,s:9,v:.3,up:true,ac:"#FBBA00",
+  t:{uz:"Ramazon oyi muborak bo'lsin!",ru:"Благословенного месяца Рамазан!",en:"Ramadan Mubarak!"},
+  i:["crescent","spark","star5"],e:["🌙","✨","⭐"],c:["#FBBA00","#FFD569","#FFF0C2"],g:"m"},
+ {name:"Ramazon hayit",from:"2026-03-19",to:"2026-03-23",fx:"sparkle",d:1.3,n:30,s:9,v:.3,up:true,ac:"#FBBA00",
+  t:{uz:"Hayitingiz muborak bo'lsin!",ru:"С праздником Рамазан хайит!",en:"Eid Mubarak!"},
+  i:["crescent","spark","star5"],e:["🌙","✨","⭐","🕌"],c:["#FBBA00","#FFD569","#FFF0C2","#FFFFFF"],g:"m"},
+ {name:"Qurbon hayit",from:"2026-05-26",to:"2026-05-30",fx:"sparkle",d:1.3,n:30,s:9,v:.3,up:true,ac:"#FBBA00",
+  t:{uz:"Hayitingiz muborak bo'lsin!",ru:"С праздником Курбан хайит!",en:"Eid Mubarak!"},
+  i:["crescent","spark","star5"],e:["🌙","✨","⭐","🕌"],c:["#FBBA00","#FFD569","#FFF0C2","#FFFFFF"],g:"m"},
+
+ {name:"Yangi yil",from:"12-15",to:"01-10",fx:"snow",d:1,n:40,s:9,v:.45,bank:true,ac:"#FFFFFF",
+  t:{uz:"Yangi yilingiz bilan!",ru:"С Новым годом!",en:"Happy New Year!"},
+  i:["snowflake","spark","gift","bauble"],e:["❄️","⭐","🎁","🎄"],c:["#FFFFFF","#EEF3FF","#FFD569"],g:"y"},
+ {name:"8-mart",from:"03-04",to:"03-10",fx:"petal",d:1,n:32,s:10,v:.5,ac:"#FF7EA8",
+  t:{uz:"8-mart bayrami muborak!",ru:"С праздником 8 Марта!",en:"Happy Women's Day!"},
+  i:["tulip","flower","heart"],e:["🌷","🌸","💐","❤️"],c:["#FF7EA8","#FFB3C7","#FFE0EA","#FBBA00"],g:"y"},
+ {name:"Navro'z",from:"03-15",to:"03-25",fx:"petal",d:1.1,n:34,s:9,v:.5,ac:"#8FD16B",
+  t:{uz:"Navro'z ayyomi muborak!",ru:"С праздником Навруз!",en:"Happy Navruz!"},
+  i:["flower","sprout","leaf"],e:["🌸","🌱","🌼","☀️"],c:["#FFE3EC","#FFFFFF","#8FD16B","#FFD569"],g:"y"},
+ {name:"Xotira va qadrlash",from:"05-05",to:"05-12",fx:"petal",d:.55,n:15,s:10,v:.3,ac:"#C0392B",
+  t:{uz:"Xotira va qadrlash kuni",ru:"День памяти и почестей",en:"Day of Remembrance and Honour"},
+  i:["tulip","ribbon","leaf"],e:["🌷","🕊️","🎗️"],c:["#C0392B","#8E2A20","#E07A6B"],g:"y"},
+ {name:"So'nggi qo'ng'iroq",from:"05-22",to:"05-28",fx:"confetti",d:1,n:36,s:9,v:1,ac:"#FBBA00",
+  t:{uz:"So'nggi qo'ng'iroq muborak!",ru:"С последним звонком!",en:"Happy Last Bell!"},
+  i:["bell","star5","strip","book"],e:["🔔","🎓","🎉","⭐"],c:["#FBBA00","#FFFFFF","#7EC8FF","#FF7EA8"],g:"y"},
+ {name:"Bolalar kuni",from:"05-28",to:"06-03",fx:"balloon",d:1,n:16,s:11,v:.45,up:true,ac:"#FFD93D",
+  t:{uz:"Bolalarni himoya qilish kuni muborak!",ru:"С Днём защиты детей!",en:"Happy Children's Day!"},
+  i:["balloon"],e:["🎈","🧸","🎨","⭐"],c:["#FF6B6B","#FFD93D","#6BCB77","#4D96FF","#FF9FF3"],g:"y"},
+ {name:"Mustaqillik kuni",from:"08-20",to:"09-05",fx:"confetti",d:1.2,n:38,s:9,v:.95,ac:"#0099B5",
+  t:{uz:"Mustaqillik kuni muborak!",ru:"С Днём независимости!",en:"Happy Independence Day!"},
+  i:["star5","burst","strip"],e:["🎆","⭐","🎉","🇺🇿"],c:["#0099B5","#FFFFFF","#1EB53A","#CE1126","#FBBA00"],g:"y"},
+ {name:"O'qituvchilar kuni",from:"09-28",to:"10-03",fx:"leaf",d:1,n:32,s:10,v:.55,ac:"#D98324",
+  t:{uz:"Ustozlar kuni muborak!",ru:"С Днём учителя и наставника!",en:"Happy Teachers' Day!"},
+  i:["leaf","book","pencil"],e:["🍁","🍂","📚","✏️"],c:["#D98324","#FBBA00","#B44C1F","#E9C46A"],g:"y"},
+ {name:"Konstitutsiya kuni",from:"12-05",to:"12-10",fx:"confetti",d:.8,n:26,s:9,v:.9,ac:"#0099B5",
+  t:{uz:"Konstitutsiya kuni muborak!",ru:"С Днём Конституции!",en:"Happy Constitution Day!"},
+  i:["star5","strip"],e:["⭐","🇺🇿","🎉"],c:["#0099B5","#FFFFFF","#1EB53A"],g:"y"}
+];
+
+var MON=["yan","fev","mar","apr","may","iyun","iyul","avg","sen","okt","noy","dek"];
+function human(s){ var p=s.split('-'), m=p.length===3?+p[1]:+p[0], d=p.length===3?+p[2]:+p[1];
+  return d+'-'+MON[m-1]+(p.length===3?' '+p[0]:''); }
+
+function mk2(s,y){ var p=s.split('-'); return p.length===3?new Date(+p[0],+p[1]-1,+p[2]):new Date(y,+p[0]-1,+p[1]); }
+function hit2(e,now){
+  var y=now.getFullYear(),a,b;
+  if(e.from.length===10){ a=mk2(e.from); b=mk2(e.to); b.setHours(23,59,59); return now>=a&&now<=b; }
+  a=mk2(e.from,y); b=mk2(e.to,y); b.setHours(23,59,59);
+  if(b<a){ var a2=mk2(e.from,y-1),b2=mk2(e.to,y); b2.setHours(23,59,59);
+    var a3=mk2(e.from,y),b3=mk2(e.to,y+1); b3.setHours(23,59,59);
+    return (now>=a2&&now<=b2)||(now>=a3&&now<=b3); }
+  return now>=a&&now<=b;
+}
+function findToday(){ var n=new Date();
+  for(var i=0;i<CAL.length;i++) if(hit2(CAL[i],n)) return i; return null; }
+function findNext(){ var d=new Date(); d.setHours(12,0,0,0);
+  for(var k=1;k<420;k++){ d.setDate(d.getDate()+1);
+    for(var i=0;i<CAL.length;i++) if(hit2(CAL[i],d)) return {i:i,d:new Date(d)}; }
+  return null; }
+
+var emoOn=false, curIdx=null, todayIdx=null, nextIdx=null, LANG='uz', POS='bl';
+
+function inject(force){
+  if (window.__TOGO_FX_DESTROY) window.__TOGO_FX_DESTROY();
+  try{ sessionStorage.removeItem('togoFxHide'); }catch(e){}
+  var s=document.createElement('script');
+  s.textContent='window.TOGO_FX_CALENDAR='+JSON.stringify(CAL)+';\n'+
+                'window.TOGO_FX_FORCE='+JSON.stringify(force||null)+';\n'+
+                'window.TOGO_FX_EMOJI='+emoOn+';\n'+
+                'window.TOGO_FX_LANG='+JSON.stringify(LANG)+';\n'+
+                'window.TOGO_FX_POS='+JSON.stringify(POS)+';\n'+SRC;
+  document.body.appendChild(s); document.body.removeChild(s);
+}
+
+function preview(e){
+  var c=document.createElement('canvas'); c.className='pv'; c.width=56; c.height=56;
+  var g=c.getContext('2d'); g.scale(2,2);
+  try{
+    var pts=[[14,13,7.5],[6,7,4],[21,21,4.5]];
+    for(var k=0;k<pts.length;k++){
+      var p=pts[k];
+      g.save(); g.translate(p[0],p[1]); g.fillStyle=e.c[k%e.c.length]; g.globalAlpha=k?.6:1;
+      if(emoOn && e.e){
+        g.font=((p[2]*2.2)|0)+'px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';
+        g.textAlign='center'; g.textBaseline='middle'; g.fillText(e.e[k%e.e.length],0,0);
+      } else {
+        g.rotate(k*.5-.25);
+        (ICONLIB[e.i[k%e.i.length]]||ICONLIB.spark)(g,p[2],{ph:0},0);
+      }
+      g.restore();
+    }
+  }catch(err){}
+  return c;
+}
+
+var list=document.getElementById('list');
+function build(){
+  list.innerHTML=''; var last=null;
+  CAL.forEach(function(e,i){
+    if(e.g!==last){ var h=document.createElement('div'); h.className='grp';
+      h.textContent=e.g==='m'?"Sanasi har yili o'zgaradi":"Doimiy sanalar"; list.appendChild(h); last=e.g; }
+    var row=document.createElement('div'); row.className='item'; row.dataset.i=i;
+    row.appendChild(preview(e));
+    var it=document.createElement('span'); it.className='it';
+    it.innerHTML='<b>'+e.name+'</b><small>'+human(e.from)+' — '+human(e.to)+'</small>';
+    row.appendChild(it);
+    if(i===todayIdx){ var t1=document.createElement('span'); t1.className='tag now'; t1.textContent='BUGUN'; row.appendChild(t1); }
+    else if(nextIdx&&i===nextIdx.i){ var t2=document.createElement('span'); t2.className='tag next'; t2.textContent='KEYINGI'; row.appendChild(t2); }
+    if(i===curIdx) row.classList.add('on');
+    row.addEventListener('click',function(){ curIdx=i;
+      list.querySelectorAll('.item').forEach(function(x){x.classList.remove('on');});
+      row.classList.add('on'); inject(e); });
+    list.appendChild(row);
+  });
+}
+
+todayIdx=findToday(); nextIdx=findNext();
+if(todayIdx!=null){ curIdx=todayIdx;
+  document.getElementById('sub').textContent='bugun: '+CAL[todayIdx].name;
+}else if(nextIdx){ curIdx=nextIdx.i;
+  document.getElementById('sub').textContent='keyingisi: '+CAL[nextIdx.i].name+', '+
+    nextIdx.d.getDate()+'-'+MON[nextIdx.d.getMonth()];
+}
+build();
+inject(curIdx!=null?CAL[curIdx]:null);
+
+function seg(id,fn){
+  document.getElementById(id).addEventListener('click',function(ev){
+    var b=ev.target.closest('button'); if(!b) return;
+    this.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
+    b.classList.add('on'); fn(b.dataset.v);
+    inject(curIdx!=null?CAL[curIdx]:null);
+  });
+}
+seg('langSeg',function(v){ LANG=v; document.documentElement.lang=v; });
+seg('posSeg', function(v){ POS=v; });
+
+document.getElementById('emo').addEventListener('change',function(){
+  emoOn=this.checked; build(); inject(curIdx!=null?CAL[curIdx]:null);
+});
+
+document.getElementById('copy').addEventListener('click',function(){
+  var b=this;
+  var head='<'+'script>\n'+
+   '/* TOGO GROUP PRO — bayram ikonkalari va burchak tabrigi.\n'+
+   '   TIL: yozuv <html lang="uz|ru|en"> dan o\'qiladi va til almashsa o\'zi yangilanadi.\n'+
+   '        Agar saytda lang o\'zgarmasa, til tugmasi bosilganda shuni chaqiring:\n'+
+   '        window.TOGO_FX_SETLANG("ru")\n'+
+   '   BURCHAK: TOGO_FX_POS — "bl" chap past, "br" o\'ng past, "tl" chap tepa, "tr" o\'ng tepa.\n'+
+   '   HAYIT: birinchi 3 qator sanasi har yili suriladi. Taxminiy sanalar\n'+
+   '        (O\'zbekiston musulmonlari idorasi e\'lonini tekshiring):\n'+
+   '     2027 — roza 08.02 | Ramazon hayit 09.03 | Qurbon hayit 17.05\n'+
+   '     2028 — roza 28.01 | Ramazon hayit 26.02 | Qurbon hayit 05.05\n'+
+   '     2029 — roza 16.01 | Ramazon hayit 14.02 | Qurbon hayit 24.04\n'+
+   '     2030 — roza 05.01 | Ramazon hayit 04.02 | Qurbon hayit 13.04\n'+
+   '   Qolganlari MM-DD — har yili o\'zi takrorlanadi. */\n'+
+   'window.TOGO_FX_EMOJI = '+emoOn+';\n'+
+   'window.TOGO_FX_POS = '+JSON.stringify(POS)+';\n'+
+   'window.TOGO_FX_CALENDAR = [\n'+CAL.map(function(e){return '  '+JSON.stringify(e);}).join(',\n')+'\n];\n';
+  var txt=head+SRC+'\n<'+'/script>';
+  function ok(){ b.textContent='Nusxalandi ✓'; b.classList.add('done');
+    setTimeout(function(){ b.textContent='Kodni nusxalash'; b.classList.remove('done'); },1800); }
+  if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok,fb); else fb();
+  function fb(){ var ta=document.createElement('textarea'); ta.value=txt;
+    ta.style.cssText='position:fixed;opacity:0'; document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); ok(); }catch(err){ b.textContent="Nusxalab bo'lmadi"; }
+    document.body.removeChild(ta); }
+});
+
+document.getElementById('phead').addEventListener('click',function(){
+  document.getElementById('panel').classList.toggle('closed');
+});
+</script>
+</body>
+</html>

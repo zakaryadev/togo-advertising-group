@@ -1,4 +1,6 @@
 (function () {
+  if (window.__TOGO_AI_MANAGER_INIT || document.getElementById("togo-ai-widget-root")) return;
+  window.__TOGO_AI_MANAGER_INIT = true;
   if (document.getElementById("togo-ai-widget-root")) return;
 
   const DEEPSEEK_KEY = atob("c2stYTNlMzYzMDBiNmM3NDQ3M2JkNWNiNTc0ZmI1M2I1Yjg=");
@@ -28,7 +30,7 @@ MULOQOT QOIDALARI:
   // Inject CSS
   const style = document.createElement("style");
   style.innerHTML = `
-    .togo-ai-root { position: fixed; bottom: 24px; right: 24px; z-index: 99999; font-family: system-ui, -apple-system, sans-serif; }
+    .togo-ai-root { position: fixed; bottom: 24px; right: 24px; z-index: 999999; font-family: system-ui, -apple-system, sans-serif; }
     .togo-ai-trigger { display: flex; align-items: center; gap: 10px; background: #111827; color: #FFD24A; border: 2px solid #FFD24A; border-radius: 999px; padding: 10px 18px 10px 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); cursor: pointer; transition: transform 0.2s ease; }
     .togo-ai-trigger:hover { transform: translateY(-3px) scale(1.03); background: #1f2937; }
     .togo-trigger-icon { position: relative; width: 32px; height: 32px; background: #FFD24A; color: #111827; border-radius: 50%; display: grid; place-items: center; font-weight: bold; }

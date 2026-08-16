@@ -1,3 +1,4 @@
+import Script from "next/script";
 import type { Metadata } from "next";
 import { Onest, Manrope, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
@@ -131,7 +132,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Script src="/togo-ai-manager.js" strategy="afterInteractive" />
+      </body>
     </html>
   );
 }
