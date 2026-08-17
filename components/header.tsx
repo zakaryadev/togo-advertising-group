@@ -28,6 +28,9 @@ export default function Header() {
     if (typeof document !== "undefined") {
       document.body.classList.toggle("nav-open", navOpen);
     }
+    return () => {
+      document.body.classList.remove("nav-open");
+    };
   }, [navOpen]);
 
   useEffect(() => {
@@ -145,8 +148,10 @@ export default function Header() {
 
           <button
             className="icobtn burger"
-            data-mobile-nav-toggle
             aria-label="Menu"
+            aria-expanded={navOpen}
+            aria-controls="mobile-navigation"
+            onClick={() => setNavOpen((open) => !open)}
           >
             <svg viewBox="0 0 24 24">
               <path d="M3 12h18M3 6h18M3 18h18" />
@@ -155,31 +160,32 @@ export default function Header() {
         </div>
       </div>
 
-      <div className="mobile-drawer">
-          <a href="#home" data-go="home">
+      <div id="mobile-navigation" className="mobile-drawer">
+          <a href="#home" data-go="home" onClick={() => setNavOpen(false)}>
             {translations.navHome[lang]}
           </a>
-          <a href="#yonalish" data-go="yonalish">
+          <a href="#yonalish" data-go="yonalish" onClick={() => setNavOpen(false)}>
             {translations.nav1[lang]}
           </a>
-          <a href="#portfolio" data-go="portfolio">
+          <a href="#portfolio" data-go="portfolio" onClick={() => setNavOpen(false)}>
             {translations.navPortfolio[lang]}
           </a>
-          <a href="#narx" data-go="narx">
+          <a href="#narx" data-go="narx" onClick={() => setNavOpen(false)}>
             {translations.navPrice[lang]}
           </a>
-          <a href="#tadbir" data-go="tadbir">
+          <a href="#tadbir" data-go="tadbir" onClick={() => setNavOpen(false)}>
             {translations.nav3[lang]}
           </a>
-          <a href="#jarayon" data-go="jarayon">
+          <a href="#jarayon" data-go="jarayon" onClick={() => setNavOpen(false)}>
             {translations.nav4[lang]}
           </a>
-          <a href="#rasmiy" data-go="rasmiy">
+          <a href="#rasmiy" data-go="rasmiy" onClick={() => setNavOpen(false)}>
             {translations.nav5[lang]}
           </a>
           <button
             data-order=""
             className="cta"
+            onClick={() => setNavOpen(false)}
             style={{ width: "100%", justifyContent: "center", marginTop: "10px", display: "inline-flex" }}
           >
             {translations.navCta[lang]}

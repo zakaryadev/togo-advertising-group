@@ -1,0 +1,114 @@
+{
+  "newPhotoTimestamp": "2026-08-17_21-57-05",
+  "newPhotos": {
+    "f1": [3, 4, 17, 18, 23, 25, 26, 33],
+    "f2": [8, 9, 10, 11, 14, 38, 39],
+    "f3": [37],
+    "f4": [22, 27, 28, 29, 30, 31, 32, 34, 36],
+    "f5": [1, 2, 5, 6, 7, 19],
+    "f6": [12, 13, 15, 20, 21, 24, 41, 42, 43, 44],
+    "f7": [16, 35],
+    "f8": [40]
+  },
+  "telegram": {
+    "f2": [2, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47],
+    "f4": [8, 9, 10, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33],
+    "f5": [34, 35, 36, 37],
+    "f6": [12, 13, 14, 15],
+    "f8": [17, 18, 19, 21]
+  },
+  "legacyPortfolio": {
+    "f2": [
+      "public/img/portfolio/peshtoq_mechta_uz_cosmetics.webp",
+      "public/img/portfolio/peshtoq_trafic_taxi_yandex.webp"
+    ],
+    "f5": [
+      "public/img/portfolio/stend_astro_education_rollup.webp",
+      "public/img/portfolio/stend_astro_education_xbanner.webp",
+      "public/img/portfolio/stend_atlantic_flags.webp",
+      "public/img/portfolio/stend_jlpt_master_xbanner.webp",
+      "public/img/portfolio/stend_mediapark_rollup.webp",
+      "public/img/portfolio/stend_shtenderlar_set.webp"
+    ],
+    "f6": [
+      "public/img/portfolio/tablichka_new_1.webp",
+      "public/img/portfolio/tablichka_new_2.webp",
+      "public/img/portfolio/tablichka_new_3.webp",
+      "public/img/portfolio/tablichka_new_4.webp",
+      "public/img/portfolio/tablichka_new_5.webp",
+      "public/img/portfolio/tablichka_new_6.webp",
+      "public/img/portfolio/tablichka_new_7.webp",
+      "public/img/portfolio/tablichka_new_8.webp",
+      "public/img/portfolio/tablichka_new_9.webp",
+      "public/img/portfolio/tablichka_new_10.webp",
+      "public/img/portfolio/tablichka_new_11.webp",
+      "public/img/portfolio/tablichka_new_12.webp",
+      "public/img/portfolio/tablichka_new_13.webp",
+      "public/img/portfolio/tablichka_new_14.webp",
+      "public/img/portfolio/tablichka_new_15.webp",
+      "public/img/portfolio/tablichka_new_16.webp",
+      "public/img/portfolio/tablichka_new_17.webp",
+      "public/img/portfolio/tablichka_new_18.webp",
+      "public/img/portfolio/tablichka_new_19.webp",
+      "public/img/portfolio/tablichka_new_20.webp",
+      "public/img/portfolio/tablichka_new_21.webp",
+      "public/img/portfolio/tablichka_new_22.webp",
+      "public/img/portfolio/tablichka_new_23.webp"
+    ],
+    "f8": [
+      "public/img/portfolio/suvenir_new_1.webp",
+      "public/img/portfolio/suvenir_new_2.webp",
+      "public/img/portfolio/suvenir_new_3.webp",
+      "public/img/portfolio/suvenir_new_4.webp",
+      "public/img/portfolio/suvenir_new_5.webp",
+      "public/img/portfolio/suvenir_new_6.webp",
+      "public/img/portfolio/suvenir_new_7.webp",
+      "public/img/portfolio/suvenir_new_8.webp",
+      "public/img/portfolio/suvenir_new_9.webp",
+      "public/img/portfolio/suvenir_new_10.webp",
+      "public/img/portfolio/suvenir_new_11.webp",
+      "public/img/portfolio/suvenir_new_12.webp",
+      "public/img/portfolio/suvenir_new_13.webp",
+      "public/img/portfolio/suvenir_new_14.webp",
+      "public/img/portfolio/suvenir_new_15.webp",
+      "public/img/portfolio/suvenir_new_16.webp",
+      "public/img/portfolio/suvenir_new_17.webp",
+      "public/img/portfolio/suvenir_new_18.webp",
+      "public/img/portfolio/suvenir_new_19.webp",
+      "public/img/portfolio/suvenir_new_20.webp",
+      "public/img/portfolio/suvenir_new_21.webp",
+      "public/img/portfolio/suvenir_new_22.webp",
+      "public/img/portfolio/suvenir_new_23.webp",
+      "public/img/portfolio/suvenir_new_24.webp",
+      "public/img/portfolio/suvenir_new_25.webp",
+      "public/img/portfolio/suvenir_new_26.webp",
+      "public/img/portfolio/suvenir_new_27.webp"
+    ]
+  },
+  "uploads": {},
+  "newSouvenirs": [
+    "suvenir/Изображение Codex 17 авг. 2026 г., 22_34_23.png",
+    "suvenir/Изображение Codex 17 авг. 2026 г., 22_37_46.png",
+    "suvenir/Изображение Codex 17 авг. 2026 г., 22_40_47.png",
+    "suvenir/Изображение Codex 17 авг. 2026 г., 22_44_58.png",
+    "suvenir/Изображение Codex 17 авг. 2026 г., 23_07_41.png",
+    "suvenir/Изображение Codex 17 авг. 2026 г., 23_10_16.png",
+    "suvenir/Изображение Codex 17 авг. 2026 г., 23_12_09.png"
+  ],
+  "retainedArchive": [
+    "images-new/IMG_9187.HEIC",
+    "images-new/IMG_9189.HEIC"
+  ],
+  "retainedSiteAssets": [
+    "public/icon.svg",
+    "public/logos.png",
+    "public/togo_logo.svg"
+  ],
+  "unusedPublicAssets": [
+    "public/file.svg",
+    "public/globe.svg",
+    "public/next.svg",
+    "public/vercel.svg",
+    "public/window.svg"
+  ]
+}

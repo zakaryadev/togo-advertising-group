@@ -70,10 +70,6 @@ html:not([data-theme="light"]) .moon{display:none}
   padding:14px 24px 20px;display:none}
 body.nav-open .mobile-drawer{display:block}
 .mobile-drawer a{display:block;text-decoration:none;font-size:15px;font-weight:500;padding:12px 0;border-bottom:1px solid var(--line);color:var(--ink)}
-@media(max-width:1079px){
-  .mobile-drawer{display:block}
-}
-
 /* ---------- hero ---------- */
 .hero{padding:70px 0 54px;display:grid;gap:40px;align-items:center}
 @media(min-width:1080px){.hero{grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:56px}}
