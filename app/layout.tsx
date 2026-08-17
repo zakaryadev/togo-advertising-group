@@ -1,3 +1,6 @@
+import BayramBadge from "@/components/bayram-badge";
+import AiManagerWidget from "@/components/ai-manager-widget";
+import Header from "@/components/header";
 import Script from "next/script";
 import type { Metadata } from "next";
 import { Onest, Manrope, JetBrains_Mono } from "next/font/google";
@@ -131,10 +134,17 @@ export default function RootLayout({
             __html: JSON.stringify(jsonLdLocalBusiness),
           }}
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "window.__TOGO_AI_MANAGER_INIT = true; window.__TOGO_FX_ENGINE_INIT = true;",
+          }}
+        />
       </head>
       <body>
+        <Header />
         {children}
-        <Script src="/togo-ai-manager.js" strategy="afterInteractive" />
+        <BayramBadge />
+        <AiManagerWidget />
       </body>
     </html>
   );
