@@ -15,16 +15,15 @@ export default async function AdminPage(props: { params: Promise<{ locale: strin
 
     initialUploads = allAssets.map((item, idx) => {
       const filename = item.src.split("/").pop() || item.source.split("/").pop() || "";
-      // Supabase items have source starting with http
-      const isSupabase = item.source.startsWith("http");
+      const isDb = item.id ? item.id.startsWith("db-") : false;
       return {
         id: item.id || `asset-${idx}-${item.category}`,
-        source: isSupabase ? item.source : item.src,
+        source: item.source,
         category: item.category,
         filename,
         webpSrc: item.src,
         title: item.alt.split(" — ").pop() || filename,
-        isStatic: !isSupabase,
+        isStatic: !isDb,
       };
     });
   } catch (error) {
