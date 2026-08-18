@@ -103,6 +103,52 @@ html:not([data-theme="light"]) .moon{display:none}
 body.nav-open .drawer{display:block}
 .drawer a{display:block;text-decoration:none;font-size:15px;font-weight:500;padding:12px 0;border-bottom:1px solid var(--line);color:var(--ink)}
 
+/* ---------- tepadagi telefon tugmasi ---------- */
+.callbtn{display:none;align-items:center;gap:8px;border:1px solid var(--line);background:var(--soft);
+  border-radius:11px;padding:12px 15px;color:var(--ink);text-decoration:none;transition:.16s;white-space:nowrap}
+@media(min-width:900px) and (max-width:1079px){.callbtn{display:inline-flex}}
+@media(min-width:1280px){.callbtn{display:inline-flex}}
+.callbtn:hover{border-color:var(--brand);color:var(--brand);transform:translateY(-1px)}
+.callbtn svg{width:16px;height:16px;fill:none;stroke:var(--brand);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.callbtn b{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.01em}
+.drawer .dcall{display:flex;align-items:center;gap:9px;color:var(--brand);font-weight:700;font-family:var(--mono);font-size:14px}
+.drawer .dcall svg{width:16px;height:16px;fill:none;stroke:var(--brand);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- Bo'limlar ostidagi portfolio ---------- */
+.pfq{margin-top:34px}
+.pfq h5{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--brand);margin-bottom:16px}
+.pfqgrid{display:grid;gap:12px}
+@media(min-width:560px){.pfqgrid{grid-template-columns:1fr 1fr}}
+@media(min-width:1040px){.pfqgrid{grid-template-columns:repeat(4,1fr)}}
+.pfqc{text-align:left;border:1px solid var(--line);background:var(--card);border-radius:15px;padding:11px;
+  cursor:pointer;font-family:var(--body);transition:.16s;display:block;width:100%}
+.pfqc:hover{border-color:var(--brand);transform:translateY(-3px);box-shadow:var(--shadow)}
+.pfqc .thumb{position:relative;overflow:hidden;aspect-ratio:4/3;border-radius:11px;background:var(--soft);
+  border:1px dashed var(--line2);display:grid;place-items:center}
+.pfqc .thumb img{width:100%;height:100%;object-fit:cover;display:block;user-select:none;-webkit-user-drag:none;pointer-events:none}
+.pfqc .thumb.has{border:1px solid var(--line)}
+.pfqc .thumb .ph{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted);
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;text-align:center;padding:10px}
+.pfqc .thumb .ph svg{width:22px;height:22px;fill:none;stroke:var(--line2);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.pfqc b{display:block;margin-top:12px;font-family:var(--display);font-size:15.5px;font-weight:700;line-height:1.3;letter-spacing:-.015em;color:var(--brand)}
+.pfqc i{display:flex;align-items:center;gap:6px;margin-top:6px;font-style:normal;font-family:var(--mono);
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.pfqc i svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.pfqc:hover i{color:var(--brand)}
+
+/* ---------- footer ustunlari ---------- */
+.fcols{display:grid;gap:30px;margin-bottom:34px}
+@media(min-width:760px){.fcols{grid-template-columns:1fr 1.3fr 1fr;gap:26px}}
+.flinks{display:flex;flex-direction:column;gap:9px;align-items:flex-start}
+.flinks a{text-decoration:none;font-size:14.5px;color:var(--sub);transition:.15s}
+.flinks a:hover{color:var(--brand)}
+.fcont{display:flex;flex-direction:column;gap:10px}
+.fcont a,.fcont span{font-size:14.5px;color:var(--sub);text-decoration:none;line-height:1.6;transition:.15s;max-width:34ch}
+.fcont a:hover{color:var(--brand)}
+.fsoc{display:flex;gap:9px;margin-top:16px}
+.fsoc .soc{width:40px;height:40px;border-radius:11px}
+.fsoc .soc svg{width:17px;height:17px}
+
 /* ---------- hero ---------- */
 .hero{padding:70px 0 54px;display:grid;gap:40px;align-items:center}
 @media(min-width:1080px){.hero{grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:56px}}
@@ -719,6 +765,7 @@ body.chat .ai{opacity:1;transform:none;pointer-events:auto}
       <a href="#tadbir" data-go="tadbir" data-i18n="nav3">Tadbirlar</a>
       <a href="#jarayon" data-go="jarayon" data-i18n="nav4">Jarayon</a>
       <a href="#rasmiy" data-go="rasmiy" data-i18n="nav5">Rasmiy</a>
+      <a href="#aloqa" data-go="aloqa" data-i18n="navContact">Aloqa</a>
     </nav>
     <div class="tools">
       <div class="langs">
@@ -732,6 +779,7 @@ body.chat .ai{opacity:1;transform:none;pointer-events:auto}
       </button>
       <button class="icobtn burger" id="burger" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
       <button class="cta" data-order="" data-i18n="navCta">Ariza qoldirish</button>
+      <a class="callbtn" href="tel:+998990000602" aria-label="+998 99 000-06-02"><svg viewBox="0 0 24 24"><path d="M6.8 3.5h3l1.6 4-2 1.4a12 12 0 005.7 5.7l1.4-2 4 1.6v3a1.8 1.8 0 01-2 1.8A16.6 16.6 0 015 5.5a1.8 1.8 0 011.8-2z"/></svg><b>+998 99 000-06-02</b></a>
     </div>
   </div>
   <div class="drawer" id="drawer">
@@ -742,6 +790,8 @@ body.chat .ai{opacity:1;transform:none;pointer-events:auto}
     <a href="#tadbir" data-go="tadbir" data-i18n="nav3">Tadbirlar</a>
     <a href="#jarayon" data-go="jarayon" data-i18n="nav4">Jarayon</a>
     <a href="#rasmiy" data-go="rasmiy" data-i18n="nav5">Rasmiy</a>
+    <a href="#aloqa" data-go="aloqa" data-i18n="navContact">Aloqa</a>
+    <a class="dcall" href="tel:+998990000602"><svg viewBox="0 0 24 24"><path d="M6.8 3.5h3l1.6 4-2 1.4a12 12 0 005.7 5.7l1.4-2 4 1.6v3a1.8 1.8 0 01-2 1.8A16.6 16.6 0 015 5.5a1.8 1.8 0 011.8-2z"/></svg>+998 99 000-06-02</a>
     <button class="cta" data-order="" style="width:100%;justify-content:center;margin-top:10px" data-i18n="navCta">Ariza qoldirish</button>
   </div>
 </header>
@@ -846,6 +896,20 @@ body.chat .ai{opacity:1;transform:none;pointer-events:auto}
       <b data-i18n="nav5">Rasmiy</b><span data-i18n="tRq">Davlat xaridlari va rekvizitlar</span></button><button class="tile rv" data-go="karyera"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.4" r="3.6"/><path d="M5 20c1-3.6 4-5.2 7-5.2s6 1.6 7 5.2"/></svg>
       <b data-i18n="navJoin">Bizga qo'shiling</b><span data-i18n="tJoin">Vakansiyalar va anketa</span></button><button class="tile rv" data-go="aloqa"><svg viewBox="0 0 24 24"><path d="M6.8 3.5h3l1.6 4-2 1.4a12 12 0 005.7 5.7l1.4-2 4 1.6v3a1.8 1.8 0 01-2 1.8A16.6 16.6 0 015 5.5a1.8 1.8 0 011.8-2z"/></svg>
       <b data-i18n="navContact">Aloqa</b><span data-i18n="tCo">Telefon, Telegram va ijtimoiy tarmoqlar</span></button></div>
+
+  <div class="pfq">
+    <h5 data-i18n="navPortfolio">Portfolio</h5>
+    <div class="pfqgrid">
+      <button class="pfqc rv" data-go="f1"><div class="thumb" data-pfq="f1"></div><b data-i18n="f1t">Banner va katta formatli bosma</b><i><svg viewBox="0 0 24 24"><path d="M5 12h13M12.5 5.5L19 12l-6.5 6.5"/></svg><span data-i18n="pfOpen">Ishlarni ko'rish</span></i></button>
+      <button class="pfqc rv" data-go="f2"><div class="thumb" data-pfq="f2"></div><b data-i18n="f2t">Obyomli harflar va peshtoq</b><i><svg viewBox="0 0 24 24"><path d="M5 12h13M12.5 5.5L19 12l-6.5 6.5"/></svg><span data-i18n="pfOpen">Ishlarni ko'rish</span></i></button>
+      <button class="pfqc rv" data-go="f3"><div class="thumb" data-pfq="f3"></div><b data-i18n="f3t">Kran va balandlik reklamasi</b><i><svg viewBox="0 0 24 24"><path d="M5 12h13M12.5 5.5L19 12l-6.5 6.5"/></svg><span data-i18n="pfOpen">Ishlarni ko'rish</span></i></button>
+      <button class="pfqc rv" data-go="f4"><div class="thumb" data-pfq="f4"></div><b data-i18n="f4t">Avto reklama va avtopark brendlash</b><i><svg viewBox="0 0 24 24"><path d="M5 12h13M12.5 5.5L19 12l-6.5 6.5"/></svg><span data-i18n="pfOpen">Ishlarni ko'rish</span></i></button>
+      <button class="pfqc rv" data-go="f5"><div class="thumb" data-pfq="f5"></div><b data-i18n="f5t">Stend va ko'rgazma konstruksiyalari</b><i><svg viewBox="0 0 24 24"><path d="M5 12h13M12.5 5.5L19 12l-6.5 6.5"/></svg><span data-i18n="pfOpen">Ishlarni ko'rish</span></i></button>
+      <button class="pfqc rv" data-go="f6"><div class="thumb" data-pfq="f6"></div><b data-i18n="f6t">Tablichka, stend va navigatsiya</b><i><svg viewBox="0 0 24 24"><path d="M5 12h13M12.5 5.5L19 12l-6.5 6.5"/></svg><span data-i18n="pfOpen">Ishlarni ko'rish</span></i></button>
+      <button class="pfqc rv" data-go="f7"><div class="thumb" data-pfq="f7"></div><b data-i18n="f7t">Poligrafiya va qadoqlash</b><i><svg viewBox="0 0 24 24"><path d="M5 12h13M12.5 5.5L19 12l-6.5 6.5"/></svg><span data-i18n="pfOpen">Ishlarni ko'rish</span></i></button>
+      <button class="pfqc rv" data-go="f8"><div class="thumb" data-pfq="f8"></div><b data-i18n="f8t">Suvenir va brendlangan kiyim</b><i><svg viewBox="0 0 24 24"><path d="M5 12h13M12.5 5.5L19 12l-6.5 6.5"/></svg><span data-i18n="pfOpen">Ishlarni ko'rish</span></i></button>
+    </div>
+  </div>
 </div>
 
 <div class="nolist rv">
@@ -1283,6 +1347,35 @@ body.chat .ai{opacity:1;transform:none;pointer-events:auto}
 
 <footer>
   <div class="wrap">
+    <div class="fcols">
+      <div>
+        <div class="ftlabel" data-i18n="ftNav">Navigatsiya</div>
+        <nav class="flinks">
+          <a href="#yonalish" data-go="yonalish" data-i18n="nav1">Yo'nalishlar</a>
+          <a href="#portfolio" data-go="portfolio" data-i18n="navPortfolio">Portfolio</a>
+          <a href="#narx" data-go="narx" data-i18n="navPrice">Narxlar</a>
+          <a href="#tadbir" data-go="tadbir" data-i18n="nav3">Tadbirlar</a>
+          <a href="#jarayon" data-go="jarayon" data-i18n="nav4">Jarayon</a>
+          <a href="#rasmiy" data-go="rasmiy" data-i18n="nav5">Rasmiy</a>
+          <a href="#karyera" data-go="karyera" data-i18n="navJoin">Bizga qo'shiling</a>
+          <a href="#aloqa" data-go="aloqa" data-i18n="navContact">Aloqa</a>
+        </nav>
+      </div>
+      <div>
+        <div class="ftlabel" data-i18n="ftContacts">Kontaktlar</div>
+        <div class="fcont">
+          <span data-i18n="coOfficeV">Toshkent shahri, Yashnobod tumani, Yashnobod MFY, 4-Aviasozlar mavzesi, 9-uy</span>
+          <a href="tel:+998773004500">+998 77 300 45 00</a>
+          <a href="tel:+998990000602">+998 99 000 06 02</a>
+          <a href="mailto:info@togogrouppro.uz">info@togogrouppro.uz</a>
+          <a href="https://t.me/togo_group_pro" target="_blank" rel="noopener">t.me/togo_group_pro</a>
+        </div>
+      </div>
+      <div>
+        <div class="ftlabel" data-i18n="coSocial">Ijtimoiy tarmoqlar</div>
+        <div class="fsoc" id="fsoc"></div>
+      </div>
+    </div>
     <div class="fgrid">
       <a href="#home" data-go="home" class="flogo" aria-label="TOGO GROUP ADVERTISING"><svg class="logo" role="img" viewBox="2894 12434 15198 4834" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" aria-label="TOGO GROUP ADVERTISING"><path d="M16367.75 15112.89l-329.11 -0.87 0 1429.54 260.68 1.65 2.84 -846.46 198.25 540.25c35.51,101.93 74.56,203.55 105.71,306.64l278.7 -0.77 -0.03 -1429.55 -259.61 -1c-7.94,68.43 -2.95,201.63 -2.08,248.55 2.01,105.44 9.92,224.98 2.51,329.32l-16.41 232.24 -241.45 -809.54zm-6769.67 -1661.33l0 -298.29 -750.63 0 0 298.29 227.7 0 0 1226.91 295.01 0 0 -1226.91 227.92 0zm-4287.2 -833.86c1233.21,0 2232.8,999.62 2232.8,2232.83 0,1233.21 -999.59,2232.83 -2232.8,2232.83 -1233.27,0 -2232.83,-999.62 -2232.83,-2232.83 0,-1233.21 999.56,-2232.83 2232.83,-2232.83zm-253.61 604.33c724.73,-111.87 1437.31,266.04 1748.24,933.81l496.88 0c-287.15,-823.35 -1070.23,-1414.08 -1991.51,-1414.08 -85.84,0 -170.42,5.26 -253.61,15.21l0 465.06zm2349.85 1398.6l-2329.72 0c0,255.99 208.8,464.83 464.79,464.83 466.6,0 933.17,0 1399.8,0 -199.49,1398.43 -1981.02,1905.49 -2879.82,840.45 -278.71,-323.31 -399.22,-694.42 -399.22,-1117.62l0 -1273.53c-288.38,360.63 -460.84,818.02 -460.84,1315.77 0,1164.71 944.06,2108.77 2108.77,2108.77 1164.68,0 2108.73,-944.06 2108.73,-2108.77 0,-77.71 -4.28,-154.41 -12.49,-229.9zm-1156.34 -488.54c-214.66,-280.41 -551.94,-462.01 -931.76,-464.63l-726.51 0.57 0 -800.67c-165.56,59.92 -321.48,140.01 -464.73,237.31l0 1745.89c0,662.01 542.77,1194.59 1204.5,1182.9 374.5,-6.7 706.52,-187.33 918.67,-464.59l-897.9 0c-418.3,0 -760.54,-342.27 -760.54,-760.58l0 -675.03 760.54 -1.17 897.73 0zm-3296.79 718.44c0,1301.67 1055.15,2356.89 2356.89,2356.89 1301.67,0 2356.82,-1055.22 2356.82,-2356.89 0,-1301.67 -1055.15,-2356.89 -2356.82,-2356.89 -1301.74,0 -2356.89,1055.22 -2356.89,2356.89zm7066.42 -172.06l303.92 0c180.4,0 261.49,-84.74 261.49,-264.26l0 -996.88c0,-179.56 -81.13,-264.06 -261.49,-264.06l-303.92 0c-180.23,0 -261.25,84.7 -261.25,264.06l0 996.88c0,179.32 80.98,264.26 261.25,264.26zm33.52 -1226.91l236.87 0 0 928.45 -236.87 0 0 -928.45zm1519.62 391.64l-354.7 0 59.68 180.8 0 356.01 -236.83 0 0 -928.45 236.83 0 0 153.37 295.02 0 0 -187.6c0,-179.56 -81.16,-264.06 -261.46,-264.06l-303.95 0c-180.23,0 -261.22,84.7 -261.22,264.06l0 996.88c0,179.32 80.92,264.26 261.22,264.26l303.95 0c180.33,0 261.46,-84.74 261.46,-264.26l0 -571.01zm422.32 835.27l303.92 0c180.37,0 261.45,-84.74 261.45,-264.26l0 -996.88c0,-179.56 -81.15,-264.06 -261.45,-264.06l-303.92 0c-180.23,0 -261.22,84.7 -261.22,264.06l0 996.88c0,179.32 80.96,264.26 261.22,264.26zm33.53 -1226.91l236.87 0 0 928.45 -236.87 0 0 -928.45zm2051.42 391.64l-354.66 0 59.68 180.8 0 356.01 -236.86 0 0 -928.45 236.86 0 0 153.37 294.98 0 0 -187.6c0,-179.56 -81.12,-264.06 -261.48,-264.06l-303.92 0c-180.23,0 -261.19,84.7 -261.19,264.06l0 996.88c0,179.32 80.96,264.26 261.19,264.26l303.92 0c180.4,0 261.48,-84.74 261.48,-264.26l0 -571.01zm755.79 835.27l291.7 0 -227.96 -690.1 58.71 0c107.28,0 109.53,-193.97 109.53,-264.27l0 -306.77c0,-179.56 -81.16,-264.06 -261.49,-264.06l-565.14 0 0 1525.2 294.78 0 0 -807.1 299.87 807.1zm-63.03 -911.97l-236.84 0 0 -314.94 236.84 0 0 314.94zm717.3 911.97l303.92 0c180.4,0 261.49,-84.74 261.49,-264.26l0 -996.88c0,-179.56 -81.12,-264.06 -261.49,-264.06l-303.92 0c-180.23,0 -261.19,84.7 -261.19,264.06l0 996.88c0,179.32 80.96,264.26 261.19,264.26zm33.56 -1226.91l236.83 0 0 928.45 -236.83 0 0 -928.45zm1519.54 -298.29l-294.94 0 0 1226.74 -236.9 0 0 -1226.74 -294.68 0 0 1260.94c0,179.32 80.92,264.26 261.18,264.26l303.86 0c180.4,0 261.48,-84.74 261.48,-264.26l0 -1260.94zm161.14 0l0 1525.2 294.78 0 0 -613.44 270.36 0c180.5,0 261.49,-84.63 261.49,-264.26l0 -383.44c0,-179.56 -81.16,-264.06 -261.49,-264.06l-565.14 0zm531.62 613.23l-236.84 0 0 -314.94 236.84 0 0 314.94zm106.94 1984.11l-335.57 0 56.54 171.08 0 343.15 -230.51 0 0 -893.01 230.51 0 0 146.97 279.03 0 0 -177.95c0,-171.02 -76.93,-251.14 -248.69,-251.14l-291.23 0c-171.59,0 -248.39,80.28 -248.39,251.14l0 955c0,170.79 76.74,251.41 248.39,251.41l291.23 0c171.79,0 248.69,-80.45 248.69,-251.41l0 -545.24zm-7760.87 792.56c117.46,4.19 235.49,-0.33 352.92,-0.27 281.01,0.17 397.07,10.29 396.87,-310.62l-0.54 -797.59c-0.03,-96.46 4.56,-207.56 -74.59,-276.82 -67.42,-58.98 -226.89,-46.02 -313.57,-46.09 -120.88,-0.1 -241.76,-1.64 -362.64,-0.53l1.55 1431.92zm262.02 -279.84l3.72 -875.43 206.95 0.98 7.87 32.22c8.71,35.57 7.71,106.88 8.48,144.49 1.71,83.3 2.04,166.76 1.91,250.13 -0.1,85.14 -0.74,170.32 -2.21,255.42 -0.84,50.18 -0.47,105.31 -5.26,155.15l-3.72 38.72 -217.74 -1.68zm2316.23 281.35c64.47,5.89 189.37,1.94 263.86,-0.77l-2.01 -614.65 68.19 52.49c9.68,6.63 16.58,15.24 19.9,26.73l50.44 130.92c17.45,48.7 34.77,96.94 52.55,144.93 31.55,85.01 59.29,171.42 92.11,255.96l272.57 2.14 -220.82 -637.72 47.99 -9.34c129.83,-25.26 108.96,-178.96 108.86,-279.74 -0.1,-101.15 16.98,-321.14 -31.22,-406.65 -58.41,-103.53 -196.54,-97 -300.13,-97.1 -138.97,-0.1 -281.22,-8.74 -420.32,-1.44l-1.97 1434.24zm263.06 -851.75l-1.44 -304.59 223.03 0.03 -0.6 302.08 -220.99 2.48zm-3879.79 847.29l266.14 1.68 22.54 -141.81 302.62 -0.64 24.85 140.98 266.41 2 -267.55 -1429.74 -343.34 -1.54 -271.67 1429.07zm326.97 -417.36l118.57 -739.81 104.66 737.5 -223.23 2.31zm5633.55 -11.52l-264.3 0.77c-4.19,84.1 -2.54,226.08 12.26,281.44 21.5,80.12 67.36,124.5 148.75,142.29 85.07,18.59 244.67,7.97 335.94,6.86 262.92,-3.01 238.71,-184.35 239.28,-384.51 0.2,-76.56 13.73,-273.44 -35.2,-336.57 -47.6,-61.5 -275.83,-154.41 -348.74,-189.41 -33.39,-16.01 -67.69,-26.7 -79.38,-66.09 -8.94,-30.17 -4.82,-102.75 -5.86,-136.25l-0.94 -32.99 31.68 -9.01c46.26,-13.33 91.27,-8.77 138.4,-5.99l39.26 2.31 2.31 135.11 256.29 1.01c11.99,-151.1 18.36,-375.37 -162.54,-404.48 -98.98,-15.94 -234.39,-6.29 -336.58,-4.15 -253.45,5.46 -233.49,178.52 -234.39,372.55 -0.41,89.63 -11.63,197.88 35.87,278.13 54.23,91.64 333.9,159.3 427.71,242.67l13.37 11.85 0.84 17.86c3.65,75.79 14.57,139.53 -14.54,212.31 -13.77,34.47 -60.96,33.76 -91.77,33.76 -23.58,0 -64.04,0.37 -82.7,-15.44l-6.3 -5.35 -3.78 -7.31c-19.83,-37.78 -16.68,-92.91 -14.94,-141.37zm-3794.07 430.26l320.03 0.67 257.43 -1431.12 -272.67 0.23 -130.16 971.89 -56.03 -194.03c-16.31,-56.47 -24.65,-124.93 -32.49,-183.31 -11.32,-84.64 -20.87,-169.58 -30.62,-254.42 -5.86,-50.71 -26.76,-262.53 -46.45,-339.13l-269.22 -1.37 260.18 1430.59zm707.79 -0.37l591.7 1.94 0.53 -278.16 -325.36 1.9 -0.77 -312.26 284.5 -1 0.23 -265.51 -282.72 1.64 -1.74 -301.51 327 -0.3 -1.51 -277.09 -591.56 0.7 -0.3 1429.65zm1614.43 -1152.99l203.61 0.1 2.74 1155.03 261.29 -0.3 -0.3 -1154.56 201.13 -1.48 2.04 -275.62 -670.98 -0.26 0.47 277.09zm804.79 1152.25l264.2 2.48 0.47 -1430.95 -262.23 -0.37 -2.44 1428.84zm1280.3 0.94l256.09 1.61 0.14 -1429.92 -256.27 -1.14c-10.35,101.22 -0.23,233.45 0.17,330.72 1.54,365.62 -11.65,733.38 -0.13,1098.73z"/></svg></a>
       <div style="flex:1 1 380px">
@@ -1401,6 +1494,11 @@ const PHOTOS = {
 };
 
 const I18N = {"nav1": {"uz": "Yo'nalishlar", "ru": "Направления", "en": "Services"}, "nav2": {"uz": "Ixtisosimiz", "ru": "Специализация", "en": "Specialisation"}, "nav3": {"uz": "Tadbirlar", "ru": "Мероприятия", "en": "Events"}, "nav4": {"uz": "Jarayon", "ru": "Процесс", "en": "Process"}, "nav5": {"uz": "Rasmiy", "ru": "Реквизиты", "en": "Company"}, "navCta": {"uz": "Ariza qoldirish", "ru": "Оставить заявку", "en": "Leave a request"}, "navCat": {"uz": "Narxlar katalogi", "ru": "Каталог цен", "en": "Price catalogue"}, "hEyebrow": {"uz": "Toshkent · Reklama uchun kompleks yechimlar", "ru": "Ташкент · Комплексные рекламные решения", "en": "Tashkent · Complete advertising solutions"}, "hTitle1": {"uz": "Brendingizni", "ru": "Делаем ваш бренд", "en": "We make your brand"}, "hTitle2": {"uz": "shaharning bir qismiga", "ru": "частью города", "en": "part of the city"}, "hTitle3": {"uz": "aylantiramiz.", "ru": ".", "en": "."}, "hLead": {"uz": "Peshtoqdan minorali kranning uchigacha, vizitkadan ko'rgazma stendigacha — TOGO GROUP ADVERTISING brendingizni ko'rinadigan qiladi. O'z bosmaxonamiz, o'z montaj brigadamiz, Toshkentda to'liq ishlab chiqarish sikli.", "ru": "От вывески до стрелы башенного крана, от визитки до выставочного стенда — TOGO GROUP ADVERTISING делает ваш бренд заметным. Своя типография, своя монтажная бригада, полный производственный цикл в Ташкенте.", "en": "From a storefront sign to the tip of a tower crane, from a business card to an exhibition stand — TOGO GROUP ADVERTISING makes your brand impossible to miss. Our own press, our own install crew, a full production cycle in Tashkent."}, "hBtn1": {"uz": "Ariza qoldirish", "ru": "Оставить заявку", "en": "Leave a request"}, "hBtn2": {"uz": "Narxlar katalogi", "ru": "Каталог цен", "en": "Price catalogue"}, "hS1": {"uz": "Bosma kengligi", "ru": "Ширина печати", "en": "Print width"}, "hS2": {"uz": "Bosma aniqligi", "ru": "Разрешение печати", "en": "Print resolution"}, "hS3": {"uz": "Konstruksiya kafolati", "ru": "Гарантия на конструкцию", "en": "Structure warranty"}, "hS3v": {"uz": "12 oy", "ru": "12 месяцев", "en": "12 months"}, "hS4": {"uz": "Balandlikdagi montaj", "ru": "Высотный монтаж", "en": "Work at height"}, "hS4v": {"uz": "Kran va fasad", "ru": "Краны и фасады", "en": "Cranes & facades"}, "sv0": {"uz": "01 — Yo'nalishlar", "ru": "01 — Направления", "en": "01 — Services"}, "svH": {"uz": "Nima ishlab chiqaramiz", "ru": "Что мы производим", "en": "What we produce"}, "svL": {"uz": "Har bir buyurtma bitta menejerga biriktiriladi. Maket tasdiqlanmaguncha ishlab chiqarish boshlanmaydi.", "ru": "Каждый заказ ведёт один менеджер. Производство не начинается, пока макет не утверждён.", "en": "Every order is run by a single manager. Production does not start until the artwork is approved."}, "s1t": {"uz": "Obyomli harflar va yorug'lik peshtoqlari", "ru": "Объёмные буквы и световые вывески", "en": "3D letters and illuminated signage"}, "s1d": {"uz": "Akril obyomli harflar, kontur yoritish, nuqtali diod, alyukabond bort, yorug'lik qutilari. Elektr sxemasi va kafolat hujjati bilan topshiriladi.", "ru": "Акриловые объёмные буквы, контражур, точечные диоды, борт из алюкабонда, световые короба. Сдаём с электрической схемой и гарантийным документом.", "en": "Acrylic 3D letters, contour lighting, dot LEDs, composite returns, lightboxes. Delivered with wiring diagram and warranty."}, "s2t": {"uz": "Kran va balandlik reklamasi", "ru": "Реклама на кранах и высотная", "en": "Crane and high-rise advertising"}, "s2d": {"uz": "Minorali kranlarga banner va setka, qurilish to'siqlari, fasad brandmaueri. Shamol yukiga hisob, alpinist brigadasi va ruxsat hujjatlari bizdan.", "ru": "Баннеры и сетка на башенные краны, строительные ограждения, брандмауэры на фасадах. Расчёт ветровой нагрузки, бригада промальпа и разрешительные документы — на нас.", "en": "Banners and mesh on tower cranes, site hoarding, facade brandmauers. Wind-load calculation, rope-access crew and permit paperwork handled by us."}, "s3t": {"uz": "Katta formatli va UV bosma", "ru": "Широкоформатная и UV печать", "en": "Wide-format and UV printing"}, "s3d": {"uz": "3.2 m gacha kenglik, 1440 dpi. Banner, setka, orakal, backlit, xolst va qattiq materiallarga to'g'ridan-to'g'ri UV bosma.", "ru": "Ширина до 3,2 м, 1440 dpi. Баннер, сетка, оракал, backlit, холст и прямая UV-печать по жёстким материалам.", "en": "Up to 3.2 m wide, 1440 dpi. Banner, mesh, vinyl, backlit, canvas and direct UV printing on rigid materials."}, "s4t": {"uz": "Poligrafiya va qadoqlash", "ru": "Полиграфия и упаковка", "en": "Print and packaging"}, "s4d": {"uz": "Vizitka, katalog, flayer, papka, bloknot, kalendar va qog'oz paket. Ofset va raqamli bosma, laminatsiya, folga, konges.", "ru": "Визитки, каталоги, флаеры, папки, блокноты, календари и бумажные пакеты. Офсет и цифра, ламинация, фольга, конгрев.", "en": "Business cards, catalogues, flyers, folders, notebooks, calendars and paper bags. Offset and digital, lamination, foil, embossing."}, "s5t": {"uz": "Ko'rgazma va tadbir ofarmleniyasi", "ru": "Оформление выставок и мероприятий", "en": "Exhibition and event branding"}, "s5d": {"uz": "Stend, press-wall, roll-up, navigatsiya, brendlangan zona va suvenir. CAEx Expo Centre va MDH davlatlaridagi tadbirlar uchun kalit topshirish shartida.", "ru": "Стенды, пресс-воллы, ролл-апы, навигация, брендированные зоны и сувениры. Для мероприятий в CAEx Expo Centre и странах СНГ — под ключ.", "en": "Stands, press-walls, roll-ups, wayfinding, branded zones and merchandise. Turnkey for events at CAEx Expo Centre and across the CIS."}, "s6t": {"uz": "Brending va navigatsiya", "ru": "Брендинг и навигация", "en": "Branding and wayfinding"}, "s6d": {"uz": "Logotip, brendbuk, bino ichi navigatsiya tizimi, tablichka va stendlar, avtopark brendlash. Barcha maketlar manba fayllari bilan.", "ru": "Логотип, брендбук, внутренняя навигация здания, таблички и стенды, брендирование автопарка. Все макеты с исходниками.", "en": "Logo, brand book, in-building wayfinding, plaques and stands, fleet branding. All artwork delivered with source files."}, "ix0": {"uz": "02 — Ixtisosimiz", "ru": "02 — Специализация", "en": "02 — Specialisation"}, "ixH": {"uz": "Boshqalar olmaydigan ishlar", "ru": "Работы, за которые берутся не все", "en": "The jobs others turn down"}, "ixL": {"uz": "Uchta yo'nalishda bozorda kam uchraydigan tajribamiz bor. Aynan shular uchun bizga murojaat qilishadi.", "ru": "В трёх направлениях у нас редкий для рынка опыт. Именно за ними к нам и приходят.", "en": "In three areas we have experience that is rare on this market. That is what clients come to us for."}, "i1t": {"uz": "Kran reklamasi", "ru": "Реклама на башенных кранах", "en": "Tower crane advertising"}, "i1p": {"uz": "Qurilish maydonidagi minorali kran — shaharning eng baland va eng arzon reklama maydoni. Strela va minoraga banner yoki shamol o'tkazadigan setka o'rnatamiz.", "ru": "Башенный кран на стройплощадке — самая высокая и самая недорогая рекламная площадь в городе. Монтируем баннер или ветропроницаемую сетку на стрелу и башню.", "en": "A tower crane on a construction site is the tallest and cheapest advertising space in the city. We mount banner or wind-permeable mesh on the jib and the mast."}, "i1a": {"uz": "Shamol yukiga hisob va mahkamlash sxemasi", "ru": "Расчёт ветровой нагрузки и схема крепления", "en": "Wind-load calculation and fixing scheme"}, "i1b": {"uz": "Sertifikatlangan alpinist brigadasi, sug'urta bilan", "ru": "Сертифицированная бригада промальпа со страховкой", "en": "Certified rope-access crew, insured"}, "i1c": {"uz": "Kechasi ko'rinishi uchun yoritish varianti", "ru": "Вариант подсветки для ночной видимости", "en": "Lighting option for night visibility"}, "i1d": {"uz": "Mavsum oxirida demontaj va saqlash", "ru": "Демонтаж и хранение по окончании сезона", "en": "Removal and storage at end of season"}, "i2t": {"uz": "Obyomli harflar", "ru": "Объёмные буквы", "en": "Dimensional letters"}, "i2p": {"uz": "Peshtoq — brendning eng uzoq ishlaydigan reklamasi. Yetti xil texnologiyada tayyorlaymiz: oddiy, konturli, setkali, akril bortli, alyukabond, nuqtali diod va diodsiz.", "ru": "Вывеска — самая долгоиграющая реклама бренда. Делаем в семи технологиях: простые, контражур, сеточные, с акриловым бортом, алюкабонд, точечные диоды и без подсветки.", "en": "A storefront sign is a brand's longest-running advertisement. We build them in seven technologies: plain, contour-lit, perforated, acrylic-edged, composite, dot-LED and unlit."}, "i2a": {"uz": "Narx harf balandligining 1 sm'i uchun — ochiq jadval", "ru": "Цена за 1 см высоты буквы — открытая таблица", "en": "Priced per 1 cm of letter height — open table"}, "i2b": {"uz": "LED va blok pitaniyega 12 oy kafolat", "ru": "12 месяцев гарантии на LED и блок питания", "en": "12-month warranty on LEDs and power supply"}, "i2c": {"uz": "Fasadga o'lchov olishga o'zimiz chiqamiz", "ru": "Замер на фасаде делаем сами", "en": "We take the facade measurements ourselves"}, "i2d": {"uz": "Hokimlik ruxsatini rasmiylashtirishda yordam", "ru": "Помощь в оформлении разрешения хокимията", "en": "Help with the city permit paperwork"}, "i3t": {"uz": "Qurilish kompaniyalari bilan ish", "ru": "Работа со строительными компаниями", "en": "Working with construction companies"}, "i3p": {"uz": "Qurilish obyekti bir necha yil davom etadi va o'nlab reklama elementini talab qiladi. Biz butun obyektni bitta shartnoma bilan yuritamiz.", "ru": "Строительный объект живёт несколько лет и требует десятков рекламных элементов. Мы ведём весь объект по одному договору.", "en": "A construction project runs for years and needs dozens of advertising elements. We handle the whole site under one contract."}, "i3a": {"uz": "To'siq va panjaralarni brendlash, setkali fasad", "ru": "Брендирование ограждений, сетчатый фасад", "en": "Hoarding and fence branding, mesh facade"}, "i3b": {"uz": "Savdo ofisi: navigatsiya, stend, maket zonasi", "ru": "Отдел продаж: навигация, стенды, зона макета", "en": "Sales office: wayfinding, stands, model zone"}, "i3c": {"uz": "Xavfsizlik belgilari va texnika xavfsizligi stendlari", "ru": "Знаки безопасности и стенды по технике безопасности", "en": "Safety signage and HSE boards"}, "i3d": {"uz": "Bosqichma-bosqich to'lov, oylik yopiluvchi hujjat", "ru": "Поэтапная оплата, ежемесячное закрытие документов", "en": "Staged payment, monthly document closing"}, "ev0": {"uz": "03 — Tadbirlar", "ru": "03 — Мероприятия", "en": "03 — Events"}, "evH": {"uz": "Ko'rgazma va tadbirlarni to'liq ofarmlaymiz", "ru": "Полное оформление выставок и мероприятий", "en": "Full build-out for exhibitions and events"}, "evL": {"uz": "CAEx Expo Centre va boshqa maydonlardagi ko'rgazmalar, MDH davlatlaridagi forum va tadbirlar — brif olishdan tadbir tugagach demontajgacha. Bitta jamoa, bitta shartnoma, bitta javobgar. Xalqaro delegatsiyalar uchun to'liq ofarmleniya: stenddan sovg'a to'plamigacha.", "ru": "Выставки в CAEx Expo Centre и на других площадках, форумы и мероприятия в странах СНГ — от брифа до демонтажа после закрытия. Одна команда, один договор, один ответственный. Полное оформление для международных делегаций: от стенда до подарочного набора.", "en": "Exhibitions at CAEx Expo Centre and other venues, forums and events across the CIS — from brief to dismantling after closing. One team, one contract, one point of responsibility. Full build-out for international delegations: from the stand to the gift pack."}, "e1": {"uz": "Stend loyihasi va yig'ish", "ru": "Проект и сборка стенда", "en": "Stand design and build"}, "e1d": {"uz": "3D vizualizatsiya, konstruksiya, bosma, yig'ish va demontaj", "ru": "3D-визуализация, конструкция, печать, монтаж и демонтаж", "en": "3D visual, structure, print, build and dismantle"}, "e2": {"uz": "Press-wall va foto zona", "ru": "Пресс-волл и фотозона", "en": "Press-wall and photo zone"}, "e2d": {"uz": "3×3 m dan katta o'lchamgacha, sumka bilan", "ru": "От 3×3 м до крупных форматов, с сумкой", "en": "From 3×3 m up to large formats, with carry bag"}, "e3": {"uz": "Navigatsiya va POS", "ru": "Навигация и POS", "en": "Wayfinding and POS"}, "e3d": {"uz": "Roll-up, parus bayroq, promostoyka, ko'rsatkichlar", "ru": "Ролл-апы, флаги «парус», промостойки, указатели", "en": "Roll-ups, feather flags, promo counters, signage"}, "e4": {"uz": "Delegatsiya to'plami", "ru": "Пакет для делегации", "en": "Delegation pack"}, "e4d": {"uz": "Brendlangan bloknot, ruchka, beydjik, sovg'a to'plami", "ru": "Брендированные блокноты, ручки, бейджи, подарочные наборы", "en": "Branded notebooks, pens, badges, gift sets"}, "pr0": {"uz": "04 — Jarayon", "ru": "04 — Процесс", "en": "04 — Process"}, "prH": {"uz": "Buyurtma qanday harakatlanadi", "ru": "Как движется заказ", "en": "How an order moves"}, "p1": {"uz": "Brif va o'lchov", "ru": "Бриф и замер", "en": "Brief and survey"}, "p1d": {"uz": "O'lcham, material, muddat va byudjetni aniqlaymiz. Kerak bo'lsa obyektga chiqib, o'z asbobimiz bilan aniq o'lchov olamiz va foto hisobot beramiz.", "ru": "Определяем размер, материал, срок и бюджет. При необходимости выезжаем на объект, снимаем точный замер своим инструментом и даём фотоотчёт.", "en": "We fix the size, material, deadline and budget. When needed we visit the site, take exact measurements with our own tools and send a photo report."}, "p2": {"uz": "Dizayn va tasdiqlash", "ru": "Дизайн и утверждение", "en": "Design and approval"}, "p2d": {"uz": "Maket va 3D vizualizatsiya, ikki bepul tahrir. Rang va o'lchamni prepress bosqichida tekshiramiz. Siz tasdiqlaysiz — biz bosamiz.", "ru": "Макет и 3D-визуализация, две бесплатные правки. Цвет и размер проверяем на этапе препресс. Вы утверждаете — мы печатаем.", "en": "Artwork and 3D visual, two free revisions. Colour and size checked at prepress. You approve, we print."}, "p3": {"uz": "Ishlab chiqarish", "ru": "Производство", "en": "Production"}, "p3d": {"uz": "Bosma, kesish, payvandlash, yig'ish va yig'ma nazorat. Har bosqichda sifat tekshiruvi, materiallar sertifikat bilan.", "ru": "Печать, резка, сварка, сборка и контроль. Проверка качества на каждом этапе, материалы с сертификатами.", "en": "Printing, cutting, welding, assembly and inspection. Quality checks at every stage, materials with certificates."}, "p4": {"uz": "Montaj va topshirish", "ru": "Монтаж и сдача", "en": "Installation and handover"}, "p4d": {"uz": "O'rnatish yoki yetkazish, balandlikdagi ish alpinist brigadasi bilan. Kafolat hujjati, EHF va yopiluvchi hujjatlar to'liq beriladi.", "ru": "Установка или доставка, высотные работы бригадой промальпа. Гарантийный документ, ЭСФ и закрывающие документы — полностью.", "en": "Installation or delivery, work at height by a rope-access crew. Warranty document, e-invoice and closing paperwork in full."}, "rq0": {"uz": "05 — Rasmiy", "ru": "05 — Официально", "en": "05 — Official"}, "rqH": {"uz": "Davlat xaridlari va rekvizitlar", "ru": "Госзакупки и реквизиты", "en": "Public procurement and company details"}, "gTitle": {"uz": "Davlat xaridlarida ishtirok", "ru": "Участие в государственных закупках", "en": "Public procurement"}, "gP": {"uz": "Kompaniya rasmiy ro'yxatdan o'tgan yuridik shaxs. Byudjet tashkilotlari va davlat korxonalari bilan to'g'ridan-to'g'ri shartnoma asosida ishlaymiz.", "ru": "Компания — официально зарегистрированное юридическое лицо. С бюджетными организациями и государственными предприятиями работаем по прямому договору.", "en": "The company is a formally registered legal entity. We work with budget-funded organisations and state enterprises under direct contract."}, "g1": {"uz": "xarid.uzex.uz va dxarid.uzex.uz portallarida tanlov, auksion va to'g'ridan-to'g'ri xaridlarda qatnashamiz.", "ru": "Участвуем в конкурсах, аукционах и прямых закупках на порталах xarid.uzex.uz и dxarid.uzex.uz.", "en": "We take part in tenders, auctions and direct purchases on the xarid.uzex.uz and dxarid.uzex.uz portals."}, "g2": {"uz": "Shartnoma, hisob-faktura va elektron hisob-faktura (EHF) to'liq rasmiylashtiriladi.", "ru": "Договор, счёт-фактура и электронная счёт-фактура (ЭСФ) оформляются полностью.", "en": "Contract, invoice and electronic VAT invoice are issued in full."}, "g3": {"uz": "Texnik topshiriq bo'yicha tijorat taklifini bir ish kunida tayyorlab beramiz.", "ru": "Коммерческое предложение по техническому заданию готовим за один рабочий день.", "en": "We prepare a commercial proposal against your specification within one working day."}, "g4": {"uz": "Kafolat, yetkazib berish muddati va o'rnatish shartnomada aniq yoziladi.", "ru": "Гарантия, срок поставки и монтаж чётко прописываются в договоре.", "en": "Warranty, delivery time and installation are stated explicitly in the contract."}, "rTitle": {"uz": "Rasmiy rekvizitlar", "ru": "Официальные реквизиты", "en": "Official company details"}, "rAddr": {"uz": "Manzil", "ru": "Адрес", "en": "Address"}, "rPhone": {"uz": "Telefon", "ru": "Телефон", "en": "Phone"}, "rInn": {"uz": "STIR", "ru": "ИНН", "en": "TIN"}, "rOked": {"uz": "IFUT (OKED)", "ru": "ОКЭД", "en": "Activity code"}, "rAcc": {"uz": "Hisob raqam", "ru": "Р/С", "en": "Account"}, "rBank": {"uz": "Bank", "ru": "Банк", "en": "Bank"}, "rMfo": {"uz": "MFO", "ru": "МФО", "en": "Bank code"}, "rDir": {"uz": "Direktor", "ru": "Директор", "en": "Director"}, "rCopy": {"uz": "Rekvizitlarni nusxalash", "ru": "Скопировать реквизиты", "en": "Copy company details"}, "rCopied": {"uz": "Nusxalandi", "ru": "Скопировано", "en": "Copied"}, "rAddrV": {"uz": "Toshkent shahri, Yashnobod tumani, Yashnobod MFY, 4-Aviasozlar mavzesi, 9-uy", "ru": "г. Ташкент, Яшнободский район, МФЙ Yashnobod, массив 4-Aviasozlar, дом 9", "en": "Tashkent, Yashnobod district, Yashnobod MFY, 4-Aviasozlar massiv, house 9"}, "rBankV": {"uz": "«HAMKORBANK» ATB Bosh ofisi, Andijon shahri", "ru": "Головной офис АКБ «HAMKORBANK», г. Андижан", "en": "Head office of «HAMKORBANK» JSCB, Andijan"}, "co0": {"uz": "06 — Aloqa", "ru": "06 — Контакты", "en": "06 — Contact"}, "coH": {"uz": "Loyihangizni hisoblaymiz", "ru": "Рассчитаем ваш проект", "en": "Let's price your project"}, "coL": {"uz": "O'lcham va materialni bilsangiz — bir soatda hisoblab beramiz. Bilmasangiz ham yozing, o'zimiz tanlab beramiz.", "ru": "Знаете размер и материал — посчитаем за час. Не знаете — напишите, подберём сами.", "en": "If you know the size and material we'll price it within the hour. If you don't, write anyway and we'll work it out."}, "coPhone": {"uz": "Savdo bo'limi", "ru": "Отдел продаж", "en": "Sales"}, "coPhone2": {"uz": "Buxgalteriya", "ru": "Бухгалтерия", "en": "Accounts"}, "coMail": {"uz": "Pochta", "ru": "Почта", "en": "Email"}, "coTg": {"uz": "Telegram", "ru": "Telegram", "en": "Telegram"}, "coOffice": {"uz": "Ofis", "ru": "Офис", "en": "Office"}, "coOfficeV": {"uz": "Toshkent shahri, Yashnobod tumani, Yashnobod MFY, 4-Aviasozlar mavzesi, 9-uy", "ru": "г. Ташкент, Яшнободский район, МФЙ Yashnobod, массив 4-Aviasozlar, дом 9", "en": "Tashkent, Yashnobod district, Yashnobod MFY, 4-Aviasozlar massiv, house 9"}, "coSocial": {"uz": "Ijtimoiy tarmoqlar", "ru": "Социальные сети", "en": "Social"}, "coAsk": {"uz": "AI menejerdan so'rash", "ru": "Спросить AI-менеджера", "en": "Ask the AI manager"}, "ftTag": {"uz": "Reklama · Bosmaxona · Signage", "ru": "Реклама · Типография · Signage", "en": "Advertising · Print · Signage"}, "ftLegal": {"uz": "Aytgan muddatimizda topshiramiz, kelishilgan narxni keyin oshirmaymiz, qo'limizdan kelmaydigan ishni va'da qilmaymiz. Har bir peshtoq ostida bizning nomimiz turadi — sifat uchun o'zimiz javob beramiz.", "ru": "Сдаём в обещанный срок, не поднимаем согласованную цену, не обещаем того, чего не сделаем. Под каждой вывеской стоит наше имя — за качество отвечаем сами.", "en": "We deliver on the date we promised, we don't raise a price once it's agreed, and we don't promise what we can't build. Our name sits under every sign we make — the quality is on us."}, "aiBtn": {"uz": "AI menejer", "ru": "AI менеджер", "en": "AI manager"}, "aiTitle": {"uz": "TOGO AI menejer", "ru": "TOGO AI менеджер", "en": "TOGO AI manager"}, "aiOn": {"uz": "Onlayn — xizmat va narxlar bo'yicha", "ru": "Онлайн — по услугам и ценам", "en": "Online — services and pricing"}, "aiPh": {"uz": "Savolingizni yozing…", "ru": "Напишите ваш вопрос…", "en": "Type your question…"}, "aiHi": {"uz": "Assalomu alaykum! Men TOGO GROUP ADVERTISING ning AI menejeriman.\n\nPeshtoq, kran reklamasi, bosma, ko'rgazma stendi yoki poligrafiya — nima kerakligini yozing, taxminiy narx va muddatni aytaman.", "ru": "Здравствуйте! Я AI-менеджер TOGO GROUP ADVERTISING.\n\nВывеска, реклама на кране, печать, выставочный стенд или полиграфия — напишите, что нужно, и я назову ориентировочную цену и срок.", "en": "Hello! I'm the AI manager at TOGO GROUP ADVERTISING.\n\nSignage, crane advertising, printing, an exhibition stand or print work — tell me what you need and I'll give you an indicative price and timeline."}, "aiErr": {"uz": "Aloqa uzildi. Iltimos, keyinroq urinib ko'ring yoki to'g'ridan-to'g'ri murojaat qiling: +998 77 300 45 00 · t.me/togo_group_pro", "ru": "Связь прервалась. Попробуйте позже или свяжитесь напрямую: +998 77 300 45 00 · t.me/togo_group_pro", "en": "Connection lost. Please try again later or reach us directly: +998 77 300 45 00 · t.me/togo_group_pro"}, "aiFoot": {"uz": "Javoblar taxminiy. Yakuniy narx menejer tomonidan tasdiqlanadi.", "ru": "Ответы предварительные. Итоговую цену подтверждает менеджер.", "en": "Answers are indicative. Final pricing is confirmed by a manager."}, "navHome": {"uz": "Asosiy", "ru": "Главная", "en": "Home"}, "navPortfolio": {"uz": "Portfolio", "ru": "Портфолио", "en": "Portfolio"}, "navPrice": {"uz": "Narxlar", "ru": "Цены", "en": "Pricing"}, "navContact": {"uz": "Aloqa", "ru": "Контакты", "en": "Contact"}, "goHome": {"uz": "Asosiy sahifaga qaytish", "ru": "Вернуться на главную", "en": "Back to home"}, "tilesH": {"uz": "Bo'limlar", "ru": "Разделы", "en": "Sections"}, "tHome": {"uz": "Asosiy", "ru": "Главная", "en": "Home"}, "tSvc": {"uz": "Nima ishlab chiqaramiz — olti yo'nalish", "ru": "Что мы производим — шесть направлений", "en": "What we produce — six areas"}, "tPf": {"uz": "Bajarilgan ishlar, turlari bo'yicha", "ru": "Выполненные работы по типам", "en": "Completed work by type"}, "tPr": {"uz": "Ochiq narxlar va to'liq katalog", "ru": "Открытые цены и полный каталог", "en": "Open pricing and the full catalogue"}, "tEv": {"uz": "Ko'rgazma va tadbir ofarmleniyasi", "ru": "Оформление выставок и мероприятий", "en": "Exhibition and event build-out"}, "tPro": {"uz": "Buyurtma qanday harakatlanadi", "ru": "Как движется заказ", "en": "How an order moves"}, "tRq": {"uz": "Davlat xaridlari va rekvizitlar", "ru": "Госзакупки и реквизиты", "en": "Procurement and company details"}, "tCo": {"uz": "Telefon, Telegram va ijtimoiy tarmoqlar", "ru": "Телефон, Telegram и соцсети", "en": "Phone, Telegram and socials"}, "pf0": {"uz": "03 — Portfolio", "ru": "03 — Портфолио", "en": "03 — Portfolio"}, "pfH": {"uz": "Bajarilgan ishlar", "ru": "Выполненные работы", "en": "Completed work"}, "pfL": {"uz": "Har bir yo'nalish bo'yicha alohida to'plam: nima ishlatiladi, qancha vaqt oladi va qanday topshiriladi.", "ru": "Отдельная подборка по каждому направлению: какие материалы, сколько времени и как сдаётся.", "en": "A separate set for each area: what materials, how long it takes and how it is handed over."}, "pfSoon": {"uz": "Rasm joylanadi", "ru": "Фото будет добавлено", "en": "Photo coming soon"}, "f1t": {"uz": "Banner va katta formatli bosma", "ru": "Баннеры и широкоформатная печать", "en": "Banners and wide-format printing"}, "f1d": {"uz": "Fasad bannerlari, bilbord polotnolari, to'siq va panjara qoplamalari, ichki reklama. Lyuvers, reyka yoki karkasga tayyor holda topshiriladi.", "ru": "Фасадные баннеры, полотна для билбордов, зашивка ограждений, внутренняя реклама. Сдаём с люверсами, рейкой или готовыми под каркас.", "en": "Facade banners, billboard skins, hoarding covers, indoor advertising. Delivered with eyelets, batten or ready for a frame."}, "f1a": {"uz": "3.2 m kenglik · 1440 dpi", "ru": "Ширина 3,2 м · 1440 dpi", "en": "3.2 m wide · 1440 dpi"}, "f1b": {"uz": "440–510 g/m² banner, setka, backlit", "ru": "Баннер 440–510 г/м², сетка, backlit", "en": "440–510 gsm banner, mesh, backlit"}, "f1c": {"uz": "1 ish kunida tayyor", "ru": "Готово за 1 рабочий день", "en": "Ready in 1 working day"}, "f2t": {"uz": "Obyomli harflar va peshtoq", "ru": "Объёмные буквы и вывески", "en": "3D letters and signage"}, "f2d": {"uz": "Do'kon, restoran, klinika va biznes markaz peshtoqlari. Yetti xil texnologiya — konturli yoritishdan nuqtali diodgacha.", "ru": "Вывески для магазинов, ресторанов, клиник и бизнес-центров. Семь технологий — от контражура до точечных диодов.", "en": "Signage for shops, restaurants, clinics and business centres. Seven technologies — from contour lighting to dot LEDs."}, "f2a": {"uz": "Akril 3–10 mm · alyukabond bort", "ru": "Акрил 3–10 мм · борт алюкабонд", "en": "3–10 mm acrylic · composite returns"}, "f2b": {"uz": "LED va blok pitaniyega 12 oy kafolat", "ru": "12 месяцев гарантии на LED и блок питания", "en": "12-month warranty on LEDs and driver"}, "f2c": {"uz": "O'lchov, montaj va elektr sxemasi", "ru": "Замер, монтаж и электросхема", "en": "Survey, installation and wiring diagram"}, "f3t": {"uz": "Kran va balandlik reklamasi", "ru": "Реклама на кранах и высотная", "en": "Crane and high-rise advertising"}, "f3d": {"uz": "Minorali kran strelasi va minorasi, brandmauer, fasad setkasi. Shahar bo'ylab ko'rinadigan eng arzon reklama maydoni.", "ru": "Стрела и башня крана, брандмауэры, фасадная сетка. Самая недорогая рекламная площадь, видная по всему городу.", "en": "Crane jib and mast, brandmauers, facade mesh. The cheapest advertising space that is visible across the city."}, "f3a": {"uz": "Shamol yukiga hisob va mahkamlash sxemasi", "ru": "Расчёт ветровой нагрузки и схема крепления", "en": "Wind-load calculation and fixing scheme"}, "f3b": {"uz": "Sertifikatlangan alpinist brigadasi", "ru": "Сертифицированная бригада промальпа", "en": "Certified rope-access crew"}, "f3c": {"uz": "Mavsum oxirida demontaj va saqlash", "ru": "Демонтаж и хранение после сезона", "en": "Removal and storage after the season"}, "f4t": {"uz": "Avto reklama va avtopark brendlash", "ru": "Реклама на авто и брендирование автопарка", "en": "Vehicle advertising and fleet branding"}, "f4d": {"uz": "Yengil avtomobil, yuk mashinasi, furgon va yetkazib berish parki. To'liq yoki qisman qoplama, oyna uchun perforatsiya.", "ru": "Легковые, грузовые, фургоны и парк доставки. Полная или частичная оклейка, перфорация на стёкла.", "en": "Cars, trucks, vans and delivery fleets. Full or partial wrap, perforated film for windows."}, "f4a": {"uz": "Oracal 641 / 751 plyonka", "ru": "Плёнка Oracal 641 / 751", "en": "Oracal 641 / 751 film"}, "f4b": {"uz": "Laminatsiya bilan 3–5 yil chidaydi", "ru": "С ламинацией служит 3–5 лет", "en": "Lasts 3–5 years with lamination"}, "f4c": {"uz": "Maket avtomobil chizmasiga moslanadi", "ru": "Макет подгоняется под чертёж авто", "en": "Artwork fitted to the vehicle template"}, "f5t": {"uz": "Stend va ko'rgazma konstruksiyalari", "ru": "Стенды и выставочные конструкции", "en": "Stands and exhibition structures"}, "f5d": {"uz": "Roll-up, pauchok, pop-up devor, promostoyka va parus bayroq. Ko'rgazma stendini loyihadan demontajgacha yuritamiz.", "ru": "Ролл-апы, паучки, поп-ап стены, промостойки и флаги «парус». Выставочный стенд ведём от проекта до демонтажа.", "en": "Roll-ups, X-banners, pop-up walls, promo counters and feather flags. We run the stand from design to dismantling."}, "f5a": {"uz": "Sumkasi bilan to'plam holida", "ru": "Комплектом, с сумкой", "en": "Supplied as a kit with carry bag"}, "f5b": {"uz": "Yig'ish 5–15 daqiqa", "ru": "Сборка 5–15 минут", "en": "Sets up in 5–15 minutes"}, "f5c": {"uz": "Polotnoni keyin almashtirish mumkin", "ru": "Полотно можно заменить позже", "en": "The graphic can be swapped later"}, "f6t": {"uz": "Tablichka, stend va navigatsiya", "ru": "Таблички, стенды и навигация", "en": "Plaques, boards and wayfinding"}, "f6d": {"uz": "Ofis eshigi tablichkalari, kabinet navigatsiyasi, ma'lumot stendlari, xavfsizlik belgilari, beydjik va statuetkalar.", "ru": "Таблички на двери, навигация по кабинетам, информационные стенды, знаки безопасности, бейджи и статуэтки.", "en": "Door plaques, room wayfinding, information boards, safety signage, badges and awards."}, "f6a": {"uz": "Akril, romark, PVC, alyukabond", "ru": "Акрил, ромарк, ПВХ, алюкабонд", "en": "Acrylic, Rowmark, PVC, composite"}, "f6b": {"uz": "UV bosma yoki gravyura", "ru": "UV печать или гравировка", "en": "UV printing or engraving"}, "f6c": {"uz": "Distansion bolt bilan o'rnatish", "ru": "Монтаж на дистанционных болтах", "en": "Mounted on standoff bolts"}, "f7t": {"uz": "Poligrafiya va qadoqlash", "ru": "Полиграфия и упаковка", "en": "Print and packaging"}, "f7d": {"uz": "Vizitka, flayer, buklet, katalog, papka, bloknot, kalendar va qog'oz paket. Ofset va raqamli bosma.", "ru": "Визитки, флаеры, буклеты, каталоги, папки, блокноты, календари и бумажные пакеты. Офсет и цифра.", "en": "Business cards, flyers, booklets, catalogues, folders, notebooks, calendars and paper bags. Offset and digital."}, "f7a": {"uz": "Laminatsiya, folga, konges", "ru": "Ламинация, фольга, конгрев", "en": "Lamination, foil, embossing"}, "f7b": {"uz": "Tiraj katta bo'lsa dona narxi pasayadi", "ru": "Чем больше тираж, тем дешевле единица", "en": "Unit price drops with run size"}, "f7c": {"uz": "Maketni o'zimiz tayyorlab beramiz", "ru": "Макет подготовим сами", "en": "We prepare the artwork ourselves"}, "f8t": {"uz": "Suvenir va brendlangan kiyim", "ru": "Сувениры и брендированная одежда", "en": "Merchandise and branded clothing"}, "f8d": {"uz": "Futbolka, polo, xudi, sweatshirt, kepka, krujka, termos, ruchka, beydjik va sovg'a to'plamlari.", "ru": "Футболки, поло, худи, свитшоты, кепки, кружки, термосы, ручки, бейджи и подарочные наборы.", "en": "T-shirts, polos, hoodies, sweatshirts, caps, mugs, thermoses, pens, badges and gift sets."}, "f8a": {"uz": "DTF yoki sublimatsiya bosmasi", "ru": "Печать DTF или сублимация", "en": "DTF or sublimation printing"}, "f8b": {"uz": "S dan XXL gacha, katta o'lchov", "ru": "От S до XXL, большемерка", "en": "S to XXL, oversized cut"}, "f8c": {"uz": "Namuna oldindan ko'rsatiladi", "ru": "Образец показываем заранее", "en": "A sample is shown up front"}, "pr0b": {"uz": "04 — Narxlar", "ru": "04 — Цены", "en": "04 — Pricing"}, "prH2": {"uz": "Narxlarni yashirmaymiz", "ru": "Мы не прячем цены", "en": "We don't hide our prices"}, "prL2": {"uz": "Har bir mahsulot uchun hajm bo'yicha narx zinasi ochiq turibdi: buyurtma qancha katta bo'lsa, birlik narxi shuncha past. Quyida boshlang'ich narxlar, to'liq jadval katalogda.", "ru": "По каждой позиции открыта ценовая лестница по объёму: чем больше заказ, тем ниже цена единицы. Ниже — стартовые цены, полная таблица в каталоге.", "en": "Every item has an open volume ladder: the larger the order, the lower the unit price. Starting prices below, the full table is in the catalogue."}, "prFrom": {"uz": "dan", "ru": "от", "en": "from"}, "pr1": {"uz": "Baner, bosma bilan", "ru": "Баннер с печатью", "en": "Banner, printing included"}, "pr2": {"uz": "Orakal plyonka", "ru": "Плёнка оракал", "en": "Vinyl film"}, "pr3": {"uz": "Obyomli harf", "ru": "Объёмная буква", "en": "3D letter"}, "pr4": {"uz": "Yorug'lik qutisi", "ru": "Световой короб", "en": "Lightbox"}, "pr5": {"uz": "Flayer A5", "ru": "Флаер А5", "en": "Flyer A5"}, "pr6": {"uz": "Futbolka, logotip bilan", "ru": "Футболка с логотипом", "en": "T-shirt with logo"}, "prUnitM": {"uz": "so'm / m²", "ru": "сум / м²", "en": "UZS / m²"}, "prUnitCm": {"uz": "so'm / sm", "ru": "сум / см", "en": "UZS / cm"}, "prUnitPc": {"uz": "so'm / dona", "ru": "сум / шт", "en": "UZS / pc"}, "prCatT": {"uz": "To'liq narxlar katalogi", "ru": "Полный каталог цен", "en": "The full price catalogue"}, "prCatD": {"uz": "78 pozitsiya, 8 bo'lim, har biriga tiraj jadvali va kalkulyator. Kerakli hajmni kiritasiz — summani darhol ko'rasiz.", "ru": "78 позиций, 8 разделов, у каждой — таблица по тиражу и калькулятор. Вводите объём и сразу видите сумму.", "en": "78 items in 8 sections, each with a volume table and calculator. Enter your quantity and see the total instantly."}, "prCatBtn": {"uz": "Katalogni ochish", "ru": "Открыть каталог", "en": "Open the catalogue"}, "prNote": {"uz": "Narxlar so'mda, QQSsiz — maket, montaj va yetkazib berish alohida hisoblanadi.", "ru": "Цены в сумах, без НДС — макет, монтаж и доставка считаются отдельно.", "en": "Prices in UZS, VAT excluded — artwork, installation and delivery are quoted separately."}, "pfAll": {"uz": "Barcha ishlarni ko'rish", "ru": "Смотреть все работы", "en": "See all work"}, "pfBack": {"uz": "Portfolioga qaytish", "ru": "Вернуться в портфолио", "en": "Back to portfolio"}, "pfMore": {"uz": "Bu yo'nalish bo'yicha to'liq to'plam", "ru": "Полная подборка по этому направлению", "en": "The full set for this area"}, "svExtra": {"uz": "Va yana ko'p narsa", "ru": "И многое другое", "en": "And plenty more"}, "svExtraL": {"uz": "Bitta jamoa — o'nlab mahsulot. Quyidagilarning barchasini o'z bazamizda tayyorlaymiz:", "ru": "Одна команда — десятки продуктов. Всё перечисленное производим на собственной базе:", "en": "One team, dozens of products. Everything below is made in-house:"}, "ev5": {"uz": "Sahna va fon bezagi", "ru": "Оформление сцены и фона", "en": "Stage and backdrop"}, "ev5d": {"uz": "Prezidium, banner-fon, LED ekran ramkasi, sahna old bezagi", "ru": "Президиум, баннер-фон, обрамление LED-экрана, оформление сцены", "en": "Presidium, backdrop, LED-screen framing, stage dressing"}, "ev6": {"uz": "Navigatsiya va ko'rsatkichlar", "ru": "Навигация и указатели", "en": "Wayfinding and signage"}, "ev6d": {"uz": "Zal sxemasi, yo'nalish belgilari, registratsiya zonasi", "ru": "Схема зала, указатели, зона регистрации", "en": "Floor plan, direction signs, registration area"}, "ev7": {"uz": "Brendlangan zona va foto nuqta", "ru": "Брендированная зона и фотозона", "en": "Branded zone and photo point"}, "ev7d": {"uz": "Press-wall, selfi ramka, brend devor, ko'chma mebel", "ru": "Пресс-волл, селфи-рамка, брендстена, мобильная мебель", "en": "Press-wall, selfie frame, brand wall, portable furniture"}, "ev8": {"uz": "Delegatsiya va mehmon to'plami", "ru": "Пакет для делегации и гостей", "en": "Delegation and guest pack"}, "ev8d": {"uz": "Beydjik, papka, bloknot, ruchka, sovg'a, tashqi propusk", "ru": "Бейдж, папка, блокнот, ручка, подарок, пропуск", "en": "Badge, folder, notebook, pen, gift, pass"}, "prLd": {"uz": "Ochiq va bashoratli jarayon. Har status o'zgarishida sizga xabar keladi, maket tasdiqlanmaguncha bosma boshlanmaydi, har bosqichda kim javobgarligi aniq.", "ru": "Открытый и предсказуемый процесс. О каждом изменении статуса вы получаете уведомление, печать не начинается без утверждённого макета, на каждом этапе ясно, кто отвечает.", "en": "An open, predictable process. You're notified at every status change, printing never starts without an approved proof, and it's always clear who is responsible at each stage."}, "p5": {"uz": "Xizmat va kuzatuv", "ru": "Сервис и сопровождение", "en": "Service and aftercare"}, "p5d": {"uz": "Kafolat muddatida diod yoki bosma nuqsonini bepul tuzatamiz. Keyingi buyurtmada maket va o'lchovlar bizda saqlanadi.", "ru": "В гарантийный срок бесплатно устраняем дефект диода или печати. При следующем заказе макет и замеры уже у нас.", "en": "Within the warranty we fix any LED or print defect free of charge. For your next order the artwork and measurements are already on file."}, "pTitle": {"uz": "To'lov usullari", "ru": "Способы оплаты", "en": "Payment methods"}, "pCash": {"uz": "Naqd pul", "ru": "Наличные", "en": "Cash"}, "pCashD": {"uz": "Ofisda yoki yetkazib berishda, chek bilan", "ru": "В офисе или при доставке, с чеком", "en": "At the office or on delivery, with a receipt"}, "pClick": {"uz": "Click / Payme", "ru": "Click / Payme", "en": "Click / Payme"}, "pClickD": {"uz": "Telefon orqali onlayn to'lov", "ru": "Онлайн-оплата с телефона", "en": "Online payment from your phone"}, "pWire": {"uz": "Pul o'tkazmasi", "ru": "Перечисление", "en": "Bank transfer"}, "pWireD": {"uz": "Yuridik shaxslar uchun — hisob raqamga, EHF bilan", "ru": "Для юрлиц — на расчётный счёт, с ЭСФ", "en": "For companies — to the account, with e-invoice"}, "svcH": {"uz": "Tashqi reklama xizmatlari", "ru": "Услуги наружной рекламы", "en": "Outdoor advertising services"}, "svcL": {"uz": "Ellikdan ortiq pozitsiya — peshtoqdan suvenirlgacha. Barchasi o'z bazamizda, bitta shartnoma va bitta menejer bilan.", "ru": "Более пятидесяти позиций — от вывески до сувенира. Всё на собственной базе, по одному договору и с одним менеджером.", "en": "Over fifty items — from signage to merchandise. All produced in-house, under one contract with one manager."}, "crumbHome": {"uz": "Asosiy", "ru": "Главная", "en": "Home"}, "crumbPf": {"uz": "Portfolio", "ru": "Портфолио", "en": "Portfolio"}, "signWord": {"uz": "REKLAMA", "ru": "РЕКЛАМА", "en": "ADVERTISING"}, "navJoin": {"uz": "Bizga qo'shiling", "ru": "Присоединяйтесь", "en": "Join us"}, "tJoin": {"uz": "Vakansiyalar va anketa", "ru": "Вакансии и анкета", "en": "Vacancies and application"}, "cr0": {"uz": "07 — Jamoa", "ru": "07 — Команда", "en": "07 — Team"}, "crH": {"uz": "Bizga qo'shiling", "ru": "Присоединяйтесь к нам", "en": "Join our team"}, "crL": {"uz": "Dizayner, bosma operatori, montajchi yoki menejer — jamoamiz doim o'sib boradi. Anketani to'ldiring, rezyume yoki portfolio faylini biriktiring. Bir-ikki ish kunida javob qaytaramiz.", "ru": "Дизайнер, оператор печати, монтажник или менеджер — команда постоянно растёт. Заполните анкету и приложите резюме или портфолио. Ответим в течение одного-двух рабочих дней.", "en": "Designer, print operator, installer or manager — the team keeps growing. Fill in the form and attach your CV or portfolio. We reply within one or two working days."}, "crName": {"uz": "Ism familiya", "ru": "Имя и фамилия", "en": "Full name"}, "crNameP": {"uz": "Masalan: Sardor Aliyev", "ru": "Например: Сардор Алиев", "en": "e.g. Sardor Aliyev"}, "crPhone": {"uz": "Telefon", "ru": "Телефон", "en": "Phone"}, "crPhoneP": {"uz": "+998 __ ___ __ __", "ru": "+998 __ ___ __ __", "en": "+998 __ ___ __ __"}, "crPos": {"uz": "Qaysi yo'nalishda", "ru": "Направление", "en": "Position"}, "crExp": {"uz": "Tajriba", "ru": "Опыт", "en": "Experience"}, "crAbout": {"uz": "O'zingiz haqingizda", "ru": "О себе", "en": "About you"}, "crAboutP": {"uz": "Qaysi dasturlarda ishlaysiz, qanday loyihalarda qatnashgansiz, qachondan boshlab ishlay olasiz.", "ru": "В каких программах работаете, в каких проектах участвовали, когда можете приступить.", "en": "Which software you use, what projects you've worked on, when you can start."}, "crFile": {"uz": "Rezyume yoki portfolio", "ru": "Резюме или портфолио", "en": "CV or portfolio"}, "crFileH": {"uz": "PDF, DOCX, JPG yoki ZIP — 20 MB gacha", "ru": "PDF, DOCX, JPG или ZIP — до 20 МБ", "en": "PDF, DOCX, JPG or ZIP — up to 20 MB"}, "crPick": {"uz": "Fayl tanlash", "ru": "Выбрать файл", "en": "Choose file"}, "crSend": {"uz": "Anketani yuborish", "ru": "Отправить анкету", "en": "Send application"}, "crHint": {"uz": "Tugma bosilganda anketa Telegramda ochiladi — faylni o'sha yerda biriktirasiz.", "ru": "По нажатию анкета откроется в Telegram — файл приложите там же.", "en": "The button opens the form in Telegram — attach the file there."}, "crReq": {"uz": "Ism va telefon raqamini kiriting", "ru": "Укажите имя и номер телефона", "en": "Please enter your name and phone number"}, "crOpen": {"uz": "Telegram ochilmoqda…", "ru": "Открываем Telegram…", "en": "Opening Telegram…"}, "cueWork": {"uz": "Bajarilgan ishlar", "ru": "Выполненные работы", "en": "Completed work"}, "noH": {"uz": "qilmaymiz", "ru": "не делаем рекламу", "en": "don't advertise for"}, "noL": {"uz": "Sigaret va tamaki, alkogol va pivo barlar, kattalar uchun massaj salonlari, qimor va garov, lombard hamda foizga qarz beruvchi tashkilotlar uchun reklama tayyorlamaymiz. Buyurtma qanchalik katta bo'lmasin, rad etamiz — bu bizning tanlovimiz.", "ru": "Мы не делаем рекламу для сигарет и табака, алкоголя и пивных баров, массажных салонов для взрослых, азартных игр и ставок, ломбардов и организаций, дающих деньги под проценты. Каким бы крупным ни был заказ, мы откажемся — это наш принцип.", "en": "We don't produce advertising for cigarettes and tobacco, alcohol and beer bars, adult massage parlours, gambling and betting, pawnshops or payday lenders. However large the order, we turn it down — that's our choice."}, "no1": {"uz": "Sigaret va tamaki", "ru": "Сигареты и табак", "en": "Cigarettes and tobacco"}, "no2": {"uz": "Alkogol va pivo bar", "ru": "Алкоголь и пивбары", "en": "Alcohol and beer bars"}, "no3": {"uz": "Kattalar uchun xizmatlar", "ru": "Услуги для взрослых", "en": "Adult services"}, "no4": {"uz": "Qimor va garov", "ru": "Азартные игры и ставки", "en": "Gambling and betting"}, "noWho": {"uz": "Kimlarga reklama", "ru": "Кому мы", "en": "Who we"}, "no5": {"uz": "Lombard va foizga qarz", "ru": "Ломбарды и займы под проценты", "en": "Pawnshops and payday loans"}, "noPre": {"uz": "Kimlarga reklama", "ru": "Кому мы", "en": "Who we"}, "noEm": {"uz": "qilmaymiz", "ru": "не делаем рекламу", "en": "don't advertise for"}, "ftValues": {"uz": "Qadriyatlarimiz", "ru": "Наши принципы", "en": "What we stand for"}, "f1s": {"uz": "Banner", "ru": "Баннеры", "en": "Banners"}, "f2s": {"uz": "Obyomli harflar", "ru": "Объёмные буквы", "en": "3D letters"}, "f3s": {"uz": "Kran reklamasi", "ru": "Реклама на кранах", "en": "Crane ads"}, "f4s": {"uz": "Avto reklama", "ru": "Реклама на авто", "en": "Vehicle wraps"}, "f5s": {"uz": "Stend", "ru": "Стенды", "en": "Stands"}, "f6s": {"uz": "Tablichka", "ru": "Таблички", "en": "Plaques"}, "f7s": {"uz": "Poligrafiya", "ru": "Полиграфия", "en": "Print"}, "f8s": {"uz": "Suvenir", "ru": "Сувениры", "en": "Merch"}, "lbOrder": {"uz": "Shunday ish buyurtma qilish", "ru": "Заказать такую же работу", "en": "Order work like this"}, "lbText": {"uz": "Ish yoqdimi? O'lcham va joyni ayting — bir soat ichida narxini hisoblab beramiz.", "ru": "Понравилась работа? Скажите размер и место — посчитаем стоимость в течение часа.", "en": "Like this work? Tell us the size and location and we'll price it within the hour."}, "lbClose": {"uz": "Yopish", "ru": "Закрыть", "en": "Close"}, "lbOf": {"uz": "dan", "ru": "из", "en": "of"}, "ordTitle": {"uz": "Ariza qoldirish", "ru": "Оставить заявку", "en": "Leave a request"}, "ordLead": {"uz": "Ism va telefon raqamingizni qoldiring — menejer 15 daqiqa ichida bog'lanadi va narxni aytadi.", "ru": "Оставьте имя и номер телефона — менеджер свяжется в течение 15 минут и назовёт цену.", "en": "Leave your name and phone number — a manager will call within 15 minutes with a price."}, "ordName": {"uz": "Ism familiya", "ru": "Имя и фамилия", "en": "Full name"}, "ordNameP": {"uz": "Masalan: Sardor Aliyev", "ru": "Например: Сардор Алиев", "en": "e.g. Sardor Aliyev"}, "ordPhone": {"uz": "Telefon raqam", "ru": "Номер телефона", "en": "Phone number"}, "ordPhoneP": {"uz": "+998 __ ___ __ __", "ru": "+998 __ ___ __ __", "en": "+998 __ ___ __ __"}, "ordNote": {"uz": "Nima kerak", "ru": "Что нужно", "en": "What you need"}, "ordNoteP": {"uz": "Masalan: 3×1 m peshtoq, obyomli harf, Chilonzorda", "ru": "Например: вывеска 3×1 м, объёмные буквы, Чиланзар", "en": "e.g. 3×1 m sign, 3D letters, Chilanzar district"}, "ordSend": {"uz": "Telegram orqali yuborish", "ru": "Отправить через Telegram", "en": "Send via Telegram"}, "ordReq": {"uz": "Ism va telefon raqamini kiriting", "ru": "Укажите имя и номер телефона", "en": "Please enter your name and phone number"}, "ordHint": {"uz": "Tugma bosilganda Telegram ochiladi, xabar tayyor turadi — faqat yuborishni bosasiz.", "ru": "По нажатию откроется Telegram с готовым сообщением — останется нажать «Отправить».", "en": "The button opens Telegram with the message ready — you just press send."}, "ordCall": {"uz": "Yoki qo'ng'iroq qiling", "ru": "Или позвоните", "en": "Or call us"}};
+Object.assign(I18N, {
+  "pfOpen":     {"uz": "Ishlarni ko'rish", "ru": "Смотреть работы", "en": "View the work"},
+  "ftNav":      {"uz": "Navigatsiya", "ru": "Навигация", "en": "Navigation"},
+  "ftContacts": {"uz": "Kontaktlar", "ru": "Контакты", "en": "Contacts"}
+});
 const SRV = {"0": {"uz": "Tom va kranga reklama", "ru": "Реклама на крыше и кране", "en": "Roof and crane advertising"}, "1": {"uz": "Obyomli harf", "ru": "Объёмная буква", "en": "Dimensional letters"}, "2": {"uz": "Yorug'lik qutisi", "ru": "Световой короб", "en": "Lightbox"}, "3": {"uz": "LED ekran", "ru": "LED экран", "en": "LED screen"}, "4": {"uz": "Neon reklama", "ru": "Неоновая реклама", "en": "Neon signage"}, "5": {"uz": "Yuguruvchi qator", "ru": "Бегущая строка", "en": "Scrolling LED text"}, "6": {"uz": "Kontrajur yoritish", "ru": "Контражурная подсветка", "en": "Halo / backlit letters"}, "7": {"uz": "Fasad reklamasi (Alyukabond)", "ru": "Фасадная реклама (Alucobond)", "en": "Facade cladding (Alucobond)"}, "8": {"uz": "Tom ustiga logotip", "ru": "Крышная установка (логотип на здании)", "en": "Rooftop logo installation"}, "9": {"uz": "Stella", "ru": "Стелла", "en": "Pylon sign"}, "10": {"uz": "Shtender", "ru": "Штендер", "en": "A-frame sidewalk sign"}, "11": {"uz": "Navigatsiya ko'rsatkichlari", "ru": "Навигационные указатели", "en": "Wayfinding signs"}, "12": {"uz": "Ofis tablichkalari", "ru": "Офисные таблички", "en": "Office door plaques"}, "13": {"uz": "Ma'lumot stendlari", "ru": "Информационные стенды", "en": "Information boards"}, "14": {"uz": "Nomercha va beydjik", "ru": "Номерки / бейджи", "en": "Number tags and badges"}, "15": {"uz": "Baner bosma", "ru": "Баннер печать", "en": "Banner printing"}, "16": {"uz": "Orakal bosma", "ru": "Оракал печать", "en": "Vinyl printing"}, "17": {"uz": "Tumanka", "ru": "Туманка", "en": "Frosted film"}, "18": {"uz": "O'ziyopishqoq plyonka", "ru": "Самоклейка", "en": "Self-adhesive film"}, "19": {"uz": "UV ultrabinafsha bosma", "ru": "UV ультрафиолетовая печать", "en": "UV printing"}, "20": {"uz": "Ekosolvent bosma", "ru": "Экосольвентная печать", "en": "Eco-solvent printing"}, "21": {"uz": "Plotter kesish", "ru": "Плоттерная резка", "en": "Plotter cutting"}, "22": {"uz": "Lazer kesish va gravyura", "ru": "Лазерная резка и гравировка", "en": "Laser cutting and engraving"}, "23": {"uz": "Rover (CNC) xizmati", "ru": "Услуги ровера (ЧПУ)", "en": "CNC router service"}, "24": {"uz": "Tonirovka", "ru": "Тонировка", "en": "Window tinting"}, "25": {"uz": "Quyoshdan himoya plyonka", "ru": "Солнцезащитная плёнка", "en": "Solar-control film"}, "26": {"uz": "Ofis oynasi bezagi", "ru": "Оформление офисных окон", "en": "Office window branding"}, "27": {"uz": "Flayer", "ru": "Флаер", "en": "Flyer"}, "28": {"uz": "Buklet", "ru": "Буклет", "en": "Booklet"}, "29": {"uz": "Bloknot bosma", "ru": "Блокнот печать", "en": "Notebook printing"}, "30": {"uz": "Katalog", "ru": "Каталог", "en": "Catalogue"}, "31": {"uz": "Vizitka", "ru": "Визитка", "en": "Business cards"}, "32": {"uz": "Kalendar (devor / stol)", "ru": "Календарь (настенный / настольный)", "en": "Calendar (wall / desk)"}, "33": {"uz": "Logotipli paket", "ru": "Пакет с логотипом", "en": "Branded paper bag"}, "34": {"uz": "Pauchok", "ru": "Паучок", "en": "X-banner"}, "35": {"uz": "Roll Up", "ru": "Roll Up", "en": "Roll-up"}, "36": {"uz": "Parus bayroq", "ru": "Парус", "en": "Feather flag"}, "37": {"uz": "Press-wall", "ru": "Пресс-волл", "en": "Press-wall"}, "38": {"uz": "Mobil stendlar", "ru": "Мобильные стенды", "en": "Mobile stands"}, "39": {"uz": "Noodatiy stend va konstruksiya", "ru": "Нестандартные стенды и конструкции", "en": "Custom stands and structures"}, "40": {"uz": "Ruchka bosma", "ru": "Ручка печать", "en": "Printed pens"}, "41": {"uz": "Bokal va krujka bosma", "ru": "Бокал печать", "en": "Printed glassware and mugs"}, "42": {"uz": "Futbolka bosma", "ru": "Футболка печать", "en": "T-shirt printing"}, "43": {"uz": "Statuetka", "ru": "Статуэтка", "en": "Award statuette"}, "44": {"uz": "Logotipli fleshka", "ru": "Флешка с логотипом", "en": "Branded USB drive"}, "45": {"uz": "Eko-sumka bosma bilan", "ru": "Эко-сумка с печатью", "en": "Printed eco bag"}, "46": {"uz": "Logotipli soyabon", "ru": "Зонт с логотипом", "en": "Branded umbrella"}, "47": {"uz": "Sovg'a to'plamlari", "ru": "Подарочные наборы", "en": "Gift sets"}, "48": {"uz": "Qurilish kaskasi bosma", "ru": "Печать на строительных касках", "en": "Printed hard hats"}, "49": {"uz": "Ish formasi va logotip", "ru": "Спецодежда с логотипом", "en": "Branded workwear"}, "50": {"uz": "Avtomobil brendlash", "ru": "Брендирование автомобилей", "en": "Car branding"}, "51": {"uz": "Avtobuslarda reklama", "ru": "Реклама на автобусах", "en": "Bus advertising"}, "52": {"uz": "Maxsus texnikada reklama", "ru": "Реклама на спецтехнике", "en": "Special-equipment branding"}};
 const GRP = {"0": {"uz": "Tashqi reklama", "ru": "Наружная реклама", "en": "Outdoor advertising"}, "1": {"uz": "Bosma va ishlov", "ru": "Печать и обработка", "en": "Printing and processing"}, "2": {"uz": "Poligrafiya", "ru": "Полиграфия", "en": "Print production"}, "3": {"uz": "Ko'rgazma konstruksiyalari", "ru": "Выставочные конструкции", "en": "Exhibition structures"}, "4": {"uz": "Suvenir va kiyim", "ru": "Сувениры и одежда", "en": "Merchandise and clothing"}, "5": {"uz": "Transport brendlash", "ru": "Брендирование транспорта", "en": "Vehicle branding"}};
 const KW = {"uz": "Tom va kranga reklama  ✳  Obyomli harf  ✳  Yorug'lik qutisi  ✳  LED ekran  ✳  Neon reklama  ✳  Yuguruvchi qator  ✳  Kontrajur yoritish  ✳  Fasad reklamasi (Alyukabond)  ✳  Tom ustiga logotip  ✳  Stella  ✳  Shtender  ✳  Navigatsiya ko'rsatkichlari  ✳  Ofis tablichkalari  ✳  Ma'lumot stendlari  ✳  Nomercha va beydjik  ✳  Baner bosma  ✳  Orakal bosma  ✳  Tumanka  ✳  O'ziyopishqoq plyonka  ✳  UV ultrabinafsha bosma  ✳  Ekosolvent bosma  ✳  Plotter kesish  ✳  Lazer kesish va gravyura  ✳  Rover (CNC) xizmati  ✳  Tonirovka  ✳  Quyoshdan himoya plyonka  ✳  Ofis oynasi bezagi  ✳  Flayer  ✳  Buklet  ✳  Bloknot bosma  ✳  Katalog  ✳  Vizitka  ✳  Kalendar (devor / stol)  ✳  Logotipli paket  ✳  Pauchok  ✳  Roll Up  ✳  Parus bayroq  ✳  Press-wall  ✳  Mobil stendlar  ✳  Noodatiy stend va konstruksiya  ✳  Ruchka bosma  ✳  Bokal va krujka bosma  ✳  Futbolka bosma  ✳  Statuetka  ✳  Logotipli fleshka  ✳  Eko-sumka bosma bilan  ✳  Logotipli soyabon  ✳  Sovg'a to'plamlari  ✳  Qurilish kaskasi bosma  ✳  Ish formasi va logotip  ✳  Avtomobil brendlash  ✳  Avtobuslarda reklama  ✳  Maxsus texnikada reklama  ✳  ", "ru": "Реклама на крыше и кране  ✳  Объёмная буква  ✳  Световой короб  ✳  LED экран  ✳  Неоновая реклама  ✳  Бегущая строка  ✳  Контражурная подсветка  ✳  Фасадная реклама (Alucobond)  ✳  Крышная установка (логотип на здании)  ✳  Стелла  ✳  Штендер  ✳  Навигационные указатели  ✳  Офисные таблички  ✳  Информационные стенды  ✳  Номерки / бейджи  ✳  Баннер печать  ✳  Оракал печать  ✳  Туманка  ✳  Самоклейка  ✳  UV ультрафиолетовая печать  ✳  Экосольвентная печать  ✳  Плоттерная резка  ✳  Лазерная резка и гравировка  ✳  Услуги ровера (ЧПУ)  ✳  Тонировка  ✳  Солнцезащитная плёнка  ✳  Оформление офисных окон  ✳  Флаер  ✳  Буклет  ✳  Блокнот печать  ✳  Каталог  ✳  Визитка  ✳  Календарь (настенный / настольный)  ✳  Пакет с логотипом  ✳  Паучок  ✳  Roll Up  ✳  Парус  ✳  Пресс-волл  ✳  Мобильные стенды  ✳  Нестандартные стенды и конструкции  ✳  Ручка печать  ✳  Бокал печать  ✳  Футболка печать  ✳  Статуэтка  ✳  Флешка с логотипом  ✳  Эко-сумка с печатью  ✳  Зонт с логотипом  ✳  Подарочные наборы  ✳  Печать на строительных касках  ✳  Спецодежда с логотипом  ✳  Брендирование автомобилей  ✳  Реклама на автобусах  ✳  Реклама на спецтехнике  ✳  ", "en": "Roof and crane advertising  ✳  Dimensional letters  ✳  Lightbox  ✳  LED screen  ✳  Neon signage  ✳  Scrolling LED text  ✳  Halo / backlit letters  ✳  Facade cladding (Alucobond)  ✳  Rooftop logo installation  ✳  Pylon sign  ✳  A-frame sidewalk sign  ✳  Wayfinding signs  ✳  Office door plaques  ✳  Information boards  ✳  Number tags and badges  ✳  Banner printing  ✳  Vinyl printing  ✳  Frosted film  ✳  Self-adhesive film  ✳  UV printing  ✳  Eco-solvent printing  ✳  Plotter cutting  ✳  Laser cutting and engraving  ✳  CNC router service  ✳  Window tinting  ✳  Solar-control film  ✳  Office window branding  ✳  Flyer  ✳  Booklet  ✳  Notebook printing  ✳  Catalogue  ✳  Business cards  ✳  Calendar (wall / desk)  ✳  Branded paper bag  ✳  X-banner  ✳  Roll-up  ✳  Feather flag  ✳  Press-wall  ✳  Mobile stands  ✳  Custom stands and structures  ✳  Printed pens  ✳  Printed glassware and mugs  ✳  T-shirt printing  ✳  Award statuette  ✳  Branded USB drive  ✳  Printed eco bag  ✳  Branded umbrella  ✳  Gift sets  ✳  Printed hard hats  ✳  Branded workwear  ✳  Car branding  ✳  Bus advertising  ✳  Special-equipment branding  ✳  "};
@@ -1459,6 +1557,21 @@ function fillPhotos(){
   });
 }
 fillPhotos();
+
+/* ---------- Bo'limlar ostidagi portfolio kartochkalari (bittadan rasm) ---------- */
+function fillPfq(){
+  document.querySelectorAll('[data-pfq]').forEach(box=>{
+    const k = box.dataset.pfq;
+    const src = ((PHOTOS[k]||[]).filter(Boolean))[0];
+    const alt = (I18N[k+'t']||{})[L] || '';
+    if(!src){ box.innerHTML = PH_HTML; return; }
+    box.classList.add('has');
+    box.innerHTML = `<img src="${src}" alt="${alt}" loading="lazy" draggable="false">`;
+    const img = box.querySelector('img');
+    img.addEventListener('error', ()=>{ box.classList.remove('has'); box.innerHTML = PH_HTML; }, {once:true});
+  });
+}
+fillPfq();
 
 /* ---------- ko'rinishlar ---------- */
 let view='home';
@@ -1591,11 +1704,13 @@ document.getElementById('drawer').addEventListener('click',e=>{
 });
 
 /* ---------- ijtimoiy tarmoqlar ---------- */
-document.getElementById('socials').innerHTML = [
+const SOC_HTML = [
   ['instagram','ig','Instagram'],['telegram','tg','Telegram'],
   ['youtube','yt','YouTube'],['facebook','fb','Facebook']
 ].map(([k,ic,name])=>
   `<a class="soc" href="${LINKS[k]}" target="_blank" rel="noopener" aria-label="${name}" title="${name}">${SOCIC[ic]}</a>`).join('');
+document.getElementById('socials').innerHTML = SOC_HTML;
+document.getElementById('fsoc').innerHTML = SOC_HTML;
 
 /* ============================================================
    FON ANIMATSIYASI — LED matritsa + neon iz
@@ -2004,666 +2119,4 @@ go(location.hash.slice(1)||'home', false);
   window.__orderLang();
 })();
 </script>
-
-<!-- ============================================================
-     BAYRAM EFFEKTI — faqat "Asosiy" bo'limida, boshida bir marta
-     OCHILISH USLUBI: TOGO_FX_STYLE — 'print' (CMYK bosma) yoki 'neon' (yorug'li vivеska)
-     Til: <html lang> dan o'zi oladi. Rejim: data-theme="light" ga moslashadi.
-     HAYIT SANALARI har yili suriladi — birinchi 3 qatorning "from"/"to" sini
-     yil boshida yangilang (O'zbekiston musulmonlari idorasi e'loniga qarang).
-     "from" — bayramning aynan o'zi, kartochkadagi sana shundan olinadi.
-       2027 — roza 08.02 | Ro'za hayit 10.03 | Qurbon hayit 17.05
-       2028 — roza 28.01 | Ro'za hayit 27.02 | Qurbon hayit 05.05
-       2029 — roza 16.01 | Ro'za hayit 15.02 | Qurbon hayit 24.04
-       2030 — roza 05.01 | Ro'za hayit 05.02 | Qurbon hayit 13.04
-     Qolgan sanalar MM-DD — har yili o'zi takrorlanadi.
-     ============================================================ -->
-<script>
-(function(){
-  'use strict';
-
-  var STYLE = window.TOGO_FX_STYLE || 'print';   /* 'print' yoki 'neon' */
-
-  var CAL = [
-    {name:"Ramazon oyi", from:"2026-02-18", to:"2026-02-24", ac:"#E0A800", calm:true, s:9,
-     nm:{uz:"Ramazon oyi", ru:"Месяц Рамазан", en:"Month of Ramadan"},
-     t:{uz:"Ramazon oyi barakali bo'lsin!", ru:"Пусть месяц Рамазан будет благословенным!", en:"May the month of Ramadan be blessed!"},
-     i:["crescent","spark","star5"], c:["#FFC61A","#FFD766","#FFF0C2"], cl:["#D99A00","#C08800","#2563EB"]},
-
-    {name:"Ramazon hayiti", from:"2026-03-20", to:"2026-03-23", ac:"#E0A800", s:9, up:true,
-     nm:{uz:"Ramazon hayiti", ru:"Ураза-байрам", en:"Eid al-Fitr"},
-     t:{uz:"Hayit fayz-u baraka olib kelsin!", ru:"Пусть праздник принесёт благодать!", en:"May this Eid bring blessings!"},
-     i:["crescent","spark","star5"], c:["#FFC61A","#FFD766","#FFF0C2"], cl:["#D99A00","#C08800","#2563EB"]},
-
-    {name:"Qurbon hayiti", from:"2026-05-27", to:"2026-05-30", ac:"#E0A800", s:9, up:true,
-     nm:{uz:"Qurbon hayiti", ru:"Курбан-байрам", en:"Eid al-Adha"},
-     t:{uz:"Tinchlik, ezgulik va farovonlik tilaymiz!", ru:"Мира, добра и благополучия!", en:"Wishing you peace, kindness and prosperity!"},
-     i:["crescent","spark","star5"], c:["#FFC61A","#FFD766","#FFF0C2"], cl:["#D99A00","#C08800","#2563EB"]},
-
-    {name:"Yangi yil", from:"12-25", to:"01-05", ac:"#FFC61A", s:9,
-     dt:{uz:"1-yanvar", ru:"1 января", en:"1 January"},
-     nm:{uz:"Yangi yil", ru:"Новый год", en:"New Year"},
-     t:{uz:"Yangi orzular, yangi zafarlar!", ru:"Новые мечты, новые победы!", en:"New dreams, new victories!"},
-     i:["snowflake","spark","gift","bauble"], c:["#FFFFFF","#E4EDFB","#FFD766"], cl:["#8FB3DE","#6D93C9","#2563EB"]},
-
-    {name:"Xotin-qizlar kuni", from:"03-04", to:"03-09", ac:"#FF7EA8", s:10,
-     dt:{uz:"8-mart", ru:"8 марта", en:"8 March"},
-     nm:{uz:"Xalqaro xotin-qizlar kuni", ru:"Международный женский день", en:"International Women's Day"},
-     t:{uz:"Siz olamni go'zal qilasiz!", ru:"Вы украшаете этот мир!", en:"You make the world brighter!"},
-     i:["tulip","flower","heart"], c:["#FF7EA8","#FFB3C7","#FFE0EA","#FFC61A"], cl:["#E8567F","#D93A6A","#D99A00"]},
-
-    {name:"Navro'z", from:"03-15", to:"03-23", ac:"#6BAF4A", s:9,
-     dt:{uz:"21-mart", ru:"21 марта", en:"21 March"},
-     nm:{uz:"Navro'z", ru:"Навруз", en:"Navruz"},
-     t:{uz:"Bahor va yangilanish ayyomi muborak!", ru:"С праздником весны и обновления!", en:"Happy celebration of spring and renewal!"},
-     i:["flower","sprout","leaf"], c:["#FFE3EC","#FFFFFF","#8FD16B","#FFD766"], cl:["#E8709A","#5AA23C","#D99A00"]},
-
-    {name:"Xotira va qadrlash kuni", from:"05-07", to:"05-11", ac:"#C0392B", calm:true, s:10,
-     dt:{uz:"9-may", ru:"9 мая", en:"9 May"},
-     nm:{uz:"Xotira va qadrlash kuni", ru:"День памяти и почестей", en:"Day of Remembrance and Honor"},
-     t:{uz:"Xotira abadiy, qadr muqaddas!", ru:"Память вечна, честь священна!", en:"Memory is eternal, honor is sacred."},
-     i:["tulip","ribbon","leaf"], c:["#C0392B","#8E2A20","#E07A6B"], cl:["#B03328","#8E2A20","#D45A48"]},
-
-    {name:"So'nggi qo'ng'iroq", from:"05-22", to:"05-27", ac:"#FFC61A", s:9,
-     dt:{uz:"25-may", ru:"25 мая", en:"25 May"},
-     nm:{uz:"So'nggi qo'ng'iroq", ru:"Последний звонок", en:"Last Bell"},
-     t:{uz:"So'nggi qo'ng'iroq — yangi yo'l boshi!", ru:"Последний звонок — начало нового пути!", en:"The last bell — the start of a new road!"},
-     i:["bell","star5","strip","book"], c:["#FFC61A","#FFFFFF","#7EC8FF","#FF7EA8"], cl:["#D99A00","#2563EB","#E8567F"]},
-
-    {name:"Bolalar kuni", from:"05-28", to:"06-03", ac:"#FF8A4C", s:11, up:true,
-     dt:{uz:"1-iyun", ru:"1 июня", en:"1 June"},
-     nm:{uz:"Bolalarni himoya qilish kuni", ru:"День защиты детей", en:"Children's Day"},
-     t:{uz:"Bolalar kulgusi — dunyo quvonchi!", ru:"Детский смех — радость мира!", en:"Children's laughter is the world's joy!"},
-     i:["balloon","heart","star5"], c:["#FF6B6B","#FFD93D","#6BCB77","#4D96FF","#FF9FF3"],
-     cl:["#E85555","#E0A800","#4FA85C","#2563EB","#D96BC4"]},
-
-    {name:"Mustaqillik kuni", from:"08-20", to:"09-05", ac:"#0099B5", s:9,
-     dt:{uz:"1-sentabr", ru:"1 сентября", en:"1 September"},
-     nm:{uz:"Mustaqillik kuni", ru:"День независимости", en:"Independence Day"},
-     t:{uz:"Ozod va obod yurt bayrami muborak!", ru:"С праздником свободной страны!", en:"Celebrating a free and proud nation!"},
-     i:["star5","burst","strip"], c:["#0099B5","#FFFFFF","#1EB53A","#CE1126","#FFC61A"],
-     cl:["#0086A0","#199B32","#CE1126","#D99A00"]},
-
-    {name:"O'qituvchi va murabbiylar kuni", from:"09-28", to:"10-03", ac:"#D98324", s:10,
-     dt:{uz:"1-oktabr", ru:"1 октября", en:"1 October"},
-     nm:{uz:"O'qituvchi va murabbiylar kuni", ru:"День учителей и наставников", en:"Teachers' and Mentors' Day"},
-     t:{uz:"Ilm ziyosi uchun tashakkur!", ru:"Спасибо за свет знаний!", en:"Thank you for the light of knowledge!"},
-     i:["leaf","book","pencil"], c:["#D98324","#FFC61A","#B44C1F","#E9C46A"],
-     cl:["#C0731F","#D99A00","#A03F17","#C9A24E"]},
-
-    {name:"Konstitutsiya kuni", from:"12-05", to:"12-10", ac:"#0099B5", s:9,
-     dt:{uz:"8-dekabr", ru:"8 декабря", en:"8 December"},
-     nm:{uz:"Konstitutsiya kuni", ru:"День Конституции", en:"Constitution Day"},
-     t:{uz:"Huquqlarimiz — tayanchimiz!", ru:"Наши права — наша опора!", en:"Our rights, our strength!"},
-     i:["star5","strip"], c:["#0099B5","#FFFFFF","#1EB53A"], cl:["#0086A0","#2563EB","#199B32"]}
-  ];
-
-  /* ---------- ikonkalar ---------- */
-  var PI=Math.PI, cos=Math.cos, sin=Math.sin;
-  var ICON={
-    snowflake:function(g,s){ g.strokeStyle=g.fillStyle; g.lineWidth=s*.17; g.lineCap='round';
-      for(var i=0;i<3;i++){ g.save(); g.rotate(i*PI/3);
-        g.beginPath(); g.moveTo(0,-s); g.lineTo(0,s); g.stroke();
-        g.beginPath();
-        g.moveTo(0,-s*.6); g.lineTo(-s*.32,-s*.92); g.moveTo(0,-s*.6); g.lineTo(s*.32,-s*.92);
-        g.moveTo(0,s*.6); g.lineTo(-s*.32,s*.92); g.moveTo(0,s*.6); g.lineTo(s*.32,s*.92);
-        g.stroke(); g.restore(); } },
-    spark:function(g,s){ g.beginPath();
-      for(var i=0;i<8;i++){ var a=i*PI/4, r=i%2?s*.32:s; g[i?'lineTo':'moveTo'](cos(a)*r,sin(a)*r); }
-      g.closePath(); g.fill(); },
-    star5:function(g,s){ g.beginPath();
-      for(var i=0;i<10;i++){ var a=-PI/2+i*PI/5, r=i%2?s*.45:s; g[i?'lineTo':'moveTo'](cos(a)*r,sin(a)*r); }
-      g.closePath(); g.fill(); },
-    gift:function(g,s){ g.fillRect(-s*.8,-s*.35,s*1.6,s*1.2); g.fillRect(-s*.92,-s*.62,s*1.84,s*.3);
-      g.beginPath(); g.arc(-s*.3,-s*.82,s*.26,0,6.283); g.arc(s*.3,-s*.82,s*.26,0,6.283); g.fill(); },
-    bauble:function(g,s){ g.beginPath(); g.arc(0,s*.15,s*.8,0,6.283); g.fill();
-      g.fillRect(-s*.2,-s*.88,s*.4,s*.3); },
-    tulip:function(g,s){ g.beginPath();
-      g.moveTo(-s*.72,-s*.45); g.quadraticCurveTo(-s*.88,s*.7,0,s*.92);
-      g.quadraticCurveTo(s*.88,s*.7,s*.72,-s*.45); g.quadraticCurveTo(s*.38,s*.05,s*.26,-s*.58);
-      g.quadraticCurveTo(0,s*.3,-s*.26,-s*.58); g.quadraticCurveTo(-s*.38,s*.05,-s*.72,-s*.45);
-      g.fill(); },
-    flower:function(g,s){ for(var i=0;i<5;i++){ var a=i*1.2566;
-        g.beginPath(); g.ellipse(cos(a)*s*.52,sin(a)*s*.52,s*.44,s*.3,a,0,6.283); g.fill(); }
-      g.beginPath(); g.arc(0,0,s*.26,0,6.283); g.fill(); },
-    heart:function(g,s){ g.beginPath(); g.moveTo(0,s*.88);
-      g.bezierCurveTo(-s*1.28,-s*.1,-s*.55,-s*1.02,0,-s*.34);
-      g.bezierCurveTo(s*.55,-s*1.02,s*1.28,-s*.1,0,s*.88); g.fill(); },
-    leaf:function(g,s){ g.beginPath(); g.moveTo(0,-s);
-      g.quadraticCurveTo(s*.92,-s*.12,0,s); g.quadraticCurveTo(-s*.92,-s*.12,0,-s); g.fill(); },
-    sprout:function(g,s){ g.strokeStyle=g.fillStyle; g.lineWidth=s*.15; g.lineCap='round';
-      g.beginPath(); g.moveTo(0,s); g.lineTo(0,-s*.2); g.stroke();
-      g.beginPath(); g.ellipse(-s*.46,-s*.32,s*.46,s*.24,-.6,0,6.283); g.fill();
-      g.beginPath(); g.ellipse(s*.46,-s*.55,s*.46,s*.24,.6,0,6.283); g.fill(); },
-    bell:function(g,s){ g.beginPath(); g.moveTo(-s*.74,s*.4);
-      g.quadraticCurveTo(-s*.6,-s*.72,0,-s*.82); g.quadraticCurveTo(s*.6,-s*.72,s*.74,s*.4);
-      g.closePath(); g.fill(); g.fillRect(-s*.88,s*.4,s*1.76,s*.22);
-      g.beginPath(); g.arc(0,s*.82,s*.2,0,6.283); g.fill(); },
-    crescent:function(g,s){ g.beginPath(); g.arc(0,0,s,.55,5.73);
-      g.arc(s*.44,0,s*.84,5.36,.92,true); g.closePath(); g.fill(); },
-    burst:function(g,s){ g.strokeStyle=g.fillStyle; g.lineWidth=s*.17; g.lineCap='round';
-      for(var i=0;i<8;i++){ var a=i*PI/4; g.beginPath();
-        g.moveTo(cos(a)*s*.36,sin(a)*s*.36); g.lineTo(cos(a)*s,sin(a)*s); g.stroke(); }
-      g.beginPath(); g.arc(0,0,s*.2,0,6.283); g.fill(); },
-    book:function(g,s){ g.fillRect(-s*.88,-s*.58,s*.8,s*1.16); g.fillRect(s*.08,-s*.58,s*.8,s*1.16); },
-    pencil:function(g,s){ g.save(); g.rotate(.6); g.fillRect(-s*.2,-s*.92,s*.4,s*1.42);
-      g.beginPath(); g.moveTo(-s*.2,s*.5); g.lineTo(s*.2,s*.5); g.lineTo(0,s*.95); g.closePath(); g.fill();
-      g.restore(); },
-    ribbon:function(g,s){ g.strokeStyle=g.fillStyle; g.lineWidth=s*.3; g.lineCap='round'; g.lineJoin='round';
-      g.beginPath(); g.moveTo(-s*.55,s*.95); g.lineTo(0,-s*.25); g.lineTo(s*.55,s*.95); g.stroke();
-      g.beginPath(); g.arc(0,-s*.5,s*.3,0,6.283); g.fill(); },
-    strip:function(g,s){ g.fillRect(-s*.32,-s*.85,s*.64,s*1.7); },
-    balloon:function(g,s,p,tt){ p=p||{ph:0}; tt=tt||0; g.save();
-      g.strokeStyle=g.fillStyle; g.globalAlpha*=.45; g.lineWidth=Math.max(1,s*.08);
-      g.beginPath(); g.moveTo(0,s*1.15);
-      g.quadraticCurveTo(sin(tt*2+p.ph)*s*.5,s*2.1,sin(tt*2+p.ph)*s*.28,s*3);
-      g.stroke(); g.restore();
-      g.beginPath(); g.ellipse(0,0,s*.78,s,0,0,6.283); g.fill();
-      g.beginPath(); g.moveTo(-s*.16,s*.98); g.lineTo(s*.16,s*.98); g.lineTo(0,s*1.24); g.closePath(); g.fill(); }
-  };
-
-  /* ---------- sana ---------- */
-  var MON = {
-    uz:["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentabr","oktabr","noyabr","dekabr"],
-    ru:["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"],
-    en:["January","February","March","April","May","June","July","August","September","October","November","December"]
-  };
-  function mk(s,y){ var p=s.split('-');
-    return p.length===3 ? new Date(+p[0],+p[1]-1,+p[2]) : new Date(y,+p[0]-1,+p[1]); }
-  function hit(e,now){
-    var y=now.getFullYear(), a, b;
-    if(e.from.length===10){ a=mk(e.from); b=mk(e.to); b.setHours(23,59,59); return now>=a&&now<=b; }
-    a=mk(e.from,y); b=mk(e.to,y); b.setHours(23,59,59);
-    if(b<a){
-      var a2=mk(e.from,y-1), b2=mk(e.to,y); b2.setHours(23,59,59);
-      var a3=mk(e.from,y), b3=mk(e.to,y+1); b3.setHours(23,59,59);
-      return (now>=a2&&now<=b2)||(now>=a3&&now<=b3);
-    }
-    return now>=a&&now<=b;
-  }
-  function byDate(){ var n=new Date();
-    for(var i=0;i<CAL.length;i++) if(hit(CAL[i],n)) return CAL[i];
-    return null; }
-  function dateLabel(E,L){
-    if(E.dt && E.dt[L]) return E.dt[L];
-    var p = E.from.split('-'), m, d;
-    if(p.length===3){ m=+p[1]; d=+p[2]; } else { m=+p[0]; d=+p[1]; }
-    var nm = MON[L][m-1];
-    return L==='uz' ? (d + '-' + nm) : (d + ' ' + nm);
-  }
-
-  var REDUCE = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function light(){ return document.documentElement.getAttribute('data-theme')==='light'; }
-  function lang(){ var L=(document.documentElement.lang||'uz').toLowerCase().slice(0,2);
-    return (L==='ru'||L==='en') ? L : 'uz'; }
-
-  var SIGN = 'TOGO GROUP ADVERTISING';
-  var stop = null, cur = null;
-
-  function start(E){
-    if(stop) stop();
-    if(!E) return;
-    cur = E;
-    function pal(){ return (light() && E.cl) ? E.cl : E.c; }
-
-    var st = document.createElement('style');
-    st.id = 'togoFxCss';
-    st.textContent =
-      '#togoFxBadge{position:fixed;left:24px;bottom:24px;z-index:79;display:flex;align-items:flex-start;gap:11px;' +
-      'padding:12px 12px 12px 11px;border-radius:14px;width:max-content;' +
-      'max-width:min(340px,calc(100vw - 110px));background:var(--card);border:1px solid var(--line);' +
-      'border-left:3px solid ' + E.ac + ';box-shadow:var(--shadow);opacity:0;' +
-      'transform:translateY(14px) scale(.96);pointer-events:none;' +
-      'transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.3,1)}' +
-      '#togoFxBadge.in{opacity:1;transform:none;pointer-events:auto}' +
-      '#togoFxBadge .ico{width:34px;height:34px;flex:none;border-radius:10px;display:grid;place-items:center;' +
-      'background:' + E.ac + '1A;border:1px solid ' + E.ac + '38;margin-top:1px}' +
-      '#togoFxBadge .tx{min-width:0;display:flex;flex-direction:column;gap:2px}' +
-      '#togoFxBadge .dt{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;' +
-      'color:' + E.ac + ';white-space:nowrap}' +
-      '#togoFxBadge .nm{font-family:var(--display);font-weight:700;font-size:13px;line-height:1.28;' +
-      'color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}' +
-      '#togoFxBadge .ms{font-family:var(--display);font-weight:500;font-size:12px;line-height:1.35;' +
-      'color:var(--sub);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}' +
-      '#togoFxBadge .x{background:none;border:0;color:var(--muted);font:400 16px/1 system-ui;cursor:pointer;' +
-      'padding:0 0 0 2px;margin:0;flex:none;opacity:.55}#togoFxBadge .x:hover{opacity:1}' +
-      '#togoFxBadge.pulse{animation:fxPulse 2.4s ease-in-out 2}' +
-      '@keyframes fxPulse{0%,100%{box-shadow:var(--shadow)}50%{box-shadow:var(--shadow),0 0 0 5px ' + E.ac + '1C}}' +
-
-      '#togoFxCv{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:56;' +
-      'opacity:1;transition:opacity .8s ease}#togoFxCv.out{opacity:0}' +
-
-      '#togoFxWow{position:fixed;inset:0;z-index:78;display:grid;place-items:center;pointer-events:none;' +
-      'padding:0 22px;transition:transform .8s cubic-bezier(.7,0,.2,1),opacity .75s cubic-bezier(.7,0,.2,1)}' +
-      '#togoFxWow .veil{position:absolute;inset:0;opacity:0;animation:fxVeil 2.7s ease forwards;' +
-      'background:radial-gradient(56% 44% at 50% 48%,' + E.ac + '18,transparent 70%),' +
-      'radial-gradient(88% 68% at 50% 50%,rgba(4,7,13,.74),rgba(4,7,13,0) 76%)}' +
-      '@keyframes fxVeil{0%{opacity:0}12%{opacity:1}72%{opacity:1}100%{opacity:0}}' +
-      '#togoFxWow .stage{position:relative;padding:36px 44px;text-align:center}' +
-      '#togoFxWow .icons{position:relative;display:flex;justify-content:center;align-items:center;'+'gap:16px;margin-bottom:20px}'+'#togoFxWow .icons canvas{width:38px;height:38px;display:block;opacity:0;'+'animation:fxIco .62s cubic-bezier(.2,.9,.3,1) both}'+'@keyframes fxIco{from{opacity:0;transform:scale(.3) rotate(-28deg) translateY(14px)}'+'to{opacity:1;transform:none}}'+'#togoFxWow .icons.neo canvas{filter:drop-shadow(0 0 7px '+E.ac+') drop-shadow(0 0 18px '+E.ac+')}'+'#togoFxWow .eyebrow{position:relative;margin-bottom:16px;font-family:var(--mono);font-size:10px;' +
-      'letter-spacing:.3em;text-transform:uppercase;color:' + E.ac + ';opacity:0;' +
-      'animation:fxEye .5s ease .34s both}' +
-      '@keyframes fxEye{from{opacity:0;transform:translateY(-7px)}to{opacity:.95;transform:none}}' +
-      '#togoFxWow .ln{font-family:var(--display);font-weight:800;letter-spacing:-.028em;line-height:1.08;' +
-      'font-size:clamp(23px,4.4vw,48px);max-width:18ch;margin:0 auto}' +
-      '#togoFxWow .rule{position:relative;height:2px;width:0;background:' + E.ac + ';margin:18px auto 0;' +
-      'animation:fxRule .55s cubic-bezier(.2,.85,.3,1) 1.04s both}' +
-      '@keyframes fxRule{from{width:0}to{width:min(200px,42vw)}}' +
-      '#togoFxWow .sign{position:relative;margin-top:14px;font-family:var(--mono);font-size:10px;' +
-      'letter-spacing:.34em;color:var(--sub);opacity:0;animation:fxSign .6s ease 1.14s both}' +
-      '@keyframes fxSign{from{opacity:0;letter-spacing:.14em}to{opacity:.85;letter-spacing:.34em}}' +
-
-      /* 1-uslub: CMYK bosma */
-      '#togoFxWow .dots{position:absolute;inset:0;opacity:0;animation:fxDots 2.7s ease forwards;' +
-      'background-image:radial-gradient(currentColor 1px,transparent 1px);background-size:22px 22px;' +
-      'color:' + E.ac + ';-webkit-mask-image:radial-gradient(42% 34% at 50% 48%,#000,transparent 72%);' +
-      'mask-image:radial-gradient(42% 34% at 50% 48%,#000,transparent 72%)}' +
-      '@keyframes fxDots{0%{opacity:0;transform:scale(1.12)}20%{opacity:.13}68%{opacity:.13}100%{opacity:0}}' +
-      '#togoFxWow .reg{position:absolute;width:16px;height:16px;opacity:0;color:' + E.ac + ';' +
-      'animation:fxReg .4s cubic-bezier(.2,.9,.3,1) both}' +
-      '@keyframes fxReg{from{opacity:0;transform:scale(.2) rotate(-90deg)}to{opacity:.85;transform:none}}' +
-      '#togoFxWow .r1{left:0;top:0}#togoFxWow .r2{right:0;top:0;animation-delay:.06s}' +
-      '#togoFxWow .r3{left:0;bottom:0;animation-delay:.12s}#togoFxWow .r4{right:0;bottom:0;animation-delay:.18s}' +
-      '#togoFxWow .tw{position:relative;display:inline-block;' +
-      'animation:fxPrint .62s cubic-bezier(.42,0,.12,1) .52s both}' +
-      '@keyframes fxPrint{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 -12% 0 0)}}' +
-      '#togoFxWow .plate{position:absolute;inset:0;pointer-events:none}' +
-      '#togoFxWow .set{animation:fxSet .58s cubic-bezier(.3,.9,.25,1) .78s both}' +
-      '@keyframes fxSet{from{transform:translate(var(--dx),var(--dy))}to{transform:none}}' +
-      '#togoFxWow .bar{position:absolute;top:-13px;bottom:-13px;left:0;width:2px;background:' + E.ac + ';' +
-      'box-shadow:0 0 20px 3px ' + E.ac + ',0 0 4px #fff;animation:fxBar .62s cubic-bezier(.42,0,.12,1) .26s both}' +
-      '@keyframes fxBar{0%{left:0;opacity:0}10%{opacity:1}90%{opacity:1}100%{left:100%;opacity:0}}' +
-
-      /* 2-uslub: yorug\'li vivеska */
-      '#togoFxWow .neo{color:' + E.ac + '}' +
-      '#togoFxWow .neo span{display:inline-block;opacity:.07;animation:fxNeon .8s steps(1,end) both}' +
-      '@keyframes fxNeon{0%{opacity:.07;text-shadow:none}' +
-      '12%{opacity:1;text-shadow:0 0 5px ' + E.ac + ',0 0 15px ' + E.ac + '}' +
-      '17%{opacity:.09;text-shadow:none}' +
-      '28%{opacity:.92;text-shadow:0 0 5px ' + E.ac + ',0 0 13px ' + E.ac + '}' +
-      '33%{opacity:.12;text-shadow:none}' +
-      '44%{opacity:1;text-shadow:0 0 6px ' + E.ac + ',0 0 20px ' + E.ac + ',0 0 44px ' + E.ac + '}' +
-      '50%{opacity:.55;text-shadow:0 0 4px ' + E.ac + '}' +
-      '100%{opacity:1;text-shadow:0 0 6px ' + E.ac + ',0 0 20px ' + E.ac + ',0 0 46px ' + E.ac + '}}' +
-      '#togoFxWow .fr{position:absolute;left:6px;right:6px;height:2px;background:' + E.ac + ';opacity:.45;' +
-      'transform:scaleX(0);animation:fxFr .45s cubic-bezier(.2,.85,.3,1) both}' +
-      '#togoFxWow .fr.t{top:8px}#togoFxWow .fr.b{bottom:8px;animation-delay:.09s}' +
-      '@keyframes fxFr{from{transform:scaleX(0)}to{transform:scaleX(1)}}' +
-      '#togoFxWow .bolt{position:absolute;width:5px;height:5px;border-radius:50%;background:' + E.ac + ';' +
-      'opacity:0;animation:fxBolt .4s ease .3s both}' +
-      '@keyframes fxBolt{from{opacity:0;transform:scale(.2)}to{opacity:.7;transform:none}}' +
-      '#togoFxWow .surge{animation:fxSurge .5s ease 1.1s both}' +
-      '@keyframes fxSurge{0%{filter:brightness(1)}30%{filter:brightness(1.45)}100%{filter:brightness(1)}}' +
-
-      '@media(max-width:640px){#togoFxBadge{left:14px;right:14px;bottom:86px;max-width:none;width:auto}' +
-      '#togoFxWow .stage{padding:26px 22px}}';
-    document.head.appendChild(st);
-
-    /* ---------- kartochka: sana / nom / tabrik ---------- */
-    var badge = document.createElement('div');
-    badge.id = 'togoFxBadge';
-    var iw = document.createElement('span'); iw.className='ico';
-    var ic = document.createElement('canvas');
-    ic.width=40; ic.height=40; ic.style.cssText='width:20px;height:20px;display:block';
-    iw.appendChild(ic);
-    function drawIcon(){
-      var g=ic.getContext('2d');
-      g.setTransform(2,0,0,2,0,0); g.clearRect(0,0,20,20);
-      g.translate(10,10); g.fillStyle=E.ac;
-      (ICON[E.i[0]]||ICON.spark)(g,8.2,{ph:0},0);
-    }
-    drawIcon();
-    var tx=document.createElement('span'); tx.className='tx';
-    var eDt=document.createElement('span'); eDt.className='dt';
-    var eNm=document.createElement('span'); eNm.className='nm';
-    var eMs=document.createElement('span'); eMs.className='ms';
-    function setText(){
-      var L=lang();
-      eDt.textContent = dateLabel(E,L);
-      eNm.textContent = (E.nm&&E.nm[L])||E.name;
-      eMs.textContent = E.t[L]||E.t.uz;
-    }
-    setText();
-    tx.appendChild(eDt); tx.appendChild(eNm); tx.appendChild(eMs);
-    var closed=false;
-    try{ closed = sessionStorage.getItem('togoFxHide')===E.name; }catch(e){}
-    var xb=document.createElement('button');
-    xb.type='button'; xb.className='x'; xb.setAttribute('aria-label','Yopish'); xb.textContent='\u00D7';
-    xb.addEventListener('click',function(){
-      closed=true; badge.classList.remove('in');
-      try{ sessionStorage.setItem('togoFxHide',E.name); }catch(e){}
-    });
-    badge.appendChild(iw); badge.appendChild(tx); badge.appendChild(xb);
-    document.body.appendChild(badge);
-
-    /* ---------- bir martalik portlash ---------- */
-    var cv=null, ctx=null, B=[], W=0, H=0, raf=0, t=0, DPR=Math.min(window.devicePixelRatio||1,2);
-    var up = E.up===true;
-
-    function cvOn(){
-      if(cv || E.calm || REDUCE) return;
-      cv=document.createElement('canvas');
-      cv.id='togoFxCv'; cv.setAttribute('aria-hidden','true');
-      document.body.appendChild(cv);
-      ctx=cv.getContext('2d');
-      W=window.innerWidth; H=window.innerHeight;
-      cv.width=W*DPR; cv.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
-      raf=requestAnimationFrame(frame);
-    }
-    function cvOff(){
-      if(!cv) return;
-      cv.classList.add('out');
-      var n=cv;
-      setTimeout(function(){ if(n&&n.parentNode) n.parentNode.removeChild(n); },900);
-      cv=null;
-      if(raf){ cancelAnimationFrame(raf); raf=0; }
-    }
-    function burst(N,pw,ox,oy){
-      if(!cv) return;
-      var C=pal();
-      var cx = (ox==null ? .5 : ox)*W, cy = (oy==null ? .44 : oy)*H;
-      for(var i=0;i<N;i++){
-        /* burchak bo'yicha teng taqsimlash — hamma tomonga baravar uchsin */
-        var a=(i/N)*6.283 + Math.random()*.5;
-        var sp=(3.2+Math.random()*10)*(pw||1);
-        B.push({ x:cx, y:cy, vx:cos(a)*sp*1.45, vy:sin(a)*sp*1.1,
-          r:E.s*(.6+Math.random()*1.05), a:Math.random()*3.1, spin:(Math.random()-.5)*.24,
-          g:.014, life:1, dec:.0050+Math.random()*.003,
-          c:C[(Math.random()*C.length)|0], k:E.i[(Math.random()*E.i.length)|0] });
-      }
-    }
-    /* ekranning turli nuqtalaridan — ikonkalar hamma tomonga sochiladi */
-    function burstAll(){
-      burst(54, 1,   .50, .44);
-      later(function(){
-        burst(20, .8, .20, .30);
-        burst(20, .8, .80, .30);
-      }, 180);
-      later(function(){
-        burst(18, .7, .12, .70);
-        burst(18, .7, .88, .70);
-        burst(16, .7, .50, .82);
-      }, 360);
-    }
-    function frame(){
-      if(!cv) return;
-      raf=requestAnimationFrame(frame);
-      t+=.01; ctx.clearRect(0,0,W,H);
-      for(var i=B.length-1;i>=0;i--){
-        var q=B[i];
-        q.x+=q.vx; q.y+=q.vy; q.vy+=q.g; q.vx*=.99; q.a+=q.spin; q.life-=q.dec;
-        if(q.life<=0 || q.y>H+90 || q.y<-110 || q.x<-110 || q.x>W+110){ B.splice(i,1); continue; }
-        ctx.globalAlpha=Math.min(1,q.life*1.6);
-        ctx.fillStyle=q.c;
-        ctx.save(); ctx.translate(q.x,q.y); ctx.rotate(q.a);
-        (ICON[q.k]||ICON.spark)(ctx,q.r,q,t); ctx.restore();
-      }
-      ctx.globalAlpha=1;
-      if(!B.length) cvOff();
-    }
-
-    /* ---------- ochilish ---------- */
-    var wow=null, phase=0, seen=false, tmrs=[];
-    function later(fn,ms){ tmrs.push(setTimeout(fn,ms)); }
-    try{ seen = sessionStorage.getItem('togoFxWow')===E.name; }catch(e){}
-    if(seen||REDUCE) phase=2;
-
-    function iconRow(){
-      var row=document.createElement('div');
-      row.className='icons'+(STYLE==='neon'?' neo':'');
-      var C=pal(), list=E.i.slice(0,4);
-      for(var ix=0; ix<list.length; ix++){
-        var c=document.createElement('canvas');
-        c.width=76; c.height=76;
-        c.style.animationDelay=(0.08+ix*0.075).toFixed(3)+'s';
-        var g=c.getContext('2d');
-        g.setTransform(2,0,0,2,0,0); g.translate(19,19);
-        g.fillStyle=C[ix%C.length];
-        (ICON[list[ix]]||ICON.spark)(g,14.5,{ph:0},0);
-        row.appendChild(c);
-      }
-      return row;
-    }
-    function regMark(){
-      var s=document.createElementNS('http://www.w3.org/2000/svg','svg');
-      s.setAttribute('viewBox','0 0 16 16'); s.setAttribute('fill','none');
-      s.innerHTML='<circle cx="8" cy="8" r="4.3" stroke="currentColor" stroke-width="1"/>'+
-                  '<path d="M8 0v16M0 8h16" stroke="currentColor" stroke-width="1"/>';
-      return s;
-    }
-    function plate(txt,col,blend,dx,dy){
-      var d=document.createElement('div');
-      d.className='ln plate set'; d.textContent=txt;
-      d.style.color=col; d.style.mixBlendMode=blend;
-      d.style.setProperty('--dx',dx); d.style.setProperty('--dy',dy);
-      return d;
-    }
-    function buildPrint(stage,s){
-      ['r1','r2','r3','r4'].forEach(function(c){
-        var r=regMark(); r.setAttribute('class','reg '+c); stage.appendChild(r); });
-      var blend = light()?'multiply':'screen', mid = light()?'#0B1220':'#FFFFFF';
-      var box=document.createElement('div'); box.className='tw';
-      box.appendChild(plate(s,'#00AEEF',blend,'-14px','-7px'));
-      box.appendChild(plate(s,'#EC008C',blend,'14px','7px'));
-      var kk=document.createElement('div'); kk.className='ln set'; kk.textContent=s;
-      kk.style.setProperty('--dx','0px'); kk.style.setProperty('--dy','4px');
-      kk.style.backgroundImage='linear-gradient(100deg,'+E.ac+' 10%,'+mid+' 40%,'+E.ac+' 66%)';
-      kk.style.webkitBackgroundClip='text'; kk.style.backgroundClip='text'; kk.style.color='transparent';
-      box.appendChild(kk);
-      var bar=document.createElement('div'); bar.className='bar'; box.appendChild(bar);
-      stage.appendChild(box);
-      var dots=document.createElement('div'); dots.className='dots';
-      return { extra:dots, burstAt:1000 };
-    }
-    function buildNeon(stage,s){
-      var ft=document.createElement('div'); ft.className='fr t';
-      var fb=document.createElement('div'); fb.className='fr b';
-      stage.appendChild(ft); stage.appendChild(fb);
-      ['left:14px;top:14px','right:14px;top:14px','left:14px;bottom:14px','right:14px;bottom:14px']
-        .forEach(function(c,ix){
-          var b=document.createElement('i'); b.className='bolt';
-          b.style.cssText=c; b.style.animationDelay=(.3+ix*.05)+'s';
-          stage.appendChild(b); });
-      var line=document.createElement('div'); line.className='ln neo surge';
-      for(var i=0;i<s.length;i++){
-        var ch=s[i];
-        if(ch===' '){ line.appendChild(document.createTextNode('\u00A0')); continue; }
-        var sp=document.createElement('span'); sp.textContent=ch;
-        sp.style.animationDelay=(0.34+Math.random()*0.42).toFixed(3)+'s';
-        line.appendChild(sp);
-      }
-      stage.appendChild(line);
-      return { extra:null, burstAt:1080 };
-    }
-
-    function reveal(){
-      try{ sessionStorage.setItem('togoFxWow',E.name); }catch(e){}
-      /* avvalgi ochilish qolgan bo'lsa — to'xtatib tozalaymiz */
-      for(var z=0;z<tmrs.length;z++) clearTimeout(tmrs[z]);
-      tmrs=[];
-      if(wow && wow.parentNode){ wow.parentNode.removeChild(wow); }
-      wow=null; B.length=0;
-      var L=lang(), s=E.t[L]||E.t.uz;
-      wow=document.createElement('div');
-      wow.id='togoFxWow'; wow.setAttribute('aria-hidden','true');
-      var veil=document.createElement('div'); veil.className='veil';
-      var stage=document.createElement('div'); stage.className='stage';
-
-      stage.appendChild(iconRow());
-
-      var eye=document.createElement('div'); eye.className='eyebrow';
-      eye.textContent = dateLabel(E,L) + ' \u00B7 ' + ((E.nm&&E.nm[L])||E.name);
-      stage.appendChild(eye);
-
-      var conf = (STYLE==='neon') ? buildNeon(stage,s) : buildPrint(stage,s);
-
-      var rule=document.createElement('div'); rule.className='rule';
-      var sign=document.createElement('div'); sign.className='sign'; sign.textContent=SIGN;
-      stage.appendChild(rule); stage.appendChild(sign);
-
-      wow.appendChild(veil);
-      if(conf.extra) wow.appendChild(conf.extra);
-      wow.appendChild(stage);
-      document.body.appendChild(wow);
-
-      cvOn();
-      later(burstAll, conf.burstAt);
-
-      later(function(){
-        var br=badge.getBoundingClientRect();
-        var dx=(br.left+br.width/2)-window.innerWidth/2;
-        var dy=(br.top+br.height/2)-window.innerHeight/2;
-        wow.style.transform='translate('+dx.toFixed(0)+'px,'+dy.toFixed(0)+'px) scale(.12)';
-        wow.style.opacity='0';
-        later(function(){
-          phase=2;
-          if(!E.calm) badge.classList.add('pulse');
-          update();
-          later(function(){
-            if(wow&&wow.parentNode) wow.parentNode.removeChild(wow);
-            wow=null;
-          },380);
-        },500);
-      }, 2300);
-    }
-
-    /* ---------- faqat "Asosiy" ---------- */
-    var home=document.querySelector('section[data-view="home"]');
-    function onHome(){ return home ? home.classList.contains('show') : true; }
-    function update(){
-      var v=onHome();
-      if(phase===1) return;
-      if(phase===0&&v){ phase=1; reveal(); return; }
-      badge.classList.toggle('in', v && !closed);
-    }
-    var vmo=null;
-    if(home&&window.MutationObserver){
-      vmo=new MutationObserver(update);
-      vmo.observe(home,{attributes:true,attributeFilter:['class']});
-    }
-    function onHash(){ setTimeout(update,30); }
-    window.addEventListener('hashchange',onHash);
-
-    var dmo=null, lastLang=lang();
-    if(window.MutationObserver){
-      dmo=new MutationObserver(function(){
-        setText(); drawIcon();
-        var L=lang();
-        if(L!==lastLang){
-          lastLang=L;
-          /* UZ/RU/EN bosilganda — o'sha tilda qaytadan tabriklaydi */
-          if(onHome() && !REDUCE){
-            badge.classList.remove('in','pulse');
-            phase=1;
-            reveal();
-          }
-        }
-      });
-      dmo.observe(document.documentElement,{attributes:true,attributeFilter:['lang','data-theme']});
-    }
-
-    setTimeout(update,380);
-
-    stop=function(){
-      for(var z=0;z<tmrs.length;z++) clearTimeout(tmrs[z]);
-      tmrs=[];
-      if(raf) cancelAnimationFrame(raf);
-      window.removeEventListener('hashchange',onHash);
-      if(vmo) vmo.disconnect();
-      if(dmo) dmo.disconnect();
-      [st,badge,cv,wow].forEach(function(n){ if(n&&n.parentNode) n.parentNode.removeChild(n); });
-      cv=null; stop=null;
-    };
-  }
-
-  window.TOGO_FX = {
-    list: CAL,
-    show: function(i){
-      try{ sessionStorage.removeItem('togoFxHide'); sessionStorage.removeItem('togoFxWow'); }catch(e){}
-      start(CAL[i]);
-    },
-    style: function(s){ STYLE=s;
-      try{ sessionStorage.removeItem('togoFxWow'); }catch(e){}
-      if(cur) start(cur); },
-    auto: function(){ start(byDate()); },
-    off:  function(){ if(stop) stop(); }
-  };
-
-  start(byDate());
-})();
-</script>
-
-<!-- ==== SINOV PANELI — faqat tekshirish uchun. Saytga chiqarishdan oldin o'chiring ==== -->
-<script>
-(function(){
-  if(!window.TOGO_FX) return;
-  var CAL = window.TOGO_FX.list;
-
-  var css = document.createElement('style');
-  css.textContent =
-    '#fxTest{position:fixed;right:16px;top:88px;width:262px;max-height:calc(100vh - 120px);z-index:200;' +
-    'background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);' +
-    'display:flex;flex-direction:column;font-family:var(--display);overflow:hidden}' +
-    '#fxTest h4{margin:0;padding:11px 13px;border-bottom:1px solid var(--line);font-size:12.5px;' +
-    'font-weight:700;color:var(--ink);display:flex;justify-content:space-between;align-items:center;cursor:pointer}' +
-    '#fxTest h4 s{text-decoration:none;color:var(--muted);font-size:11px;font-weight:500}' +
-    '#fxTest.min .sty,#fxTest.min .b,#fxTest.min .f{display:none}' +
-    '#fxTest .sty{display:flex;gap:6px;padding:10px 10px 8px}' +
-    '#fxTest .sty button{flex:1;padding:9px 4px;border-radius:9px;cursor:pointer;background:var(--soft);' +
-    'border:1px solid var(--line);color:var(--sub);font-family:var(--display);font-size:11.5px;font-weight:600}' +
-    '#fxTest .sty button.on{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}' +
-    '#fxTest .b{overflow-y:auto;padding:2px 6px 6px;border-top:1px solid var(--line)}' +
-    '#fxTest button.r{display:block;width:100%;text-align:left;background:none;cursor:pointer;' +
-    'padding:8px 9px;border-radius:9px;color:var(--sub);font-family:var(--display);font-size:12px;' +
-    'font-weight:500;border:1px solid transparent;line-height:1.3}' +
-    '#fxTest button.r:hover{background:var(--soft);color:var(--ink)}' +
-    '#fxTest button.r.on{border-color:var(--brand);color:var(--ink);background:var(--brand-soft)}' +
-    '#fxTest .f{border-top:1px solid var(--line);padding:8px}' +
-    '#fxTest .f button{width:100%;padding:9px;border-radius:9px;border:1px solid var(--line);' +
-    'background:var(--soft);color:var(--sub);font-family:var(--display);font-size:12px;font-weight:600;cursor:pointer}' +
-    '@media(max-width:900px){#fxTest{display:none}}';
-  document.head.appendChild(css);
-
-  var box = document.createElement('div');
-  box.id = 'fxTest';
-  box.innerHTML =
-    '<h4>Bayramni sinash<s>yopish &#9662;</s></h4>' +
-    '<div class="sty"><button type="button" data-s="print" class="on">CMYK bosma</button>' +
-    '<button type="button" data-s="neon">Neon vivеska</button></div>' +
-    '<div class="b"></div>' +
-    '<div class="f"><button type="button">Sana bo\'yicha (avtomatik)</button></div>';
-  document.body.appendChild(box);
-
-  var body = box.querySelector('.b');
-  CAL.forEach(function(e, i){
-    var b = document.createElement('button');
-    b.type='button'; b.className='r'; b.textContent = e.name;
-    b.addEventListener('click', function(){
-      body.querySelectorAll('button').forEach(function(x){ x.classList.remove('on'); });
-      b.classList.add('on');
-      if(typeof go === 'function') go('home');
-      window.TOGO_FX.show(i);
-    });
-    body.appendChild(b);
-  });
-
-  box.querySelector('.sty').addEventListener('click', function(ev){
-    var b = ev.target.closest('button'); if(!b) return;
-    this.querySelectorAll('button').forEach(function(x){ x.classList.remove('on'); });
-    b.classList.add('on');
-    if(typeof go === 'function') go('home');
-    window.TOGO_FX.style(b.dataset.s);
-  });
-
-  box.querySelector('.f button').addEventListener('click', function(){
-    body.querySelectorAll('button').forEach(function(x){ x.classList.remove('on'); });
-    window.TOGO_FX.auto();
-  });
-  box.querySelector('h4').addEventListener('click', function(){
-    box.classList.toggle('min');
-    box.querySelector('h4 s').innerHTML = box.classList.contains('min') ? 'ochish &#9652;' : 'yopish &#9662;';
-  });
-})();
-</script>
-
 </body></html>
