@@ -1,4 +1,6 @@
 import sourceMap from "@/data/portfolio-image-sources.json";
+import { inferPortfolioSubcategory, portfolioSubcategories, type PortfolioCategoryKey } from "@/data/portfolio-subcategories";
+import type { Locale } from "@/data/site";
 
 export const portfolioCategories = [
   "f1",
@@ -19,6 +21,8 @@ export type PortfolioImage = Readonly<{
   src: string;
   alt: string;
   source: string;
+  subcategory: string;
+  subcategoryLabel: Record<Locale, string>;
 }>;
 
 type CategorySourceMap<T> = Partial<Record<PortfolioCategory, readonly T[]>>;
@@ -45,6 +49,17 @@ const categoryLabels: Record<PortfolioCategory, string> = {
   f8: "Suvenirlar",
 };
 
+function getSubcategory(
+  category: PortfolioCategory,
+  source: string,
+  subcategoryKey?: string,
+) {
+  const key = subcategoryKey ?? inferPortfolioSubcategory(category as PortfolioCategoryKey, source);
+  const item = portfolioSubcategories[category as PortfolioCategoryKey].find((entry) => entry.key === key);
+  if (!item) throw new Error(`Unknown portfolio subcategory: ${category}/${key}`);
+  return { key, label: item.label };
+}
+
 function sourceEntries<T>(
   map: CategorySourceMap<T>,
 ): Array<[PortfolioCategory, readonly T[]]> {
@@ -69,12 +84,16 @@ function createAsset(
   source: string,
   filename: string,
   ordinal: string,
+  subcategoryKey?: string,
 ): PortfolioImage {
+  const subcategory = getSubcategory(category, source, subcategoryKey);
   return {
     id,
     category,
     source,
     src: `/img/portfolio/${category}/${filename}.webp`,
+    subcategory: subcategory.key,
+    subcategoryLabel: subcategory.label,
     alt: `TOGO GROUP — ${categoryLabels[category]} — ${ordinal}`,
   };
 }
@@ -106,7 +125,14 @@ const telegramAssets = sourceEntries(sources.telegram).flatMap(
     ),
 );
 
+// These were visually audited.  Plaques, acrylic awards, commemorative plates
+// and trophies are all intentionally grouped under the Statuetka filter.
+const statuetteSouvenirOrdinals = new Set([
+  2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 14, 16, 17, 18, 20, 21, 22, 23, 24, 25, 26, 27,
+]);
+
 const newSouvenirAssets = sources.newSouvenirs.map((source, index) => {
+  const ordinal = index + 1;
   const padded = String(index + 1).padStart(2, "0");
   return createAsset(
     "f8",
@@ -114,6 +140,11 @@ const newSouvenirAssets = sources.newSouvenirs.map((source, index) => {
     source,
     `suvenir-${padded}`,
     `yangi suvenir ${padded}`,
+    statuetteSouvenirOrdinals.has(ordinal)
+      ? "statuetka"
+      : ordinal === 15
+        ? "termos"
+        : "toplam",
   );
 });
 

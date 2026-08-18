@@ -8,6 +8,7 @@ import {
 } from "@/data/site";
 import { portfolioImagesByCategory } from "@/components/portfolio-images";
 import PortfolioGallery from "@/components/site/portfolio-gallery";
+import PortfolioCategory from "@/components/site/portfolio-category";
 import LegacyHero from "@/components/hero";
 import { Box, Flag, Gift, MapPinned, Monitor, PanelTop, Presentation, Signpost, Wrench } from "lucide-react";
 
@@ -86,9 +87,6 @@ export function PortfolioPreview({
     category && portfolioCategories.some(([key]) => key === category)
       ? category
       : undefined;
-  const categories = selected
-    ? portfolioCategories.filter(([key]) => key === selected)
-    : portfolioCategories;
   const portfolioDetails: Record<string, { description: string; chips: string[] }> = {
     f1: { description: "Fasad bannerlari, bilbord polotnolari, to‘siq va panjara qoplamalari, ichki reklama.", chips: ["3.2 m kenglik · 1440 dpi", "Banner, setka, backlit", "1 ish kunida tayyor"] },
     f2: { description: "Do‘kon, restoran, klinika va biznes markaz peshtoqlari uchun yorug‘lik reklamasi.", chips: ["Akril 3–10 mm", "12 oy kafolat", "O‘lchov va montaj"] },
@@ -124,7 +122,7 @@ export function PortfolioPreview({
           </Link>
         ))}
       </div>
-      {selected ? <PortfolioGallery locale={locale} items={categories.flatMap(([key, label]) => portfolioImagesByCategory[key as keyof typeof portfolioImagesByCategory].map((image) => ({ ...image, alt: label[locale], caption: label[locale] }))) } /> : <div className="pf">{portfolioCategories.map(([key, label]) => {
+      {selected ? <PortfolioCategory locale={locale} category={selected as keyof typeof portfolioImagesByCategory} items={portfolioImagesByCategory[selected as keyof typeof portfolioImagesByCategory]} /> : <div className="pf">{portfolioCategories.map(([key, label]) => {
         const details = portfolioDetails[key];
         const images = portfolioImagesByCategory[key as keyof typeof portfolioImagesByCategory].slice(0, 4);
         return <article className="pfb" key={key}><Link className="pfh" href={`/${locale}/portfolio/${key}`}><div className="ico"><span>0{key.slice(1)}</span></div><div className="pf-copy"><h3>{label[locale]}</h3><p>{details.description}</p><div className="chips">{details.chips.map((chip) => <span className="chip" key={chip}>{chip}</span>)}</div></div><span className="more">Barcha ishlarni ko‘rish →</span></Link><div className="shots">{images.map((image) => <Link className="shot" href={`/${locale}/portfolio/${key}`} key={image.id} aria-label={`${label[locale]}: barcha ishlarni ko‘rish`}><Image src={image.src} alt={image.alt} width={800} height={600} sizes="(max-width: 700px) 50vw, 25vw" /></Link>)}</div></article>;
