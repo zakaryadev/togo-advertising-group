@@ -125,14 +125,7 @@ const telegramAssets = sourceEntries(sources.telegram).flatMap(
     ),
 );
 
-// These were visually audited.  Plaques, acrylic awards, commemorative plates
-// and trophies are all intentionally grouped under the Statuetka filter.
-const statuetteSouvenirOrdinals = new Set([
-  2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 14, 16, 17, 18, 20, 21, 22, 23, 24, 25, 26, 27,
-]);
-
 const newSouvenirAssets = sources.newSouvenirs.map((source, index) => {
-  const ordinal = index + 1;
   const padded = String(index + 1).padStart(2, "0");
   return createAsset(
     "f8",
@@ -140,11 +133,7 @@ const newSouvenirAssets = sources.newSouvenirs.map((source, index) => {
     source,
     `suvenir-${padded}`,
     `yangi suvenir ${padded}`,
-    statuetteSouvenirOrdinals.has(ordinal)
-      ? "statuetka"
-      : ordinal === 15
-        ? "termos"
-        : "toplam",
+    "bokal",
   );
 });
 

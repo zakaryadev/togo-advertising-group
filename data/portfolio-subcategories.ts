@@ -20,6 +20,8 @@ export function inferPortfolioSubcategory(category: PortfolioCategoryKey, source
   if (category === "f8") {
     if (file.includes("thermos")) return "termos";
     if (file.includes("tshirt") || file.includes("polo") || file.includes("dtf")) return "futbolka";
+    // Visually audited awards: acrylic trophies, plaques and commemorative plates.
+    if (/suvenir[-_]new[-_](2|3|4|5|6|7|8|9|11|12|14|16|17|18|20|21|22|23|24|25|26|27)\.webp/.test(file)) return "statuetka";
     return "toplam";
   }
   if (category === "f5") {

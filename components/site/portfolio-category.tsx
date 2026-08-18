@@ -9,11 +9,6 @@ import type { PortfolioImage } from "@/components/portfolio-images";
 export default function PortfolioCategory({ category, items, locale }: { category: PortfolioCategoryKey; items: readonly PortfolioImage[]; locale: Locale }) {
   const [selected, setSelected] = useState<string | null>(null);
   const filters = portfolioSubcategories[category];
-  // Detailed product filters are only part of the souvenir catalogue for now.
-  // The remaining portfolio sections stay as clean, unfiltered galleries.
-  if (category !== "f8") {
-    return <PortfolioGallery locale={locale} items={items.map((image) => ({ ...image, caption: image.subcategoryLabel[locale] }))} />;
-  }
   const visible = selected ? items.filter((image) => image.subcategory === selected) : items;
   const allLabel = locale === "ru" ? "Все" : locale === "en" ? "All" : "Hammasi";
   const activeLabel = filters.find((filter) => filter.key === selected)?.label[locale];
