@@ -87,7 +87,7 @@ export function PortfolioPreview({
           portfolioImagesByCategory[
             key as keyof typeof portfolioImagesByCategory
           ]
-            .slice(0, selected ? 24 : 3)
+            .slice(0, selected ? undefined : 3)
             .map((image) => ({ ...image, alt: label[locale], caption: label[locale] })),
         )} />
     </section>
