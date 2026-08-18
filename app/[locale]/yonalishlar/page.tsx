@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DirectionsPage } from "@/components/site/sections";
+import { ReferenceDirectionsPage } from "@/components/site/reference-pages";
 import { isLocale, siteUrl } from "@/data/site";
 import { notFound } from "next/navigation";
 
@@ -14,5 +14,5 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/yonalish
 export default async function Page({ params }: PageProps<"/[locale]/yonalishlar">) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
-  return <DirectionsPage locale={locale} />;
+  return <ReferenceDirectionsPage locale={locale} />;
 }

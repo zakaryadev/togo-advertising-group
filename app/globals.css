@@ -2098,6 +2098,7 @@ nav.menu a.on {
   color: var(--brand);
   background: var(--brand-soft);
 }
+.mobile-drawer a.on { color: var(--brand); background: var(--brand-soft); }
 .crumb {
   display: inline-flex;
   align-items: center;
@@ -4701,3 +4702,29 @@ html[data-theme="light"] .reference-footer .flogo img {
 .reference-page .evc h2 { font-family: var(--display); font-size: 16px; font-weight: 700; margin-bottom: 8px; line-height: 1.28; }
 .reference-page .evc p { font-size: 14px; color: var(--muted); line-height: 1.5; }
 .reference-page .step h2 { font-family: var(--display); font-size: 16.5px; font-weight: 700; margin-bottom: 9px; letter-spacing: -.015em; }
+
+/* Route-based implementation of the approved reference home composition. */
+.home-sections { padding-top: 10px; padding-bottom: 68px; }
+.section-label { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--brand); margin-bottom: 16px; }
+.tgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.tile { min-height: 128px; display: flex; flex-direction: column; gap: 10px; border: 1px solid var(--line); border-radius: 15px; background: var(--card); padding: 18px; transition: transform .16s, border-color .16s, background .16s; }
+.tile:hover { transform: translateY(-3px); border-color: var(--brand); background: var(--soft); }
+.tile > svg { width: 22px; height: 22px; fill: none; stroke: var(--brand); stroke-width: 1.8; }
+.tile b { font-family: var(--display); font-size: 17px; font-weight: 750; line-height: 1.2; }
+.tile span { color: var(--sub); font-size: 13px; line-height: 1.45; }
+.tile.feat { background: var(--brand); border-color: var(--brand); color: var(--on-brand); }
+.tile.feat > svg { stroke: var(--on-brand); }.tile.feat span { color: color-mix(in srgb, var(--on-brand) 78%, transparent); }
+.pfq { margin-top: 48px; }.pfqgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.pfqc { position: relative; display: flex; flex-direction: column; min-height: 142px; gap: 14px; justify-content: flex-end; padding: 18px; border: 1px solid var(--line); border-radius: 15px; background: var(--card); overflow: hidden; transition: .16s; }
+.pfqc:hover { transform: translateY(-3px); border-color: var(--brand); }.pfqc-image { object-fit: cover; opacity: .56; transition: transform .3s; }.pfqc:hover .pfqc-image { transform: scale(1.06); }.pfqc-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6, 10, 18, .12), rgba(6, 10, 18, .9)); }.pfq-number { position: absolute; right: 15px; top: 13px; color: var(--brand); font: 700 10px var(--mono); letter-spacing: .12em; z-index: 1; }.pfqc b, .pfqc i { position: relative; z-index: 1; }.pfqc b { font-family: var(--display); font-size: 16px; line-height: 1.25; color: #fff; }.pfqc i { color: rgba(255,255,255,.75); font-style: normal; font-size: 12px; }
+.nolist { margin-top: 54px; border: 1px solid var(--line2); border-left: 3px solid var(--brand); border-radius: 20px; background: var(--card); padding: 30px 32px; }.nolist .nohead { display: flex; gap: 17px; align-items: flex-start; }.nolist .nohead > svg { width: 31px; height: 31px; flex: 0 0 auto; color: var(--brand); stroke-width: 1.8; }.nolist h2 { font-family: var(--display); font-size: clamp(25px, 3vw, 36px); line-height: 1.08; letter-spacing: -.04em; }.nolist h2 em { color: var(--brand); font-style: normal; }.nolist p { max-width: 76ch; margin-top: 13px; color: var(--sub); font-size: 15px; line-height: 1.63; }.nolist .nogrid { padding-left: 48px; }.noitem { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line2); border-radius: 11px; background: var(--soft); padding: 10px 14px; font-size: 14px; font-weight: 650; }.noitem svg { width: 17px; height: 17px; color: var(--brand); stroke-width: 1.9; }.noitem i { font-style: normal; }
+.callbtn, .dcall { display: inline-flex; align-items: center; gap: 7px; color: var(--sub); font-size: 13px; white-space: nowrap; }.callbtn svg, .dcall svg { width: 16px; height: 16px; color: var(--brand); stroke-width: 1.9; }.callbtn:hover, .dcall:hover { color: var(--brand); }
+.reference-footer .fsoc a { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border-radius: 12px; }.reference-footer .fsoc svg { width: 18px; height: 18px; stroke-width: 1.7; }
+.career-form { max-width: 860px; }.drop { min-height: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; border: 1px dashed var(--line2); border-radius: 14px; background: var(--soft); cursor: pointer; color: var(--sub); }.drop svg { width: 25px; height: 25px; color: var(--brand); }.drop input { max-width: 240px; color: var(--sub); }.wide { justify-content: center; width: 100%; }
+@media (max-width: 1079px) { .desktop-only { display: none !important; }.tgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }.pfqgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .home-sections { padding-bottom: 44px; }.tgrid, .pfqgrid { grid-template-columns: 1fr; }.tile { min-height: 112px; }.nolist { margin-top: 36px; padding: 24px 20px; }.nolist .nohead { gap: 12px; }.nolist .nohead > svg { width: 25px; height: 25px; }.nolist .nogrid { padding-left: 0; }.nolist h2 { font-size: 26px; } }
+
+/* The reference contact CTA is an anchor in the route implementation. Keep its
+   SVG inside the button-sized control instead of the browser's 300×150 default. */
+.big .cta { margin-top: 20px; align-self: flex-start; background: var(--card); color: var(--brand-ink); border: 0; border-radius: 11px; padding: 13px 20px; font-size: 13.5px; }
+.big .cta svg { width: 16px; height: 16px; flex: 0 0 16px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }

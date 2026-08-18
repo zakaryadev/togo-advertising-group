@@ -3,13 +3,13 @@ import { locales, portfolioCategories, services, siteUrl } from "@/data/site";
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     "",
-    "/xizmatlar",
     "/yonalishlar",
     "/portfolio",
     "/narxlar",
     "/tadbirlar",
     "/jarayon",
     "/rekvizitlar",
+    "/karyera",
     "/aloqa",
   ];
   const lastModified = new Date();

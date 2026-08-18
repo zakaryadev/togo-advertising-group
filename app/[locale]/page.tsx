@@ -1,2 +1,2 @@
-import { Hero, PortfolioPreview, ServicesPreview } from "@/components/site/sections"; import { isLocale } from "@/data/site"; import { notFound } from "next/navigation";
-export default async function Home({ params }: PageProps<"/[locale]">) { const { locale } = await params; if (!isLocale(locale)) notFound(); return <><Hero locale={locale} /><ServicesPreview locale={locale} /><PortfolioPreview locale={locale} /></>; }
+import { HomeSections } from "@/components/site/home-sections"; import { Hero } from "@/components/site/sections"; import { isLocale } from "@/data/site"; import { notFound } from "next/navigation";
+export default async function Home({ params }: PageProps<"/[locale]">) { const { locale } = await params; if (!isLocale(locale)) notFound(); return <><Hero locale={locale} /><HomeSections locale={locale} /></>; }

@@ -1,0 +1,50 @@
+"use client";
+
+import Link from "next/link";
+import { contact, type Locale } from "@/data/site";
+import { DirectionIcon, EventIcon, ServiceIcon, contactIcons } from "@/components/site/reference-icon";
+
+const back = (locale: Locale) => locale === "ru" ? "Главная" : locale === "en" ? "Home" : "Asosiy";
+const backIcon = <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>;
+
+const directions = [
+  ["Obyomli harflar va yorug‘lik peshtoqlari", "Akril obyomli harflar, kontur yoritish, nuqtali diod, alyukabond bort, yorug‘lik qutilari. Elektr sxemasi va kafolat hujjati bilan topshiriladi."],
+  ["Kran va balandlik reklamasi", "Minorali kranlarga banner va setka, qurilish to‘siqlari, fasad brandmaueri. Shamol yukiga hisob, alpinist brigadasi va ruxsat hujjatlari bizdan."],
+  ["Katta formatli va UV bosma", "3.2 m gacha kenglik, 1440 dpi. Banner, setka, orakal, backlit, xolst va qattiq materiallarga to‘g‘ridan-to‘g‘ri UV bosma."],
+  ["Poligrafiya va qadoqlash", "Vizitka, katalog, flayer, papka, bloknot, kalendar va qog‘oz paket. Ofset va raqamli bosma, laminatsiya, folga, konges."],
+  ["Ko‘rgazma va tadbir ofarmleniyasi", "Stend, press-wall, roll-up, navigatsiya, brendlangan zona va suvenir. CAEx Expo Centre va MDH davlatlaridagi tadbirlar uchun kalit topshirish shartida."],
+  ["Brending va navigatsiya", "Logotip, brendbuk, bino ichi navigatsiya tizimi, tablichka va stendlar, avtopark brendlash. Barcha maketlar manba fayllari bilan."],
+] as const;
+
+const groups = [
+  ["Tashqi reklama", "Tom va kranga reklama", "Obyomli harf", "Yorug‘lik qutisi", "LED ekran", "Neon reklama", "Yuguruvchi qator", "Kontrajur yoritish", "Fasad reklamasi (Alyukabond)", "Tom ustiga logotip", "Stella", "Shtender", "Navigatsiya ko‘rsatkichlari", "Ofis tablichkalari", "Ma’lumot stendlari", "Nomercha va beydjik"],
+  ["Bosma va ishlov", "Baner bosma", "Orakal bosma", "Tumanka", "O‘ziyopishqoq plyonka", "UV ultrabinafsha bosma", "Ekosolvent bosma", "Plotter kesish", "Lazer kesish va gravyura", "Rover (CNC) xizmati", "Tonirovka", "Quyoshdan himoya plyonka", "Ofis oynasi bezagi"],
+  ["Poligrafiya", "Flayer", "Buklet", "Bloknot bosma", "Katalog", "Vizitka", "Kalendar (devor / stol)", "Logotipli paket"],
+  ["Ko‘rgazma konstruksiyalari", "Pauchok", "Roll Up", "Parus bayroq", "Press-wall", "Mobil stendlar", "Noodatiy stend va konstruksiya"],
+  ["Suvenir va kiyim", "Ruchka bosma", "Bokal va krujka bosma", "Futbolka bosma", "Statuetka", "Logotipli fleshka", "Eko-sumka bosma bilan", "Logotipli soyabon", "Sovg‘a to‘plamlari", "Qurilish kaskasi bosma", "Ish formasi va logotip"],
+  ["Transport brendlash", "Avtomobil brendlash", "Avtobuslarda reklama", "Maxsus texnikada reklama"],
+] as const;
+
+export function ReferenceDirectionsPage({ locale }: { locale: Locale }) {
+  const title = locale === "ru" ? "Что мы производим" : locale === "en" ? "What we produce" : "Nima ishlab chiqaramiz";
+  const lead = locale === "ru" ? "За каждым заказом закреплён один менеджер. Производство не начинается, пока макет не утверждён." : locale === "en" ? "One manager is assigned to every order. Production does not begin until the artwork is approved." : "Har bir buyurtma bitta menejerga biriktiriladi. Maket tasdiqlanmaguncha ishlab chiqarish boshlanmaydi.";
+  let serviceIndex = 0;
+  return <section className="wrap section page reference-page"><Link className="crumb" href={`/${locale}`}>{backIcon}{back(locale)}</Link><p className="kick">01 — {locale === "ru" ? "Направления" : locale === "en" ? "Directions" : "Yo‘nalishlar"}</p><h1>{title}</h1><p className="slead">{lead}</p><div className="cards direction-cards">{directions.map(([name, text], index) => <article className="c" key={name}><span className="n">0{index + 1}</span><div className="ico"><DirectionIcon index={index} /></div><h2>{name}</h2><p>{text}</p></article>)}</div><div className="extra"><h2>{locale === "ru" ? "Услуги наружной рекламы" : locale === "en" ? "Outdoor advertising services" : "Tashqi reklama xizmatlari"}</h2><p>{locale === "ru" ? "Более пятидесяти позиций — от вывески до сувенира. Всё на собственной базе, по одному договору и с одним менеджером." : locale === "en" ? "More than fifty items, from signage to merchandise. All produced in-house, under one contract with one manager." : "Ellikdan ortiq pozitsiya — peshtoqdan suvenirgacha. Barchasi o‘z bazamizda, bitta shartnoma va bitta menejer bilan."}</p><div className="svall">{groups.map(([name, ...items]) => <div className="svgrp" key={name}><h3>{name}</h3><div className="svgrid">{items.map((item) => { const index = serviceIndex++; return <div className="sv" key={item}><ServiceIcon index={index} /><span>{item}</span></div>; })}</div></div>)}</div></div><Link className="back" href={`/${locale}`}>{backIcon}{locale === "ru" ? "На главную" : locale === "en" ? "Back to home" : "Asosiy sahifaga qaytish"}</Link></section>;
+}
+
+const events = [
+  ["Stend loyihasi va yig‘ish", "3D vizualizatsiya, konstruksiya, bosma, yig‘ish va demontaj"], ["Press-wall va foto zona", "3×3 m dan katta o‘lchamgacha, sumka bilan"], ["Navigatsiya va POS", "Roll-up, parus bayroq, promostoyka, ko‘rsatkichlar"], ["Delegatsiya to‘plami", "Brendlangan bloknot, ruchka, beydjik, sovg‘a to‘plami"], ["Sahna va fon bezagi", "Prezidium, banner-fon, LED ekran ramkasi, sahna old bezagi"], ["Navigatsiya va ko‘rsatkichlar", "Zal sxemasi, yo‘nalish belgilari, registratsiya zonasi"], ["Brendlangan zona va foto nuqta", "Press-wall, selfi ramka, brend devor, ko‘chma mebel"], ["Delegatsiya va mehmon to‘plami", "Beydjik, papka, bloknot, ruchka, sovg‘a, tashqi propusk"],
+] as const;
+
+export function ReferenceEventsPage({ locale }: { locale: Locale }) {
+  const title = locale === "ru" ? "Полностью оформляем выставки и мероприятия" : locale === "en" ? "Complete exhibition and event production" : "Ko‘rgazma va tadbirlarni to‘liq ofarmlaymiz";
+  const lead = locale === "ru" ? "Выставки в CAEx Expo Centre и на других площадках, форумы и мероприятия в странах СНГ — от брифа до демонтажа." : locale === "en" ? "Exhibitions at CAEx Expo Centre and other venues, forums and events across the CIS — from brief to dismantling." : "CAEx Expo Centre va boshqa maydonlardagi ko‘rgazmalar, MDH davlatlaridagi forum va tadbirlar — brif olishdan tadbir tugagach demontajgacha. Bitta jamoa, bitta shartnoma, bitta javobgar. Xalqaro delegatsiyalar uchun to‘liq ofarmleniya: stenddan sovg‘a to‘plamigacha.";
+  return <section className="wrap section page reference-page"><Link className="crumb" href={`/${locale}`}>{backIcon}{back(locale)}</Link><p className="kick">03 — {locale === "ru" ? "Мероприятия" : locale === "en" ? "Events" : "Tadbirlar"}</p><h1>{title}</h1><p className="slead">{lead}</p><div className="ev">{events.map(([name, description], index) => <article className="evc" key={name}><EventIcon index={index} /><h2>{name}</h2><p>{description}</p></article>)}</div><Link className="back" href={`/${locale}`}>{backIcon}{locale === "ru" ? "На главную" : locale === "en" ? "Back to home" : "Asosiy sahifaga qaytish"}</Link></section>;
+}
+
+export function ReferenceContactPage({ locale }: { locale: Locale }) {
+  const title = locale === "ru" ? "Рассчитаем ваш проект" : locale === "en" ? "We will estimate your project" : "Loyihangizni hisoblaymiz";
+  const lead = locale === "ru" ? "Если знаете размер и материал — рассчитаем за час. Если нет — напишите, мы сами подберём." : locale === "en" ? "If you know the size and material, we will calculate within an hour. If not, write to us and we will select them." : "O‘lcham va materialni bilsangiz — bir soatda hisoblab beramiz. Bilmasangiz ham yozing, o‘zimiz tanlab beramiz.";
+  const rows = [[contact.phoneHref, contactIcons.phone, locale === "ru" ? "Отдел продаж" : locale === "en" ? "Sales department" : "Savdo bo‘limi", contact.phone], ["tel:+998990000602", contactIcons.phone, locale === "ru" ? "Бухгалтерия" : locale === "en" ? "Accounting" : "Buxgalteriya", "+998 99 000 06 02"], [contact.telegram, contactIcons.telegram, "Telegram", "@togo_group_pro"], [`mailto:${contact.email}`, contactIcons.mail, locale === "ru" ? "Почта" : locale === "en" ? "Email" : "Pochta", contact.email], ["https://maps.google.com/?q=Yashnobod+MFY+4-Aviasozlar+9+Tashkent", contactIcons.location, locale === "ru" ? "Офис" : locale === "en" ? "Office" : "Ofis", "Toshkent shahri, Yashnobod tumani, Yashnobod MFY, 4-Aviasozlar mavzesi, 9-uy"]] as const;
+  return <section className="wrap section page reference-page"><Link className="crumb" href={`/${locale}`}>{backIcon}{back(locale)}</Link><p className="kick">06 — {locale === "ru" ? "Контакты" : locale === "en" ? "Contact" : "Aloqa"}</p><h1>{title}</h1><p className="slead">{lead}</p><div className="contact"> <div className="clist">{rows.map(([href, icon, label, value]) => <a className="cl" href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined} key={label}>{icon}<span><i>{label}</i><b>{value}</b></span></a>)}</div><div className="big"><h3>{title}</h3><p>{locale === "ru" ? "Онлайн — по услугам и ценам" : locale === "en" ? "Online — services and prices" : "Onlayn — xizmat va narxlar bo‘yicha"}</p><a className="cta" href={contact.telegram} target="_blank" rel="noreferrer">{contactIcons.chat}<span>{locale === "ru" ? "Спросить AI-менеджера" : locale === "en" ? "Ask the AI manager" : "AI menejerdan so‘rash"}</span></a></div></div><div className="socials"><a href={contact.instagram} target="_blank" rel="noreferrer">Instagram</a><a href={contact.telegram} target="_blank" rel="noreferrer">Telegram</a></div><Link className="back" href={`/${locale}`}>{backIcon}{locale === "ru" ? "На главную" : locale === "en" ? "Back to home" : "Asosiy sahifaga qaytish"}</Link></section>;
+}
