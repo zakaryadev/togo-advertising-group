@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import type { Locale } from "@/data/site";
 
-const DEEPSEEK_KEY = atob("c2stYTNlMzYzMDBiNmM3NDQ3M2JkNWNiNTc0ZmI1M2I1Yjg=");
+const DEEPSEEK_KEY = "";
 
 const getSystemPrompt = (lang: "uz" | "ru" | "en") => {
   const langInstructions = {
@@ -97,7 +98,7 @@ const widgetTranslations = {
   },
 };
 
-export default function AiManagerWidget() {
+export default function AiManagerWidget({ locale = "uz" }: { locale?: Locale }) {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [inputVal, setInputVal] = useState("");
@@ -120,46 +121,9 @@ export default function AiManagerWidget() {
   }, [messages, loading]);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      (window as any).__TOGO_AI_MANAGER_INIT = true;
-    }
-  }, []);
-
-  useEffect(() => {
-    if (typeof document !== "undefined") {
-      const currentLang = (document.documentElement.lang || "uz") as
-        | "uz"
-        | "ru"
-        | "en";
-      setLang(currentLang);
-      setMessages([
-        {
-          role: "assistant",
-          content: widgetTranslations.welcome[currentLang],
-        },
-      ]);
-    }
-  }, []);
-
-  useEffect(() => {
-    const onLangChange = (e: Event) => {
-      const customEvent = e as CustomEvent<"uz" | "ru" | "en">;
-      if (customEvent.detail) {
-        const nextLang = customEvent.detail;
-        setLang(nextLang);
-        setMessages([
-          {
-            role: "assistant",
-            content: widgetTranslations.welcome[nextLang],
-          },
-        ]);
-      }
-    };
-    window.addEventListener("togo_lang_change", onLangChange);
-    return () => {
-      window.removeEventListener("togo_lang_change", onLangChange);
-    };
-  }, []);
+    setLang(locale);
+    setMessages([{ role: "assistant", content: widgetTranslations.welcome[locale] }]);
+  }, [locale]);
 
   async function handleSend(textToSend?: string) {
     const text = (textToSend || inputVal).trim();
@@ -171,6 +135,7 @@ export default function AiManagerWidget() {
     setLoading(true);
 
     try {
+      if (!DEEPSEEK_KEY) throw new Error("AI service is not configured");
       const res = await fetch("https://api.deepseek.com/chat/completions", {
         method: "POST",
         headers: {

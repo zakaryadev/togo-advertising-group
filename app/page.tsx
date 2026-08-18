@@ -1,5 +1,2 @@
-import LandingContainer from "@/components/landing-container";
-
-export default function Home() {
-  return <LandingContainer />;
-}
+import { redirect } from "next/navigation";
+export default function RootPage() { redirect("/uz"); }

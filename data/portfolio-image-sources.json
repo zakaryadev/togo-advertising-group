@@ -83,7 +83,20 @@
       "public/img/portfolio/suvenir_new_27.webp"
     ]
   },
-  "uploads": {},
+  "uploads": {
+    "f8": [
+      "new-images/dtf-tshirt-bigcase.png",
+      "new-images/polo-tbm-30-years.png",
+      "new-images/polo-technical-team.png",
+      "new-images/tshirt-dezfarma.png",
+      "new-images/tshirt-arhat-inks.png",
+      "new-images/polo-ba-holding.png",
+      "new-images/polo-vosiq-school.png",
+      "new-images/thermos-auto-techline.png",
+      "new-images/thermos-markab.png",
+      "new-images/thermos-uzauto-cepla.png"
+    ]
+  },
   "newSouvenirs": [
     "suvenir/Изображение Codex 17 авг. 2026 г., 22_34_23.png",
     "suvenir/Изображение Codex 17 авг. 2026 г., 22_37_46.png",

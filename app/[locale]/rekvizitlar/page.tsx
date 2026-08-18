@@ -1,0 +1,1 @@
+import { StaticPage } from "@/components/site/sections"; import { isLocale } from "@/data/site"; import { notFound } from "next/navigation"; export default async function Page({ params }: PageProps<"/[locale]/rekvizitlar">) { const { locale } = await params; if (!isLocale(locale)) notFound(); return <StaticPage locale={locale} page="rekvizitlar" />; }

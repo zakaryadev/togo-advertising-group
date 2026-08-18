@@ -8,7 +8,9 @@ export default function LedCanvas() {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     const canvas = document.createElement("canvas");
     const offCanvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
@@ -75,7 +77,8 @@ export default function LedCanvas() {
     function readTheme() {
       const cs = getComputedStyle(document.documentElement);
       RGB = parseColor(cs.getPropertyValue("--brand"));
-      const light = document.documentElement.getAttribute("data-theme") === "light";
+      const light =
+        document.documentElement.getAttribute("data-theme") === "light";
       baseCol = light ? "rgba(13,21,34,.075)" : "rgba(255,255,255,.055)";
       drawBase();
     }
@@ -154,7 +157,12 @@ export default function LedCanvas() {
         for (let k = 1; k < trail.length; k++) {
           const p = trail[k - 1];
           const c = trail[k];
-          ctx.quadraticCurveTo(p[0], p[1], (p[0] + c[0]) / 2, (p[1] + c[1]) / 2);
+          ctx.quadraticCurveTo(
+            p[0],
+            p[1],
+            (p[0] + c[0]) / 2,
+            (p[1] + c[1]) / 2,
+          );
         }
         ctx.stroke();
         ctx.shadowBlur = 0;

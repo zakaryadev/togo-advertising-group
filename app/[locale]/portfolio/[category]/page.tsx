@@ -1,0 +1,3 @@
+import { PortfolioPreview } from "@/components/site/sections"; import { isLocale, locales, portfolioCategories } from "@/data/site"; import { notFound } from "next/navigation";
+export function generateStaticParams() { return locales.flatMap((locale) => portfolioCategories.map(([category]) => ({ locale, category }))); }
+export default async function Page({ params }: PageProps<"/[locale]/portfolio/[category]">) { const { locale, category } = await params; if (!isLocale(locale) || !portfolioCategories.some(([key]) => key === category)) notFound(); return <PortfolioPreview locale={locale} category={category} />; }

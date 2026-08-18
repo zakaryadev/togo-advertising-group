@@ -1,0 +1,1 @@
+import Link from "next/link"; export default function NotFound() { return <main className="wrap error-page"><p className="kick">404</p><h1>Sahifa topilmadi</h1><Link className="cta" href="/uz">Bosh sahifa</Link></main>; }

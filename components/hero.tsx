@@ -1,129 +1,35 @@
 import Link from "next/link";
+import { heroCopy, labels, type Locale } from "@/data/site";
 
-export default function Hero() {
-  return (
-    <>
-      <section className="hero wrap" id="home">
-        <div className="herotext">
-          <div className="eyebrow">
-            <svg
-              width="13"
-              height="13"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg>
-            <span>Toshkentda to'liq ishlab chiqarish sikli</span>
-          </div>
+const ticker = "Tom va kranga reklama  •  Obyomli harf  •  Yorug'lik qutisi  •  LED ekran  •  Neon reklama  •  Yuguruvchi qator  •  Kontrajur yoritish  •  Fasad reklamasi  •  Tom ustiga logotip  •  Stella  •  Navigatsiya ko'rsatkichlari  •  Banner bosma  •  UV bosma  •  Poligrafiya  •  Roll Up  •  Press-wall  •  Suvenirlar  •  Avtomobil brendlash  •  ";
+const specificationLabels = { uz: ["BOSMA KENGLIGI", "BOSMA ANIQLIGI", "KONSTRUKSIYA KAFOLATI", "BALANDLIKDAGI MONTAJ"], ru: ["ШИРИНА ПЕЧАТИ", "РАЗРЕШЕНИЕ", "ГАРАНТИЯ КОНСТРУКЦИИ", "ВЫСОТНЫЙ МОНТАЖ"], en: ["PRINT WIDTH", "RESOLUTION", "STRUCTURE WARRANTY", "HEIGHT INSTALLATION"] } as const;
 
-          <h1>
-            Obyomli harflar, <em>kran reklamasi</em> va poligrafiya
-          </h1>
+export default function Hero({ locale }: { locale: Locale }) {
+  const copy = heroCopy;
+  const signWord = locale === "ru" ? "РЕКЛАМА" : locale === "en" ? "ADVERTISING" : "REKLAMA";
+  const step = locale === "en" ? 25 : 34;
+  const startX = locale === "en" ? 122 : 140;
+  const letterWidth = locale === "en" ? 22 : 30;
+  const specs = specificationLabels[locale];
 
-          <p className="lead">
-            Yashnobod tumanidagi o'z sexlarimizda dizayndan tortib minorali kran va balandlikdagi murakkab montajgacha — bitta jamoada. Ochiq narxlar, davlat xaridlari, EHF va kafolat.
-          </p>
-
-          <div className="hbtns">
-            <Link href="#anketa" className="cta">
-              <span>BETA-HISOB OLISH</span>
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </Link>
-            <Link href="#portfolio" className="cta ghost">
-              <span>PORTFOLIO</span>
-            </Link>
-          </div>
-
-          <div className="specs">
-            <div className="spec">
-              <i>TAJRIBA</i>
-              <b>7+ YIL</b>
-            </div>
-            <div className="spec">
-              <i>LOYIHALAR</i>
-              <b>500+</b>
-            </div>
-            <div className="spec">
-              <i>KAFOLAT</i>
-              <b>12 OY</b>
-            </div>
-            <div className="spec">
-              <i>MUDDAT</i>
-              <b>1-3 KUN</b>
-            </div>
-          </div>
-        </div>
-
-        {/* Vector scene illustration */}
-        <div className="scene" aria-hidden="true">
-          <svg viewBox="0 0 800 600" className="sc">
-            <g className="bgline">
-              <path d="M 0 500 L 800 500" />
-              <path d="M 0 450 L 800 450" />
-            </g>
-            <path className="ground" d="M 40 500 L 760 500" />
-            
-            {/* Building framework */}
-            <rect x="220" y="240" width="360" height="260" className="wallb" />
-            <rect x="220" y="240" width="360" height="260" className="wall" />
-            <rect x="250" y="270" width="60" height="80" className="win" />
-            <rect x="340" y="270" width="60" height="80" className="win" />
-            <rect x="430" y="270" width="60" height="80" className="win" />
-            <rect x="520" y="270" width="60" height="80" className="win" />
-            <rect x="360" y="410" width="80" height="90" className="door" />
-
-            {/* Glowing sign letters */}
-            <g className="ln l2">
-              <rect x="240" y="160" width="80" height="50" rx="8" />
-              <text x="280" y="187" textAnchor="middle" fontSize="24">
-                TO
-              </text>
-            </g>
-            <g className="ln l3">
-              <rect x="330" y="160" width="80" height="50" rx="8" />
-              <text x="370" y="187" textAnchor="middle" fontSize="24">
-                GO
-              </text>
-            </g>
-            <g className="ln">
-              <rect x="420" y="160" width="140" height="50" rx="8" />
-              <text x="490" y="187" textAnchor="middle" fontSize="22">
-                GROUP
-              </text>
-            </g>
-
-            {/* Worker on scaffolding */}
-            <g className="worker">
-              <line x1="600" y1="120" x2="600" y2="500" className="rail" />
-              <line x1="640" y1="120" x2="640" y2="500" className="rail" />
-              <circle cx="620" cy="220" r="14" className="helmet" />
-              <rect x="612" y="234" width="16" height="30" rx="4" className="suit" />
-              <line x1="620" y1="240" x2="570" y2="210" className="arm" strokeWidth="6" />
-            </g>
-          </svg>
-        </div>
-      </section>
-
-      {/* Marquee ticker */}
-      <div className="mq bleed">
-        <div>
-          <span>OBYOMLI HARFLAR</span> • KRAN REKLAMASI • KATTA FORMATLI BOSMA • UV BOSMA • POLIGRAFIYA • KO'RGAZMA STENDLARI • LIGHTBOX • AVTO BRENDLASH •
-          <span>OBYOMLI HARFLAR</span> • KRAN REKLAMASI • KATTA FORMATLI BOSMA • UV BOSMA • POLIGRAFIYA • KO'RGAZMA STENDLARI • LIGHTBOX • AVTO BRENDLASH •
-        </div>
+  return <>
+    <section className="hero wrap" id="home">
+      <div className="herotext">
+        <span className="eyebrow">{copy.eyebrow[locale]}</span>
+        <h1><span>{copy.title1[locale]} </span><em>{copy.title2[locale]}</em><span className="t3"> {copy.title3[locale]}</span></h1>
+        <p className="lead">{copy.lead[locale]}</p>
+        <div className="hbtns"><Link href={`/${locale}/aloqa`} className="cta">{labels.request[locale]}</Link><a href="https://price.togogroup.uz" target="_blank" rel="noreferrer" className="cta ghost">{copy.priceCatalog[locale]}</a></div>
       </div>
-    </>
-  );
+      <div className="scene" aria-hidden="true"><svg viewBox="0 0 620 440" className="sc">
+        <g className="bgline"><path d="M40 90h540M40 150h540M40 210h540M40 270h540M40 330h540" /></g><path className="ground" d="M30 392h560" />
+        <g className="bld"><rect className="wallb" x="112" y="96" width="300" height="296" /><rect className="wall" x="112" y="96" width="300" height="296" /><path className="thin" d="M112 150h300M112 316h300" /><g className="win"><rect x="140" y="176" width="52" height="52" rx="3" /><rect x="212" y="176" width="52" height="52" rx="3" /><rect x="284" y="176" width="52" height="52" rx="3" /><rect x="356" y="176" width="34" height="52" rx="3" /><rect x="140" y="248" width="52" height="52" rx="3" /><rect x="212" y="248" width="52" height="52" rx="3" /><rect x="284" y="248" width="52" height="52" rx="3" /><rect x="356" y="248" width="34" height="52" rx="3" /></g><rect className="door" x="238" y="330" width="48" height="62" rx="3" /><path className="thin" d="M262 330v62" /></g>
+        <g className="sign">{Array.from(signWord).map((letter, index) => { const x = startX + index * step; return <g className="ln" style={{ animationDelay: `${0.4 + index * 0.12}s` }} key={`${letter}-${index}`}><rect x={x} y="112" width={letterWidth} height="30" rx="4" /><text x={x + letterWidth / 2} y="133" textAnchor="middle">{letter}</text></g>; })}<path className="glow" d="M140 150h260" /></g>
+        <g className="ladder"><path className="rail" d="M392 372V150M420 372V150" /><path className="rung" d="M392 176h28M392 206h28M392 236h28M392 266h28M392 296h28M392 326h28M392 356h28" /></g>
+        <g className="worker"><path className="thick" d="M402 300l-6 26M414 300l6 26" /><path className="suit" d="M398 262h20l4 40h-28z" /><path className="stroke" d="M398 262h20l4 40h-28z" /><circle className="head" cx="408" cy="246" r="13" /><circle className="stroke" cx="408" cy="246" r="13" fill="none" /><path className="helmet" d="M393 244a15 15 0 0130 0z" /><path className="stroke" d="M393 244a15 15 0 0130 0z" fill="none" /><path className="thin" d="M391 244h34" /><path className="arm thick" d="M400 272l-38-10" /><circle className="hand" cx="358" cy="260" r="5" /></g>
+        <g className="sparks"><circle cx="356" cy="130" r="4" /><circle cx="250" cy="122" r="3" /><circle cx="180" cy="132" r="4" /></g>
+      </svg></div>
+    </section>
+    <div className="specs wrap"><div className="spec"><i>{specs[0]}</i><b>3.2 m</b></div><div className="spec"><i>{specs[1]}</i><b>1440 dpi</b></div><div className="spec"><i>{specs[2]}</i><b>12 {locale === "ru" ? "мес." : locale === "en" ? "months" : "oy"}</b></div><div className="spec"><i>{specs[3]}</i><b>{locale === "ru" ? "Кран и фасад" : locale === "en" ? "Crane & facade" : "Kran va fasad"}</b></div></div>
+    <div className="mq bleed"><div><span>{ticker}</span><span>{ticker}</span></div></div>
+  </>;
 }

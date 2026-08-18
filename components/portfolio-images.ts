@@ -124,7 +124,13 @@ function localAssets(
   return sourceEntries(map).flatMap(([category, paths]) =>
     paths.map((source) => {
       const slug = slugFromSource(source);
-      return createAsset(category, `${category}-${kind}-${slug}`, source, slug, slug);
+      return createAsset(
+        category,
+        `${category}-${kind}-${slug}`,
+        source,
+        slug,
+        slug,
+      );
     }),
   );
 }
@@ -132,9 +138,9 @@ function localAssets(
 export const portfolioAssets: readonly PortfolioImage[] = Object.freeze([
   ...newPhotoAssets,
   ...telegramAssets,
+  ...localAssets("upload", sources.uploads),
   ...newSouvenirAssets,
   ...localAssets("legacy", sources.legacyPortfolio),
-  ...localAssets("upload", sources.uploads),
 ]);
 
 const groupedAssets = portfolioCategories.reduce(
