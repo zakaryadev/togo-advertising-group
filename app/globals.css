@@ -4728,3 +4728,4 @@ html[data-theme="light"] .reference-footer .flogo img {
    SVG inside the button-sized control instead of the browser's 300×150 default. */
 .big .cta { margin-top: 20px; align-self: flex-start; background: var(--card); color: var(--brand-ink); border: 0; border-radius: 11px; padding: 13px 20px; font-size: 13.5px; }
 .big .cta svg { width: 16px; height: 16px; flex: 0 0 16px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.specialties { margin-top: 64px; }
