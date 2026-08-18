@@ -84,6 +84,15 @@
     ]
   },
   "uploads": {
+    "f1": [
+      "new-images/banner-1.HEIC",
+      "new-images/banner-2.HEIC"
+    ],
+    "f4": [
+      "new-images/avto-1.png",
+      "new-images/avto-2.png",
+      "new-images/avto-3.png"
+    ],
     "f8": [
       "new-images/dtf-tshirt-bigcase.png",
       "new-images/polo-tbm-30-years.png",

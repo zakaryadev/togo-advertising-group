@@ -6,7 +6,7 @@ import {
   services,
   type Locale,
 } from "@/data/site";
-import { portfolioImagesByCategory } from "@/components/portfolio-images";
+import { getDynamicPortfolioImagesByCategory } from "@/components/portfolio-images";
 import PortfolioGallery from "@/components/site/portfolio-gallery";
 import PortfolioCategory from "@/components/site/portfolio-category";
 import LegacyHero from "@/components/hero";
@@ -76,13 +76,14 @@ export function EventsPage({ locale }: { locale: Locale }) { const copy = pageTe
 
 const processSteps = [["Brif va o‘lchov", "O‘lcham, material, muddat va byudjetni aniqlaymiz. Kerak bo‘lsa obyektga chiqib, aniq o‘lchov va foto hisobot beramiz."], ["Dizayn va tasdiqlash", "Maket va 3D vizualizatsiya, ikki bepul tahrir. Rang va o‘lcham prepress bosqichida tekshiriladi."], ["Ishlab chiqarish", "Bosma, kesish, payvandlash, yig‘ish va sifat nazorati. Materiallar sertifikat bilan topshiriladi."], ["Montaj va topshirish", "O‘rnatish yoki yetkazish, balandlikdagi ishlar alpinist brigadasi bilan. Kafolat, EHF va hujjatlar to‘liq beriladi."], ["Xizmat va kuzatuv", "Kafolat muddatida nuqsonlarni bartaraf qilamiz. Keyingi buyurtmalar uchun maket va o‘lchovlarni saqlaymiz."]] as const;
 export function ProcessPage({ locale }: { locale: Locale }) { const copy = pageText.process; return <section className="wrap section page reference-page"><p className="kick">04 — {locale === "ru" ? "Процесс" : locale === "en" ? "Process" : "Jarayon"}</p><h1>{copy.title[locale]}</h1><p className="slead">{copy.lead[locale]}</p><div className="steps">{processSteps.map(([title, description]) => <article className="step" key={title}><h2>{title}</h2><p>{description}</p></article>)}</div></section>; }
-export function PortfolioPreview({
+export async function PortfolioPreview({
   locale,
   category,
 }: {
   locale: Locale;
   category?: string;
 }) {
+  const portfolioImagesByCategory = await getDynamicPortfolioImagesByCategory();
   const selected =
     category && portfolioCategories.some(([key]) => key === category)
       ? category

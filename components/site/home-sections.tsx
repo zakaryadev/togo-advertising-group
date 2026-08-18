@@ -12,7 +12,7 @@ import {
   Tags,
 } from "lucide-react";
 import { portfolioCategories, type Locale } from "@/data/site";
-import { portfolioImagesByCategory } from "@/components/portfolio-images";
+import { getDynamicPortfolioImagesByCategory } from "@/components/portfolio-images";
 
 const copy = {
   uz: {
@@ -58,7 +58,8 @@ const copy = {
 
 const icons = [Presentation, GalleryHorizontalEnd, Tags, BriefcaseBusiness, ClipboardList, Landmark, FileText, MapPinned];
 
-export function HomeSections({ locale }: { locale: Locale }) {
+export async function HomeSections({ locale }: { locale: Locale }) {
+  const portfolioImagesByCategory = await getDynamicPortfolioImagesByCategory();
   const text = copy[locale];
   return <>
     <section className="wrap home-sections" aria-labelledby="home-sections-title">

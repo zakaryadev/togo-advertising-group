@@ -30,7 +30,7 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files
 .env*
 !.env.example
 
@@ -41,12 +41,22 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# hidden legacy supabase & Next.js codebase
+# temporary upload and processing folders
+/new-images/
+new-images/
+new-images/temp/
+
+# agent & IDE caches
+.claude/
+.agents/
+.gemini/
+
+# hidden legacy supabase & HTML dumps
 .old_supabase_code/
 .old_supabase_code
 supabase/
-lib/
 deploy/
 /telegram/
-!public/img/telegram/
-
+!.public/img/telegram/
+*.html
+!public/**/*.html

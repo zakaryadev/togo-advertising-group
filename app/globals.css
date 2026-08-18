@@ -4731,7 +4731,7 @@ html[data-theme="light"] .reference-footer .flogo img {
 .specialties { margin-top: 64px; }
 
 /* Portfolio detail filters — copied from the approved reference. */
-.subnav { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 26px; }
+.subnav { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 26px; margin-bottom: 32px; }
 .subchip { border: 1px solid var(--line); background: var(--card); color: var(--sub); border-radius: 999px; padding: 8px 15px; font-family: var(--body); font-size: 13px; font-weight: 600; cursor: pointer; transition: .16s; white-space: nowrap; }
 .subchip:hover { border-color: var(--brand); color: var(--brand); background: var(--brand-soft); }
 .subchip.on { background: var(--brand); border-color: var(--brand); color: var(--on-brand); }
@@ -4741,7 +4741,10 @@ html[data-theme="light"] .reference-footer .flogo img {
 .page > .pfnav + .subnav::before { content: "Xizmat turi"; flex-basis: 100%; font: 700 10px var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--brand); margin-bottom: 2px; }
 @media (max-width: 640px) { .page > .pfnav + .subnav { margin-top: 26px; padding-top: 18px; } }
 
-.portfolio-placeholder-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 22px; }
+.subnav + .gallery,
+.subnav + .portfolio-placeholder-grid { margin-top: 32px; }
+
+.portfolio-placeholder-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 32px; }
 .portfolio-placeholder { min-height: 180px; display: grid; place-items: center; align-content: center; gap: 9px; border: 1px dashed var(--line2); border-radius: 12px; background: var(--card); color: var(--muted); }
 .portfolio-placeholder svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; }
 .portfolio-placeholder span { font: 700 9px var(--mono); letter-spacing: .12em; }
