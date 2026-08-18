@@ -117,11 +117,11 @@
   display: none;
 }
 .hero {
-  padding: 76px 34px 62px;
+  padding: 64px 0 56px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(280px, 0.8fr);
   align-items: center;
-  gap: 54px;
+  gap: 48px;
 }
 .hero h1,
 .page h1 {
@@ -501,9 +501,9 @@ body {
     color 0.3s;
 }
 .wrap {
-  max-width: 1520px;
+  max-width: 1340px;
   margin: 0 auto;
-  padding: 0 34px;
+  padding: 0 clamp(24px, 4.5vw, 56px);
 }
 @media (max-width: 640px) {
   .wrap {

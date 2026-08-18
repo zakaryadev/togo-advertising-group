@@ -286,16 +286,8 @@ export async function getDynamicPortfolioAssets(): Promise<readonly PortfolioIma
       };
     });
 
-    // Create a Set of db item srcs to deduplicate
-    const dbSrcSet = new Set(dbAssets.map((a) => a.src));
-
-    // Filter out static assets that were edited and saved to DB
-    const filteredStaticAssets = portfolioAssets.filter(
-      (staticAsset) => !dbSrcSet.has(staticAsset.src)
-    );
-
-    // Merge dynamic and filtered static assets (Supabase assets take priority and are placed at the beginning)
-    return [...dbAssets, ...filteredStaticAssets];
+    // Return dynamic assets from Supabase DB (Supabase is single source of truth)
+    return dbAssets;
   } catch (err) {
     console.error("Exception fetching dynamic portfolio:", err);
     return portfolioAssets;

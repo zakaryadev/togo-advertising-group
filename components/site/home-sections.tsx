@@ -76,10 +76,16 @@ export async function HomeSections({ locale }: { locale: Locale }) {
       <div className="pfq">
         <h2 className="section-label">{text.portfolio}</h2>
         <div className="pfqgrid">
-          {portfolioCategories.map(([category, label]) => <Link className="pfqc" href={`/${locale}/portfolio/${category}`} key={category}>
-            <Image className="pfqc-image" src={portfolioImagesByCategory[category as keyof typeof portfolioImagesByCategory][0].src} alt="" fill sizes="(max-width: 640px) 100vw, 25vw" />
-            <span className="pfqc-shade" /><span className="pfq-number">{category.toUpperCase()}</span><b>{label[locale]}</b><i>{text.portfolioAction} →</i>
-          </Link>)}
+          {portfolioCategories.map(([category, label]) => {
+            const catImages = portfolioImagesByCategory[category as keyof typeof portfolioImagesByCategory];
+            const imgSrc = catImages?.[0]?.src || `/img/portfolio/${category}/banner-1.webp`;
+            return (
+              <Link className="pfqc" href={`/${locale}/portfolio/${category}`} key={category}>
+                <Image className="pfqc-image" src={imgSrc} alt="" fill sizes="(max-width: 640px) 100vw, 25vw" />
+                <span className="pfqc-shade" /><span className="pfq-number">{category.toUpperCase()}</span><b>{label[locale]}</b><i>{text.portfolioAction} →</i>
+              </Link>
+            );
+          })}
         </div>
       </div>
       <aside className="nolist" aria-labelledby="no-ad-title">
