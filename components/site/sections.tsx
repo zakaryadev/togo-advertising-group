@@ -9,6 +9,7 @@ import {
 import { portfolioImagesByCategory } from "@/components/portfolio-images";
 import PortfolioGallery from "@/components/site/portfolio-gallery";
 import LegacyHero from "@/components/hero";
+import { Box, Flag, Gift, MapPinned, Monitor, PanelTop, Presentation, Signpost, Wrench } from "lucide-react";
 
 export function Hero({ locale }: { locale: Locale }) {
   return <LegacyHero locale={locale} />;
@@ -46,6 +47,34 @@ export function ServicesPreview({ locale }: { locale: Locale }) {
     </section>
   );
 }
+
+const pageText = {
+  services: { title: { uz: "Nima ishlab chiqaramiz", ru: "Что мы производим", en: "What we produce" }, lead: { uz: "Har bir buyurtma bitta menejerga biriktiriladi. Maket tasdiqlanmaguncha ishlab chiqarish boshlanmaydi.", ru: "За каждым заказом закреплён один менеджер. Производство начинается только после утверждения макета.", en: "Each order has one dedicated manager. Production starts only after the layout is approved." } },
+  events: { title: { uz: "Ko‘rgazma va tadbirlarni to‘liq ofarmlaymiz", ru: "Полностью оформляем выставки и мероприятия", en: "Complete exhibition and event production" }, lead: { uz: "CAEx Expo Centre va boshqa maydonlardagi ko‘rgazmalar, MDH davlatlaridagi forum va tadbirlar — brif olishdan tadbir tugagach demontajgacha. Bitta jamoa, bitta shartnoma, bitta javobgar.", ru: "Выставки в CAEx Expo Centre и на других площадках, форумы и мероприятия в странах СНГ — от брифа до демонтажа. Одна команда, один договор, один ответственный.", en: "Exhibitions at CAEx Expo Centre and other venues, forums and events across the CIS — from brief to dismantling, with one team and one contract." } },
+  process: { title: { uz: "Buyurtma qanday harakatlanadi", ru: "Как проходит заказ", en: "How your order moves forward" }, lead: { uz: "Ochiq va bashoratli jarayon. Har status o‘zgarishida sizga xabar keladi, maket tasdiqlanmaguncha bosma boshlanmaydi va har bosqichda javobgar aniq.", ru: "Прозрачный и предсказуемый процесс: мы сообщаем о каждом изменении статуса, не начинаем печать без утверждения макета и фиксируем ответственного на каждом этапе.", en: "A transparent, predictable process: we update you at every status change, never print before approval, and assign responsibility at every stage." } },
+} as const;
+
+const directionCards = [
+  [PanelTop, "Obyomli harflar va yorug‘lik peshtoqlari", "Akril obyomli harflar, kontur yoritish, nuqtali diod, alyukabond bort va yorug‘lik qutilari."],
+  [Wrench, "Kran va balandlik reklamasi", "Minorali kranlarga banner va setka, qurilish to‘siqlari va fasad brandmaueri. Shamol yukiga hisob va alpinist brigadasi bilan."],
+  [Monitor, "Katta formatli va UV bosma", "3.2 m gacha kenglik, 1440 dpi. Banner, setka, orakal, backlit, xolst va qattiq materiallarga UV bosma."],
+  [Box, "Poligrafiya va qadoqlash", "Vizitka, katalog, flayer, papka, bloknot, kalendar va qog‘oz paket — ofset va raqamli bosma bilan."],
+  [Presentation, "Ko‘rgazma va tadbir ofarmleniyasi", "Stend, press-wall, roll-up, navigatsiya, brendlangan zona va suvenirlar — CAEx Expo Centre hamda MDH tadbirlari uchun."],
+  [MapPinned, "Brending va navigatsiya", "Logotip, brendbuk, bino ichi navigatsiyasi, tablichka va stendlar, avtopark brendlash — manba fayllari bilan."],
+] as const;
+
+const serviceGroups = [["Tashqi reklama", "Tom va kranga reklama", "Obyomli harf", "Yorug‘lik qutisi", "LED ekran", "Neon reklama", "Fasad reklamasi", "Navigatsiya ko‘rsatkichlari"], ["Bosma va ishlov", "Banner bosma", "Orakal bosma", "UV bosma", "Ekosolvent bosma", "Plotter kesish", "Lazer kesish va gravyura", "Quyoshdan himoya plyonka"], ["Poligrafiya", "Flayer", "Buklet", "Bloknot bosma", "Katalog", "Vizitka", "Kalendar", "Logotipli paket"], ["Ko‘rgazma konstruksiyalari", "Pauchok", "Roll-up", "Parus bayroq", "Press-wall", "Mobil stendlar", "Noodatiy stend va konstruksiya"], ["Suvenir va kiyim", "Ruchka bosma", "Krujka bosma", "Futbolka bosma", "Statuetka", "Eko-sumka", "Sovg‘a to‘plamlari", "Ish formasi"], ["Transport brendlash", "Avtomobil brendlash", "Avtobuslarda reklama", "Maxsus texnikada reklama"]] as const;
+
+export function DirectionsPage({ locale }: { locale: Locale }) {
+  const copy = pageText.services;
+  return <section className="wrap section page reference-page"><p className="kick">01 — {locale === "ru" ? "Направления" : locale === "en" ? "Directions" : "Yo‘nalishlar"}</p><h1>{copy.title[locale]}</h1><p className="slead">{copy.lead[locale]}</p><div className="cards direction-cards">{directionCards.map(([Icon, title, text], index) => <article className="c" key={title}><span className="n">0{index + 1}</span><div className="ico"><Icon aria-hidden="true" /></div><h2>{title}</h2><p>{text}</p></article>)}</div><section className="extra"><h2>{locale === "ru" ? "Услуги наружной рекламы" : locale === "en" ? "Outdoor advertising services" : "Tashqi reklama xizmatlari"}</h2><p>{locale === "ru" ? "Более пятидесяти позиций — от вывески до сувенира. Всё на собственной базе, по одному договору и с одним менеджером." : locale === "en" ? "Over fifty items — from signage to merchandise. All are produced in-house, under one contract with one manager." : "Ellikdan ortiq pozitsiya — peshtoqdan suvenirgacha. Barchasi o‘z bazamizda, bitta shartnoma va bitta menejer bilan."}</p><div className="svall">{serviceGroups.map(([heading, ...items]) => <div className="svgrp" key={heading}><h3>{heading}</h3><div className="svgrid">{items.map((item) => <div className="sv" key={item}><Signpost aria-hidden="true" /><span>{item}</span></div>)}</div></div>)}</div></section></section>;
+}
+
+const eventCards = [[Presentation, "Stend loyihasi va yig‘ish", "3D vizualizatsiya, konstruksiya, bosma, yig‘ish va demontaj"], [PanelTop, "Press-wall va foto zona", "3×3 m dan katta o‘lchamgacha, sumka bilan"], [Flag, "Navigatsiya va POS", "Roll-up, parus bayroq, promostoyka va ko‘rsatkichlar"], [Gift, "Delegatsiya to‘plami", "Brendlangan bloknot, ruchka, beydjik va sovg‘a to‘plami"], [Monitor, "Sahna va fon bezagi", "Prezidium, banner-fon, LED ekran ramkasi va sahna oldi bezagi"], [MapPinned, "Navigatsiya va ko‘rsatkichlar", "Zal sxemasi, yo‘nalish belgilari va registratsiya zonasi"], [Box, "Brendlangan zona va foto nuqta", "Press-wall, selfi ramka, brend devor va ko‘chma mebel"], [Signpost, "Mehmon to‘plami", "Beydjik, papka, bloknot, ruchka, sovg‘a va tashqi propusk"]] as const;
+export function EventsPage({ locale }: { locale: Locale }) { const copy = pageText.events; return <section className="wrap section page reference-page"><p className="kick">03 — {locale === "ru" ? "Мероприятия" : locale === "en" ? "Events" : "Tadbirlar"}</p><h1>{copy.title[locale]}</h1><p className="slead">{copy.lead[locale]}</p><div className="ev">{eventCards.map(([Icon, title, description]) => <article className="evc" key={title}><Icon aria-hidden="true" /><h2>{title}</h2><p>{description}</p></article>)}</div></section>; }
+
+const processSteps = [["Brif va o‘lchov", "O‘lcham, material, muddat va byudjetni aniqlaymiz. Kerak bo‘lsa obyektga chiqib, aniq o‘lchov va foto hisobot beramiz."], ["Dizayn va tasdiqlash", "Maket va 3D vizualizatsiya, ikki bepul tahrir. Rang va o‘lcham prepress bosqichida tekshiriladi."], ["Ishlab chiqarish", "Bosma, kesish, payvandlash, yig‘ish va sifat nazorati. Materiallar sertifikat bilan topshiriladi."], ["Montaj va topshirish", "O‘rnatish yoki yetkazish, balandlikdagi ishlar alpinist brigadasi bilan. Kafolat, EHF va hujjatlar to‘liq beriladi."], ["Xizmat va kuzatuv", "Kafolat muddatida nuqsonlarni bartaraf qilamiz. Keyingi buyurtmalar uchun maket va o‘lchovlarni saqlaymiz."]] as const;
+export function ProcessPage({ locale }: { locale: Locale }) { const copy = pageText.process; return <section className="wrap section page reference-page"><p className="kick">04 — {locale === "ru" ? "Процесс" : locale === "en" ? "Process" : "Jarayon"}</p><h1>{copy.title[locale]}</h1><p className="slead">{copy.lead[locale]}</p><div className="steps">{processSteps.map(([title, description]) => <article className="step" key={title}><h2>{title}</h2><p>{description}</p></article>)}</div></section>; }
 export function PortfolioPreview({
   locale,
   category,
