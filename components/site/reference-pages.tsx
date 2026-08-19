@@ -49,7 +49,7 @@ const events = [
 ] as const;
 
 export function ReferenceEventsPage({ locale }: { locale: Locale }) {
-  const title = locale === "ru" ? "Полностью оформляем выставки и мероприятия" : locale === "en" ? "Complete exhibition and event production" : "Ko‘rgazma va tadbirlarni to‘liq ofarmlaymiz";
+  const title = locale === "ru" ? "Полностью оформляем выставки и мероприятия" : locale === "en" ? "Complete exhibition and event production" : "Ko‘rgazma va tadbirlarni to‘liq bezaymiz";
   const lead = locale === "ru" ? "Выставки в CAEx Expo Centre и на других площадках, форумы и мероприятия в странах СНГ — от брифа до демонтажа." : locale === "en" ? "Exhibitions at CAEx Expo Centre and other venues, forums and events across the CIS — from brief to dismantling." : "CAEx Expo Centre va boshqa maydonlardagi ko‘rgazmalar, MDH davlatlaridagi forum va tadbirlar — brif olishdan tadbir tugagach demontajgacha. Bitta jamoa, bitta shartnoma, bitta javobgar. Xalqaro delegatsiyalar uchun to‘liq ofarmleniya: stenddan sovg‘a to‘plamigacha.";
   return <section className="wrap section page reference-page"><Link className="crumb" href={`/${locale}`}>{backIcon}{back(locale)}</Link><p className="kick">03 — {locale === "ru" ? "Мероприятия" : locale === "en" ? "Events" : "Tadbirlar"}</p><h1>{title}</h1><p className="slead">{lead}</p><div className="ev">{events.map(([name, description], index) => <article className="evc" key={name}><EventIcon index={index} /><h2>{name}</h2><p>{description}</p></article>)}</div><Link className="back" href={`/${locale}`}>{backIcon}{locale === "ru" ? "На главную" : locale === "en" ? "Back to home" : "Asosiy sahifaga qaytish"}</Link></section>;
 }
