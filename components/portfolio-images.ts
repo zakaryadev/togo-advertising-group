@@ -2,6 +2,7 @@ import sourceMap from "@/data/portfolio-image-sources.json";
 import { inferPortfolioSubcategory, portfolioSubcategories, type PortfolioCategoryKey } from "@/data/portfolio-subcategories";
 import type { Locale } from "@/data/site";
 import { supabase } from "@/lib/supabase";
+import { connection } from "next/server";
 
 export const portfolioCategories = [
   "f1",
@@ -193,6 +194,11 @@ export const portfolioImagesByCategory: Readonly<
 export function mapServiceTypeToCategoryAndSubcategory(serviceType: string): { category: PortfolioCategory; subcategory: string } {
   const typeLower = (serviceType || "").toLowerCase();
 
+  // Check this before "uv": "suvenir" contains the character sequence "uv".
+  if (typeLower.includes("suvenir") || typeLower.includes("souvenir") || typeLower.includes("gift")) {
+    return { category: "f8", subcategory: "toplam" };
+  }
+
   // LED Harflar / Lightbox -> f2
   if (typeLower.includes("harf") || typeLower.includes("letter") || typeLower.includes("led")) {
     return { category: "f2", subcategory: "harf" };
@@ -219,11 +225,6 @@ export function mapServiceTypeToCategoryAndSubcategory(serviceType: string): { c
     return { category: "f5", subcategory: "vistavka" };
   }
 
-  // Suvenirlar -> f8
-  if (typeLower.includes("suvenir") || typeLower.includes("souvenir") || typeLower.includes("gift")) {
-    return { category: "f8", subcategory: "toplam" };
-  }
-
   // Tablichka va navigatsiya -> f6
   if (typeLower.includes("tablichka") || typeLower.includes("navigatsiya") || typeLower.includes("sign")) {
     return { category: "f6", subcategory: "ofis" };
@@ -248,8 +249,19 @@ function getSubcategoryLabel(category: PortfolioCategory, subcategoryKey: string
   return item ? item.label : { uz: subcategoryKey, ru: subcategoryKey, en: subcategoryKey };
 }
 
+function isValidSubcategory(category: PortfolioCategory, subcategoryKey: string | null | undefined): subcategoryKey is string {
+  return Boolean(
+    subcategoryKey &&
+      portfolioSubcategories[category as PortfolioCategoryKey].some((item) => item.key === subcategoryKey),
+  );
+}
+
 // Dynamic portfolio retrieval from Supabase, merged with local fallback static items
 export async function getDynamicPortfolioAssets(): Promise<readonly PortfolioImage[]> {
+  // Portfolio changes in the admin panel must be visible without a new deployment.
+  // Keep this outside the error fallback so Next can correctly opt out of prerendering.
+  await connection();
+
   try {
     const { data: dbItems, error } = await supabase
       .from("portfolio")
@@ -269,12 +281,18 @@ export async function getDynamicPortfolioAssets(): Promise<readonly PortfolioIma
 
     // Map DB items to PortfolioImage interface
     const dbAssets: PortfolioImage[] = dbItems.map((item) => {
-      const { category, subcategory } = mapServiceTypeToCategoryAndSubcategory(item.service_type);
-      const subLabel = getSubcategoryLabel(category, subcategory);
+      const mapped = mapServiceTypeToCategoryAndSubcategory(item.service_type);
       let src = item.image_url || "";
       if (src && !src.startsWith("http://") && !src.startsWith("https://") && !src.startsWith("/")) {
         src = `/${src}`;
       }
+      // The admin-managed database fields are the source of truth. A storage
+      // filename can retain its original f1–f8 prefix after an item is moved.
+      const category = mapped.category;
+      const subcategory = isValidSubcategory(category, item.dimensions)
+        ? item.dimensions
+        : mapped.subcategory;
+      const subLabel = getSubcategoryLabel(category, subcategory);
       return {
         id: `db-${item.id}`,
         category,

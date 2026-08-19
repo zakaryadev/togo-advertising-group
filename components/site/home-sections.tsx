@@ -81,7 +81,7 @@ export async function HomeSections({ locale }: { locale: Locale }) {
             const imgSrc = catImages?.[0]?.src || `/img/portfolio/${category}/banner-1.webp`;
             return (
               <Link className="pfqc" href={`/${locale}/portfolio/${category}`} key={category}>
-                <Image className="pfqc-image" src={imgSrc} alt="" fill sizes="(max-width: 640px) 100vw, 25vw" />
+                <Image className="pfqc-image" src={imgSrc} alt="" fill sizes="(max-width: 640px) 100vw, 25vw" unoptimized />
                 <span className="pfqc-shade" /><span className="pfq-number">{category.toUpperCase()}</span><b>{label[locale]}</b><i>{text.portfolioAction} →</i>
               </Link>
             );

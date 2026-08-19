@@ -1,38 +1,33 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs/promises";
-import path from "path";
-import { spawn } from "child_process";
 import { createClient } from "@supabase/supabase-js";
+import sharp from "sharp";
 
 const VALID_CATEGORIES = ["f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8"];
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabaseAnonKey =
+  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ??
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const adminEmail = process.env.ADMIN_EMAIL || "admin@togogrouppro.uz";
+const adminPassword = process.env.ADMIN_PASSWORD || "togo2026";
 
-function runOptimizer(src: string, dest: string): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const scriptPath = path.join(process.cwd(), "scripts", "optimize_server.py");
-    const child = spawn("python", [scriptPath, "--src", src, "--dest", dest]);
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error("Missing Supabase URL or publishable key in environment variables.");
+}
 
-    let stdout = "";
-    let stderr = "";
+async function optimizeImage(buffer: Buffer) {
+  const image = sharp(buffer);
+  const metadata = await image.metadata();
+  const optimized = await image
+    .rotate()
+    .resize({ width: 1600, height: 1600, fit: "inside", withoutEnlargement: true })
+    .webp({ quality: 85 })
+    .toBuffer();
 
-    child.stdout.on("data", (data) => {
-      stdout += data.toString();
-    });
-
-    child.stderr.on("data", (data) => {
-      stderr += data.toString();
-    });
-
-    child.on("close", (code) => {
-      if (code === 0 && stdout.includes("SUCCESS")) {
-        resolve(stdout);
-      } else {
-        reject(new Error(stderr || stdout || `Process exited with code ${code}`));
-      }
-    });
-  });
+  return {
+    buffer: optimized,
+    details: `Optimized ${metadata.width ?? "?"}x${metadata.height ?? "?"} image to ${optimized.byteLength} bytes`,
+  };
 }
 
 function sanitizeFilename(filename: string) {
@@ -63,9 +58,6 @@ function getServiceTypeFromCategory(category: string): string {
 }
 
 export async function POST(request: NextRequest) {
-  let tempOriginalPath = "";
-  let tempOptimizedPath = "";
-
   try {
     const formData = await request.formData();
     const file = formData.get("file") as File | null;
@@ -90,8 +82,8 @@ export async function POST(request: NextRequest) {
 
     // Sign in on backend using admin user credentials
     const { data: authData, error: authError } = await supabasePublic.auth.signInWithPassword({
-      email: process.env.ADMIN_EMAIL!,
-      password: process.env.ADMIN_PASSWORD!,
+      email: adminEmail,
+      password: adminPassword,
     });
 
     if (authError || !authData.session) {
@@ -114,35 +106,21 @@ export async function POST(request: NextRequest) {
     const buffer = Buffer.from(await file.arrayBuffer());
 
     // Generate unique name
-    const { cleanName, ext } = sanitizeFilename(file.name);
+    const { cleanName } = sanitizeFilename(file.name);
     const uniqueId = `${Date.now()}-${Math.floor(1000 + Math.random() * 9000)}`;
-    const originalFilename = `${cleanName}-${uniqueId}.${ext}`;
     const webpFilename = `${cleanName}-${uniqueId}.webp`;
 
-    // Ensure temp folder exists
-    const tempDir = path.join(process.cwd(), "new-images", "temp");
-    await fs.mkdir(tempDir, { recursive: true });
-
-    // Save temporary original file
-    tempOriginalPath = path.join(tempDir, originalFilename);
-    await fs.writeFile(tempOriginalPath, buffer);
-
-    // Optimize local temporary WebP path
-    tempOptimizedPath = path.join(tempDir, webpFilename);
-
-    // Run Python optimizer
+    // Optimize in memory so serverless deployments do not depend on a writable project folder or Python.
     let details = "";
+    let webpBuffer: Buffer;
     try {
-      details = await runOptimizer(tempOriginalPath, tempOptimizedPath);
+      ({ buffer: webpBuffer, details } = await optimizeImage(buffer));
     } catch (optError: any) {
       return NextResponse.json(
         { error: `Image optimization failed: ${optError.message}` },
         { status: 500 }
       );
     }
-
-    // Read the optimized WebP buffer
-    const webpBuffer = await fs.readFile(tempOptimizedPath);
 
     // Upload to Supabase Storage
     const bucketName = "portfolio-images";
@@ -200,17 +178,5 @@ export async function POST(request: NextRequest) {
       { error: `Internal server error: ${error.message}` },
       { status: 500 }
     );
-  } finally {
-    // Cleanup temporary files
-    if (tempOriginalPath) {
-      try {
-        await fs.unlink(tempOriginalPath);
-      } catch {}
-    }
-    if (tempOptimizedPath) {
-      try {
-        await fs.unlink(tempOptimizedPath);
-      } catch {}
-    }
   }
 }

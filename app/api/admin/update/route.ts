@@ -1,35 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import fs from "fs/promises";
-import path from "path";
-import { spawn } from "child_process";
+import sharp from "sharp";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabaseAnonKey =
+  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ??
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const adminEmail = process.env.ADMIN_EMAIL || "admin@togogrouppro.uz";
+const adminPassword = process.env.ADMIN_PASSWORD || "togo2026";
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error("Missing Supabase URL or publishable key in environment variables.");
+}
 
 const categoryToServiceType: Record<string, string> = {
   f1: "Banner", f2: "LED Harflar", f3: "Kran", f4: "Avto reklama",
   f5: "Stend", f6: "Tablichka", f7: "Poligrafiya", f8: "Suvenir",
 };
 
-function runOptimizer(src: string, dest: string): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const scriptPath = path.join(process.cwd(), "scripts", "optimize_server.py");
-    const child = spawn("python", [scriptPath, "--src", src, "--dest", dest]);
-    let stdout = "", stderr = "";
-    child.stdout.on("data", (d) => { stdout += d.toString(); });
-    child.stderr.on("data", (d) => { stderr += d.toString(); });
-    child.on("close", (code) => {
-      if (code === 0 && stdout.includes("SUCCESS")) resolve(stdout);
-      else reject(new Error(stderr || stdout || `Process exited ${code}`));
-    });
-  });
-}
-
 async function getAuthClient() {
   const pub = createClient(supabaseUrl, supabaseAnonKey);
   const { data, error } = await pub.auth.signInWithPassword({
-    email: process.env.ADMIN_EMAIL!, password: process.env.ADMIN_PASSWORD!,
+    email: adminEmail, password: adminPassword,
   });
   if (error || !data.session) throw new Error(`Auth: ${error?.message || "no session"}`);
   return createClient(supabaseUrl, supabaseAnonKey, {
@@ -38,7 +30,6 @@ async function getAuthClient() {
 }
 
 export async function POST(request: NextRequest) {
-  let tmpSrc = "", tmpDest = "";
   try {
     const formData = await request.formData();
     const imageUrl = formData.get("imageUrl") as string;
@@ -67,21 +58,18 @@ export async function POST(request: NextRequest) {
       const cleanName = newImage.name.split(".")[0]
         .replace(/_/g, "-").replace(/[^a-zA-Z0-9-]+/g, "-")
         .replace(/-+/g, "-").replace(/^-|-$/g, "").toLowerCase();
-      const originalFilename = `${cleanName}-${uniqueId}.${newImage.name.split(".").pop()}`;
       const webpFilename = `${cleanName}-${uniqueId}.webp`;
 
-      const tempDir = path.join(process.cwd(), "new-images", "temp");
-      await fs.mkdir(tempDir, { recursive: true });
-
-      tmpSrc = path.join(tempDir, originalFilename);
-      tmpDest = path.join(tempDir, webpFilename);
-      await fs.writeFile(tmpSrc, buffer);
-
-      try { await runOptimizer(tmpSrc, tmpDest); } catch (e: any) {
+      let webpBuffer: Buffer;
+      try {
+        webpBuffer = await sharp(buffer)
+          .rotate()
+          .resize({ width: 1600, height: 1600, fit: "inside", withoutEnlargement: true })
+          .webp({ quality: 85 })
+          .toBuffer();
+      } catch (e: any) {
         return NextResponse.json({ error: `Optimizatsiya: ${e.message}` }, { status: 500 });
       }
-
-      const webpBuffer = await fs.readFile(tmpDest);
       const storagePath = `portfolio/${webpFilename}`;
 
       const { error: upErr } = await authSupabase.storage
@@ -130,9 +118,5 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: true, imageUrl: finalImageUrl });
   } catch (error: any) {
     return NextResponse.json({ error: `Server: ${error.message}` }, { status: 500 });
-  } finally {
-    for (const f of [tmpSrc, tmpDest]) {
-      if (f) try { await fs.unlink(f); } catch {}
-    }
   }
 }

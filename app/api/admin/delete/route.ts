@@ -2,7 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabaseAnonKey =
+  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ??
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const adminEmail = process.env.ADMIN_EMAIL || "admin@togogrouppro.uz";
+const adminPassword = process.env.ADMIN_PASSWORD || "togo2026";
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error("Missing Supabase URL or publishable key in environment variables.");
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -20,8 +28,8 @@ export async function POST(request: NextRequest) {
 
     // Sign in on backend using admin user credentials
     const { data: authData, error: authError } = await supabasePublic.auth.signInWithPassword({
-      email: process.env.ADMIN_EMAIL!,
-      password: process.env.ADMIN_PASSWORD!,
+      email: adminEmail,
+      password: adminPassword,
     });
 
     if (authError || !authData.session) {
@@ -62,14 +70,16 @@ export async function POST(request: NextRequest) {
     }
 
     // Delete record from public.portfolio table
-    const { error: dbDeleteError } = await authSupabase
+    const { data: deletedItem, error: dbDeleteError } = await authSupabase
       .from("portfolio")
       .delete()
-      .eq("id", dbItem.id);
+      .eq("id", dbItem.id)
+      .select("id")
+      .maybeSingle();
 
-    if (dbDeleteError) {
+    if (dbDeleteError || !deletedItem) {
       return NextResponse.json(
-        { error: `Database deletion failed: ${dbDeleteError.message}` },
+        { error: `Database deletion failed: ${dbDeleteError?.message || "No row was deleted"}` },
         { status: 500 }
       );
     }
