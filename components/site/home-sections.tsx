@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { portfolioCategories, type Locale } from "@/data/site";
 import { getDynamicPortfolioImagesByCategory } from "@/components/portfolio-images";
+import PartnersMarquee from "@/components/site/partners-marquee";
 
 const copy = {
   uz: {
@@ -64,11 +65,6 @@ const partnerTitles: Record<Locale, string> = {
   en: "Our partners",
 };
 
-const partnerLogos = Array.from({ length: 46 }, (_, index) => ({
-  x: `${(index % 23 / 22) * 100}%`,
-  y: index < 23 ? "0%" : "100%",
-}));
-
 export async function HomeSections({ locale }: { locale: Locale }) {
   const portfolioImagesByCategory = await getDynamicPortfolioImagesByCategory();
   const text = copy[locale];
@@ -102,21 +98,7 @@ export async function HomeSections({ locale }: { locale: Locale }) {
       </div>
       <section className="partners" aria-labelledby="partners-title">
         <h2 id="partners-title" className="section-label">{partnerTitle}</h2>
-        <div className="partners-marquee">
-          <div className="partners-track">
-            {[0, 1].map((set) => (
-              <span className="partners-set" key={set} aria-hidden="true">
-                {partnerLogos.map((logo, index) => (
-                  <span
-                    className="partners-logo"
-                    key={index}
-                    style={{ backgroundPosition: `${logo.x} ${logo.y}` }}
-                  />
-                ))}
-              </span>
-            ))}
-          </div>
-        </div>
+        <PartnersMarquee label={partnerTitle} />
       </section>
       <aside className="nolist" aria-labelledby="no-ad-title">
         <div className="nohead"><ShieldBan aria-hidden="true" /><div><h2 id="no-ad-title">{text.noTitle}<em>{text.noEmphasis}</em></h2><p>{text.noLead}</p></div></div>
