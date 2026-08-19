@@ -58,9 +58,21 @@ const copy = {
 
 const icons = [Presentation, GalleryHorizontalEnd, Tags, BriefcaseBusiness, ClipboardList, Landmark, FileText, MapPinned];
 
+const partnerTitles: Record<Locale, string> = {
+  uz: "Hamkorlarimiz",
+  ru: "Наши партнёры",
+  en: "Our partners",
+};
+
+const partnerLogos = Array.from({ length: 46 }, (_, index) => ({
+  x: `${(index % 23 / 22) * 100}%`,
+  y: index < 23 ? "0%" : "100%",
+}));
+
 export async function HomeSections({ locale }: { locale: Locale }) {
   const portfolioImagesByCategory = await getDynamicPortfolioImagesByCategory();
   const text = copy[locale];
+  const partnerTitle = partnerTitles[locale];
   return <>
     <section className="wrap home-sections" aria-labelledby="home-sections-title">
       <h2 id="home-sections-title" className="section-label">{text.title}</h2>
@@ -88,6 +100,24 @@ export async function HomeSections({ locale }: { locale: Locale }) {
           })}
         </div>
       </div>
+      <section className="partners" aria-labelledby="partners-title">
+        <h2 id="partners-title" className="section-label">{partnerTitle}</h2>
+        <div className="partners-marquee">
+          <div className="partners-track">
+            {[0, 1].map((set) => (
+              <span className="partners-set" key={set} aria-hidden="true">
+                {partnerLogos.map((logo, index) => (
+                  <span
+                    className="partners-logo"
+                    key={index}
+                    style={{ backgroundPosition: `${logo.x} ${logo.y}` }}
+                  />
+                ))}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
       <aside className="nolist" aria-labelledby="no-ad-title">
         <div className="nohead"><ShieldBan aria-hidden="true" /><div><h2 id="no-ad-title">{text.noTitle}<em>{text.noEmphasis}</em></h2><p>{text.noLead}</p></div></div>
         <div className="nogrid">{text.noItems.map((item) => <span className="noitem" key={item}><ShieldBan aria-hidden="true" /><i>{item}</i></span>)}</div>
