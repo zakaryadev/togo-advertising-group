@@ -4,16 +4,20 @@ export function isLocale(value: string): value is Locale {
   return (locales as readonly string[]).includes(value);
 }
 export const siteUrl = "https://togogroup.uz";
+type Copy = Record<Locale, string>;
+export const t = (uz: string, ru: string, en: string): Copy => ({ uz, ru, en });
 export const contact = {
   phone: "+998 77 300 45 00",
   phoneHref: "tel:+998773004500",
   telegram: "https://t.me/togo_group_pro",
   instagram: "https://www.instagram.com/togo_group_pro/",
   email: "info@togogrouppro.uz",
-  address: "Yashnobod MFY, 4-Aviasozlar mavzesi, 9-uy, Toshkent",
+  address: t(
+    "Yashnobod MFY, 4-Aviasozlar mavzesi, 9-uy, Toshkent",
+    "г. Ташкент, махалля Яшнабад, 4-й массив Авиасозлар, дом 9",
+    "Tashkent, Yashnabad MFY, 4th Aviasozlar block, house 9"
+  ),
 } as const;
-type Copy = Record<Locale, string>;
-export const t = (uz: string, ru: string, en: string): Copy => ({ uz, ru, en });
 export const labels = {
   home: t("Asosiy", "Главная", "Home"),
   contact: t("Aloqa", "Контакты", "Contact"),

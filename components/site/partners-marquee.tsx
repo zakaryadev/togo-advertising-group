@@ -37,13 +37,13 @@ export default function PartnersMarquee({ label }: { label: string }) {
           <button
             className="partners-backdrop"
             type="button"
-            aria-label="Logo ko‘rinishini yopish"
+            aria-label="Close"
             onClick={() => setSelectedIndex(null)}
           />
           <button
             className="partners-preview"
             type="button"
-            aria-label="Logo ko‘rinishini yopish"
+            aria-label="Close"
             style={{ backgroundPosition: `${selectedLogo.x} ${selectedLogo.y}` }}
             onClick={() => setSelectedIndex(null)}
           />

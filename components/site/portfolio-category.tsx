@@ -14,8 +14,10 @@ export default function PortfolioCategory({ category, items, locale }: { categor
   const activeLabel = filters.find((filter) => filter.key === selected)?.label[locale];
   const placeholderLabel = locale === "ru" ? "ФОТО БУДЕТ ДОБАВЛЕНО" : locale === "en" ? "PHOTO WILL BE ADDED" : "RASM JOYLANADI";
 
+  const filterAriaLabel = locale === "ru" ? "Фильтры портфолио" : locale === "en" ? "Portfolio filters" : "Portfolio filterlari";
+
   return <>
-    <div className="subnav" aria-label="Portfolio filterlari">
+    <div className="subnav" aria-label={filterAriaLabel}>
       <button className={`subchip ${selected === null ? "on" : ""}`} type="button" onClick={() => setSelected(null)}>{allLabel}</button>
       {filters.map((filter) => <button className={`subchip ${selected === filter.key ? "on" : ""}`} type="button" key={filter.key} onClick={() => setSelected(filter.key)}>{filter.label[locale]}</button>)}
     </div>

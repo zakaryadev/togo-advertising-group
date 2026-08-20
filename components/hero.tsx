@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { heroCopy, labels, type Locale } from "@/data/site";
 
-const ticker = "Tom va kranga reklama  •  Obyomli harf  •  Yorug'lik qutisi  •  LED ekran  •  Neon reklama  •  Yuguruvchi qator  •  Kontrajur yoritish  •  Fasad reklamasi  •  Tom ustiga logotip  •  Stella  •  Navigatsiya ko'rsatkichlari  •  Banner bosma  •  UV bosma  •  Poligrafiya  •  Roll Up  •  Press-wall  •  Suvenirlar  •  Avtomobil brendlash  •  ";
+const tickerData: Record<Locale, string> = {
+  uz: "Tom va kranga reklama  •  Obyomli harf  •  Yorug'lik qutisi  •  LED ekran  •  Neon reklama  •  Yuguruvchi qator  •  Kontrajur yoritish  •  Fasad reklamasi  •  Tom ustiga logotip  •  Stella  •  Navigatsiya ko'rsatkichlari  •  Banner bosma  •  UV bosma  •  Poligrafiya  •  Roll Up  •  Press-wall  •  Suvenirlar  •  Avtomobil brendlash  •  ",
+  ru: "Реклама на крышах и кранах  •  Объёмные буквы  •  Световые короба  •  LED экраны  •  Неоновая реклама  •  Бегущая строка  •  Контражурная подсветка  •  Фасадная реклама  •  Крышные установки  •  Стеллы  •  Навигация  •  Печать баннеров  •  УФ-печать  •  Полиграфия  •  Roll Up  •  Press-wall  •  Сувениры  •  Брендирование авто  •  ",
+  en: "Rooftop & crane ads  •  3D letters  •  Lightboxes  •  LED screens  •  Neon signs  •  LED tickers  •  Backlit illumination  •  Facade branding  •  Rooftop signs  •  Pylons  •  Wayfinding  •  Banner printing  •  UV printing  •  Print production  •  Roll Up  •  Press-wall  •  Corporate gifts  •  Fleet branding  •  ",
+};
 const specificationLabels = { uz: ["BOSMA KENGLIGI", "BOSMA ANIQLIGI", "KONSTRUKSIYA KAFOLATI", "BALANDLIKDAGI MONTAJ"], ru: ["ШИРИНА ПЕЧАТИ", "РАЗРЕШЕНИЕ", "ГАРАНТИЯ КОНСТРУКЦИИ", "ВЫСОТНЫЙ МОНТАЖ"], en: ["PRINT WIDTH", "RESOLUTION", "STRUCTURE WARRANTY", "HEIGHT INSTALLATION"] } as const;
 
 export default function Hero({ locale }: { locale: Locale }) {
@@ -11,6 +15,7 @@ export default function Hero({ locale }: { locale: Locale }) {
   const startX = locale === "en" ? 122 : 140;
   const letterWidth = locale === "en" ? 22 : 30;
   const specs = specificationLabels[locale];
+  const ticker = tickerData[locale];
 
   return <>
     <section className="hero wrap" id="home">

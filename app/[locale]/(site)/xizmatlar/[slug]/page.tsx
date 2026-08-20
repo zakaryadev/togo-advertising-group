@@ -89,7 +89,7 @@ export default async function Page({ params }: PageProps<"/[locale]/xizmatlar/[s
         <p>{service.details[locale]}</p>
       </div>
       <Link className="cta" href={`/${locale}/aloqa`}>
-        Get a quote
+        {locale === "ru" ? "Запросить расчёт" : locale === "en" ? "Get a quote" : "Hisob-kitob so'rash"}
       </Link>
     </section>
   );

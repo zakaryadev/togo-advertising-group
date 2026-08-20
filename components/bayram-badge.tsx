@@ -67,7 +67,7 @@ export default function BayramBadge({ locale }: { locale: Locale }) {
     {!dismissed && <aside className="holiday-badge" style={style} aria-label={holiday.name[locale]}>
       <span className="holiday-badge-icon" aria-hidden="true">{holiday.icon}</span>
       <span className="holiday-badge-copy"><span>{holiday.date[locale]}</span><strong>{holiday.name[locale]}</strong><small>{holiday.message[locale]}</small></span>
-      <button type="button" aria-label="Yopish" onClick={() => { sessionStorage.setItem(`togo-holiday-${holiday.id}`, "hidden"); setDismissed(true); }}>×</button>
+      <button type="button" aria-label={locale === "ru" ? "Закрыть" : locale === "en" ? "Close" : "Yopish"} onClick={() => { sessionStorage.setItem(`togo-holiday-${holiday.id}`, "hidden"); setDismissed(true); }}>×</button>
     </aside>}
   </>;
 }
