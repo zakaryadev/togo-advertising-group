@@ -10,6 +10,14 @@ const nextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/insta",
+        destination: "/insta.html",
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

@@ -5,14 +5,16 @@ type Status = "idle" | "pending" | "sent" | "error";
 export default function LeadForm({ locale }: { locale: Locale }) {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
-  async function submit(form: FormData) {
+  async function submit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
     setStatus("pending");
     setMessage("");
+    const formData = new FormData(event.currentTarget);
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify(Object.fromEntries(form)),
+        body: JSON.stringify(Object.fromEntries(formData)),
       });
       const payload = await response.json();
       if (!response.ok) throw new Error(payload.message);
@@ -29,7 +31,7 @@ export default function LeadForm({ locale }: { locale: Locale }) {
         ? "Send request"
         : "Hisob-kitob so'rash";
   return (
-    <form className="lead-form" action={submit}>
+    <form className="lead-form" onSubmit={submit}>
       <div className="form-grid">
         <label>
           {" "}
